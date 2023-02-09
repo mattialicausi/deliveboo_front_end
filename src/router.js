@@ -1,22 +1,26 @@
 import { createRouter, createWebHistory } from "vue-router";
 
 // import SingleProduct from "./pages/SingleProduct.vue";
-// import HomePage from "./pages/HomePage.vue";
+import HomePage from "./pages/HomePage.vue";
+import AllRestaurant from "./pages/AllRestaurant.vue";
 // import LoginPage from "./pages/LoginPage.vue";
 // import RegisterPage from "./pages/RegisterPage.vue";
 // import ContactUs from "./pages/ContactUs.vue";
 
-// import CartComponent from "./pages/CartComponent.vue";
-
 
 const router = createRouter({
   history: createWebHistory(),
-//   routes: [
-//     {
-//       path: "/",
-//       name: "home",
-//       component: HomePage,
-//     },
+  routes: [
+    {
+      path: "/",
+      name: "home",
+      component: HomePage,
+    },
+    {
+      path: "/restaurants",
+      name: "restaurants",
+      component: AllRestaurant,
+    },
 //     {
 //       path: "/login",
 //       name: "login",
@@ -44,7 +48,7 @@ const router = createRouter({
 //     },
 
 
-//   ],
+  ],
 });
 
 export { router };

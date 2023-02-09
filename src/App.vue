@@ -3,12 +3,10 @@
     <HeaderComponent/>
   </header>
 
-    <h1>Home page</h1>
-
   <!-- rotte delle pagine -->
-    <!-- <main>
+    <main>
        <router-view></router-view>
-    </main> -->
+    </main>
 
     <footer>
       <FooterComponent/>
@@ -17,11 +15,12 @@
 </template>
 
 <script>
+import {RouterView} from 'vue-router';
 import FooterComponent from './components/FooterComponent.vue';
 import HeaderComponent from './components/HeaderComponent.vue';
 
   export default {
-    components: { HeaderComponent, FooterComponent }
+    components: { HeaderComponent, FooterComponent },
 }
 </script>
 
