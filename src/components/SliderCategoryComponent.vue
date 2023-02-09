@@ -1,8 +1,12 @@
-<template>
+<template class="container">
 
-    <CardCategoryComponent/>
+     <h2 class="text-center">La nostra selezione per te</h2>
 
-    <h2>Slider Category Component</h2>
+    <div class="row">
+        <CardCategoryComponent/>
+    </div>
+
+
 </template>
 
 <script>

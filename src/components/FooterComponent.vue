@@ -2,7 +2,10 @@
 
     <MobileAppComponent/>
 
-    <MapComponent/>
+    <div class="container">
+        <MapComponent/>
+    </div>
+
 
     <h2>Footer Component</h2>
  </template>
