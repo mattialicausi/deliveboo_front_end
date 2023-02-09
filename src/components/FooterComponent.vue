@@ -1,11 +1,20 @@
 <template>
+
+    <MobileAppComponent/>
+
+    <MapComponent/>
+
     <h2>Footer Component</h2>
  </template>
  
- <script>
+<script>
+    import MobileAppComponent from './footer_partials/MobileAppComponent.vue';
+    import MapComponent from './footer_partials/MapComponent.vue';
+
      export default {
-         name: 'FooterComponent',
-     }
+        name: "FooterComponent",
+        components: { MobileAppComponent, MapComponent }
+    }
  </script>
  
  <style lang="scss" scoped>

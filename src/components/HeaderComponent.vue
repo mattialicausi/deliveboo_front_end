@@ -1,10 +1,19 @@
 <template>
+
+    <NavBarComponent/>
+
+    <JumboComponent/>
+
     <h2>Header Component</h2>
 </template>
 
 <script>
+import JumboComponent from './header_partials/JumboComponent.vue';
+import NavBarComponent from './header_partials/NavBarComponent.vue';
+
     export default {
-        name: 'HeaderComponent',
+        name: "HeaderComponent",
+        components: { NavBarComponent, JumboComponent }
     }
 </script>
 
