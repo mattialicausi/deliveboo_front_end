@@ -1,6 +1,6 @@
 <template>
 
-    <MobileAppComponent/>
+    <MobileAppComponent />
 
     <section class="footer">
             <footer class="text-center text-lg-start text-white position-relative" style="background-color: #292d2d;">
