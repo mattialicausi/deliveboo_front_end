@@ -1,50 +1,56 @@
 <template>
     <h2>All Restaurant page</h2>
 
-    <ul v-for="(restaurant, index) in restaurants" :key="index">
-            <li>
-                <h1>{{ restaurant.restaurant_name }}</h1>
-                <p>{{ restaurant.p_iva }}</p>
-                <p>{{ restaurant.address }}</p>
-                <p>{{ restaurant.contact_phone }}</p>
-                <p>{{ restaurant.description }}</p>
-                <p>{{ restaurant.opening_time }}</p>
-                <p>{{ restaurant.closing_time }}</p>
-                <!-- <img :src="`${store.imgBasePath}${restaurant.image}`" class="card-img-top pb-5" :alt="restaurant.name" /> -->
-                <img :src="restaurant.image" class="card-img-top pb-5" style="width: 400px;" :alt="restaurant.name" />
-            
-            </li>
-        </ul>
+    <div class="row">
+    <CardRestaurantComponent v-for="(restaurant, index) in restaurants" :restaurant="restaurant" :categories="categories"></CardRestaurantComponent>
+    
+    </div>
+
+    
 </template>
 
 <script>
 
 import axios from 'axios';
 import {store} from '../store';
+import CardRestaurantComponent from '../components/CardRestaurantComponent.vue';
 
     export default {
         name: 'AllRestaurant',
+        components: {
+            CardRestaurantComponent
+        },
 
         data () {
                 return {
                     store,
                     restaurants: [],
+                    categories: [],
                 }
             },
 
             methods: {
-                getApi() {
+                getRestaurants() {
                     axios.get(`${this.store.apiBaseUrl}/restaurants`).then((res) => {
 
                         this.restaurants = res.data.results;
-                        console.log(this.restaurants);
+                        // console.log(this.restaurants);
                         
+                    });
+                },
+                getCategories() {
+                    axios.get(`${this.store.apiBaseUrl}/categories`).then((res) => {
+
+                        this.categories = res.data.categories;
+                        // console.log(this.categories);
+
                     });
                 }
             },
 
             mounted() {
-                this.getApi();
+                this.getRestaurants();
+                this.getCategories();
             },
     }
 </script>
