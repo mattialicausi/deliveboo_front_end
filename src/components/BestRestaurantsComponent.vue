@@ -1,5 +1,8 @@
 <template>
 
+<!-- <div class="container-wave-top"></div> -->
+
+
     <div class="container">
         <h2 class="text-center my-5">Locali che potrebbero piacerti</h2>
 
@@ -44,10 +47,14 @@
 
                     </div>
                 </div>
+
+                <div class="container-btn">
+                    <div class="my-btn btn">scopri i ristoranti</div>
+                </div>
+              
             </div>
         </div>
     </div>
-
 
 
 </template>
@@ -96,6 +103,40 @@ h2 {
     color: $white;
     font-size: 2.5rem;
 }
+
+// .container-wave-top {
+//     width: 100%;
+//     background-image: url('../../public/image/wave-orange.svg');
+//     background-repeat: no-repeat;
+//     background-size: cover;
+//     height: 10rem;
+
+// }
+
+.container-btn {
+    display: flex;
+    justify-content: end;
+    margin-bottom: 3rem;
+
+    .my-btn {
+        background-color: $white;
+        color: $orange;
+        border: 1px solid transparent;
+        width: max-content;
+        transition: 200ms ease-in-out;
+
+        &:hover {
+            cursor: pointer;
+            border: 1px solid $white;
+            background-color: $orange;
+            color: $white;
+            transition: 200ms ease-in-out;
+        }
+
+    }
+}
+
+
 
 .my-card {
     background-color: $white;
