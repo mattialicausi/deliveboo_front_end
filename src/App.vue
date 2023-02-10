@@ -4,7 +4,7 @@
   </header>
 
   <!-- rotte delle pagine -->
-    <main class="container">
+    <main>
        <router-view></router-view>
     </main>
 

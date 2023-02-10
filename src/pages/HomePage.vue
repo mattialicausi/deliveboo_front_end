@@ -43,4 +43,9 @@ import {store} from '../store';
 @import '../assets/styles/general.scss';
 @import '../assets/styles/partials/variables';
 
+#best-restaurants {
+    background-color: $orange;
+}
+
+
 </style>
