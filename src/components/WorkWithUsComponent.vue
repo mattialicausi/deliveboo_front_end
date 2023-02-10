@@ -1,7 +1,6 @@
 <template>
-    <div class="container text-center">
+    <div class="container text-center my-5">
         <h2>Lavora con DeliveBoo</h2>
-
         <div class="row justify-content-center">
             <div class="col-sm-12 col-md-8 col-lg-4 mt-3">
                 <div class="a-box">
@@ -14,7 +13,7 @@
                     </div>
                     <div class="text-container">
                         <h3>Guadagna con DeliveBoo</h3>
-                        <div>
+                        <div class="txt">
                             Diventa un rider e guadagna consegnando cibo a domicilio.
                         </div>
                         <a href="#" class="btn mybtn-orange">Diventa un rider</a>
@@ -32,7 +31,7 @@
                     </div>
                     <div class="text-container">
                         <h3>Apri un ristorante con DeliveBoo</h3>
-                        <div>
+                        <div class="txt">
                             Espandi la tua attività e raggiungi nuovi clienti con Deliveroo.
                         </div>
                         <a href="#" class="btn mybtn-orange">Apri un ristorante</a>
@@ -50,7 +49,7 @@
                     </div>
                     <div class="text-container">
                         <h3>Lavora in DeliveBoo</h3>
-                        <div>
+                        <div class="txt">
                             Unisciti al team di Deliveroo e aiuta a portare il cibo a domicilio in tutto il mondo.
                         </div>
                         <a href="#" class="btn mybtn-orange">Unisciti a noi</a>
@@ -75,16 +74,19 @@ export default {
 
 
 
-
-.a-box a {
-    display: inline-block;
-    margin-top: 20px;
-    padding: 10px 20px;
-    background-color: $orange;
-    color: #ffffff;
-    border-radius: 25px;
-    text-decoration: none;
+h3 {
+    height: 45px;
 }
+
+// .a-box a {
+//     display: inline-block;
+//     margin-top: 20px;
+//     padding: 10px 20px;
+//     background-color: $orange;
+//     color: #ffffff;
+//     border-radius: 25px;
+//     text-decoration: none;
+// }
 
 .a-box {
     display: inline-block;
@@ -120,6 +122,7 @@ export default {
 }
 
 .text-container {
+    border: 1px solid $orange;
     box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
     padding: 120px 20px 20px 20px;
     border-radius: 20px;
@@ -130,8 +133,13 @@ export default {
 }
 
 .text-container h3 {
+
     margin: 20px 0px 10px 0px;
     color: $orange;
     font-size: 18px;
+}
+
+.txt {
+    height: 60px;
 }
 </style>

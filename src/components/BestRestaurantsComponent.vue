@@ -1,6 +1,6 @@
 <template>
 
-<!-- <div class="container-wave-top"></div> -->
+    <!-- <div class="container-wave-top"></div> -->
 
 
     <div class="container">
@@ -22,7 +22,7 @@
                                 <div class="d-flex align-items-center">
                                     <h4 class="h-100">{{ restaurant.restaurant_name }}</h4>
                                 </div>
-                                
+
                                 <div class="d-flex align-items-center">
                                     <i class="fa-solid fa-star me-2"></i>
                                     <span v-if="restaurant.rating">{{ restaurant.rating }}</span>
@@ -51,7 +51,7 @@
                 <div class="container-btn">
                     <div class="my-btn btn">scopri i ristoranti</div>
                 </div>
-              
+
             </div>
         </div>
     </div>
@@ -61,9 +61,9 @@
 
 <script>
 import axios from 'axios';
-import {store} from '../store';
+import { store } from '../store';
 
-    export default {
+export default {
     name: "BestRestaurantsComponent",
 
     data() {
@@ -76,11 +76,11 @@ import {store} from '../store';
         getApi() {
             axios.get(`${this.store.apiBaseUrl}/restaurants`).then((res) => {
 
-                for (let i=0; i < 6; i++) {
+                for (let i = 0; i < 6; i++) {
                     this.restaurants.push(res.data.results[i])
                 }
                 console.log(this.restaurants);
-                        
+
             });
         }
     },
@@ -112,6 +112,9 @@ h2 {
 //     height: 10rem;
 
 // }
+.container-card {
+    margin: 50px;
+}
 
 .container-btn {
     display: flex;
@@ -142,6 +145,7 @@ h2 {
     background-color: $white;
     border: 1px solid $white;
     height: 400px;
+    overflow: hidden;
 
 
     .container-img {
@@ -174,5 +178,4 @@ h2 {
     }
 
 }
-
 </style>
