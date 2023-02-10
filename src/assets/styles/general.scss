@@ -1,6 +1,6 @@
 @use './partials/variables' as *;
 
-$fa-font-path: '../webfonts';
+@import url('https://fonts.googleapis.com/css2?family=Mulish:wght@300;500;700&display=swap');
 @import '@fortawesome/fontawesome-free/scss/fontawesome.scss';
 @import '@fortawesome/fontawesome-free/scss/solid.scss';
 @import '@fortawesome/fontawesome-free/scss/brands.scss';
@@ -258,4 +258,16 @@ p.card-text{
 
 .border-form {
     border: 1px solid $white;
+}
+
+//HOMEPAGE
+
+.bg-orange{
+    background-color: $orange;
+
+}
+
+.img-panino{
+    -ms-transform: rotate(25deg); /* IE 9 */
+    transform: rotate(25deg);
 }
