@@ -8,7 +8,7 @@
 
 
     <h2>Footer Component</h2>
- </template>
+</template>
  
 <script>
     import MobileAppComponent from './footer_partials/MobileAppComponent.vue';
