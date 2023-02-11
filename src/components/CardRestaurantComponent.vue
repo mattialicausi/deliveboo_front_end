@@ -7,43 +7,44 @@
         <div class="container mb-5">
 
             <div class="row align-items-center">
-                <div class="col card restaurantImg">
+
+                <div class="col-4 card restaurant-img">
                     <img v-if="!restaurant.image.startsWith('http')" :src="`${store.imgBasePath}${restaurant.image}`"
                         :alt="restaurant.restaurant_name">
                     <img v-else :src="restaurant.image" :alt="restaurant.restaurant_name">
                 </div>
 
-                <div class="col">
+                <div class="col-8">
 
-                    <h3 class="fw-bold">{{ restaurant.restaurant_name }}</h3>
-                    <p v-for="(category, i) in restaurant.categories">
-                        {{ (i < (restaurant.categories.length - 1)) ? category.name + ', ' : category.name }} </p>
+                    <div><h4 class="fw-bold">{{ restaurant.restaurant_name }}</h4></div>
 
+                    <div class="d-flex justify-content-between">
+                        <!-- <p v-for="(category, i) in restaurant.categories">
+                        {{ (i < (restaurant.categories.length - 1)) ? category.name + ', ' : category.name }} </p> -->
+                        <div>
                             <p>
-                                <!-- <div>
-                                <span v-for="n in maxRating" :key="n" :class="'fa fa-star'"></span>
-                            </div> -->
-                                <span v-if="restaurant.rating"><i class="fa-solid fa-star"></i> {{
-                                    restaurant.rating
-                                }}/5</span>
+                            <!-- <div><span v-for="n in maxRating" :key="n" :class="'fa fa-star'"></span></div> -->
+                            <span v-if="restaurant.rating"><i class="fa-solid fa-star"></i> {{restaurant.rating}}/5</span>
                                 <!-- <span v-if="!restaurant.rating">Nessun voto</span> -->
                             </p>
                             <p>{{ truncateText(restaurant.description) }}</p>
-
-                </div>
-
-                <div class="col">
-
-                    <p>
-                        <span v-if="restaurant.min_price_order">{{ restaurant.min_price_order }} &euro;</span>
-                        <span v-if="!restaurant.min_price_order">Nessun prezzo minimo per l'ordine</span>
-                    </p>
-                    <p>
-                        <span v-if="restaurant.delivery_price">Costo consegna {{ restaurant.delivery_price }}
-                            &euro;</span>
-                        <span v-if="!restaurant.delivery_price">Consegna gratuita</span>
-
-                    </p>
+                        </div>    
+                        
+                        <div class="text-start">
+                            
+                            <p>
+                                <span v-if="restaurant.min_price_order">Ordine minino per l'ordine di: {{ restaurant.min_price_order }} &euro;</span>
+                                <span v-if="!restaurant.min_price_order">Nessun prezzo minimo per l'ordine</span>
+                            </p>
+                            <p>
+                                <span v-if="restaurant.delivery_price">Costo consegna {{ restaurant.delivery_price }} &euro;</span>
+                                <span v-if="!restaurant.delivery_price">Consegna gratuita</span>
+                            </p>
+                        
+                        </div>
+                        
+                    </div>
+                    
 
                 </div>
 
@@ -113,7 +114,7 @@ export default {
 @import '../assets/styles/partials/variables';
 
 
-.restaurantImg {
+.restaurant-img {
 
     img {
         width: 100%;
