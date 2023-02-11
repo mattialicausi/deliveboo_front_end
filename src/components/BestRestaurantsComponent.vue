@@ -4,7 +4,7 @@
 
 
     <div class="container">
-        <h2 class="text-center my-5">Locali che potrebbero piacerti</h2>
+        <h2 class="text-center pt-5">Locali che potrebbero piacerti</h2>
 
         <div class="container-card">
             <div class="row">
