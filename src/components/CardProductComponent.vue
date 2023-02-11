@@ -21,8 +21,15 @@
 </template>
 
 <script>
+import { store } from '../store';
 export default {
-    name: "CardProductComponent"
+    name: "CardProductComponent",
+    data() {
+        return {
+            store,
+        }
+    },
+    
 }
 </script>
 

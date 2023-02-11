@@ -6,15 +6,19 @@
     <div class="container">
         <h2 class="text-center pt-5">Locali che potrebbero piacerti</h2>
 
+        
         <div class="container-card">
             <div class="row">
 
                 <div class="col-sm-12 col-md-6 col-lg-4" v-for="(restaurant, index) in restaurants" :key="index">
-                    <div class="my-card rounded-2 mb-4">
 
-                        <div class="container-img">
-                            <img :src="restaurant.image" alt="restaurant.name">
-                        </div>
+                
+                    <div class="my-card rounded-2 mb-4">
+                        <router-link :to="{ name: 'single-restaurant', params: {slug:restaurant.slug}}">
+                            <div class="container-img">
+                                <img :src="restaurant.image" alt="restaurant.name">
+                            </div>
+                        </router-link>
 
                         <div class="container-content">
 
@@ -49,7 +53,8 @@
                 </div>
 
                 <div class="container-btn">
-                    <div class="my-btn btn">scopri i ristoranti</div>
+                    <router-link :to="{ name: 'restaurants' }"><div class="my-btn btn">scopri i ristoranti</div></router-link>
+                    
                 </div>
 
             </div>
@@ -88,6 +93,8 @@ export default {
     mounted() {
         this.getApi();
     },
+
+    props: ['restaurant'],
 
 
 
