@@ -35,11 +35,6 @@ export default {
 @import '../../assets/styles/partials/variables';
 
 
-.bg-orange {
-    background-color: $orange;
-
-}
-
 .container {
     height: 400px;
 }
