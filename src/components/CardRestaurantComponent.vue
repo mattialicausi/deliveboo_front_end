@@ -1,66 +1,34 @@
 <template>
-
-    <!-- <div class="row">
-
-        <div class="col">
-            <div v-for="(categories, i) in categories">{{categories.id === restaurant.id ? categories.name : ''}}</div>
-        </div>
-        
-        <div class="col d-flex">
-
-            <img :src="restaurant.image" class="card-img-top pb-5" style="width: 250px;" :alt="restaurant.restaurant_name" />
-            <div>
-
-            <h1>{{ restaurant.restaurant_name }}</h1>
-            <p>{{ restaurant.description }}</p>
-            <p>{{ restaurant.rating }}</p>
-            <p>{{ restaurant.delivery_price }}</p>
-            <p>{{ restaurant.min_price_order }}</p>
-  
-            </div>
-        
-        </div>
-    </div> -->
-
-    <div class="container">
-        <div class="row">
-            <div class="col">
-
-                <select name="category" id="category" v-model="forCategory">
-                    <option value="">Category</option>
-                    <option v-for="(category, index) in store.categories" :key="index" :value="`${category.id}`">{{
-                        category.name
-                    }}</option>
-                </select>
-
-            </div>
-        </div>
-    </div>
-
-
     <div class="container-card">
 
 
-        <div class="container mb-5" v-for="(restaurant, index) in restaurants" :key="index">
+        <!-- <div class="container mb-5" v-for="(restaurant, index) in restaurants" :key="index"> -->
 
+        <div class="container mb-5">
 
             <div class="row align-items-center">
-
                 <div class="col card restaurantImg">
-                    <img :src="restaurant.image" alt="restaurant.name">
+                    <img v-if="!restaurant.image.startsWith('http')" :src="`${store.imgBasePath}${restaurant.image}`"
+                        :alt="restaurant.restaurant_name">
+                    <img v-else :src="restaurant.image" :alt="restaurant.restaurant_name">
                 </div>
 
                 <div class="col">
 
                     <h3 class="fw-bold">{{ restaurant.restaurant_name }}</h3>
-                    <p>
-                        <!-- <div>
+                    <p v-for="(category, i) in restaurant.categories">
+                        {{ (i < (restaurant.categories.length - 1)) ? category.name + ', ' : category.name }} </p>
+
+                            <p>
+                                <!-- <div>
                                 <span v-for="n in maxRating" :key="n" :class="'fa fa-star'"></span>
                             </div> -->
-                        <span v-if="restaurant.rating"><i class="fa-solid fa-star"></i> {{ restaurant.rating }}/5</span>
-                        <!-- <span v-if="!restaurant.rating">Nessun voto</span> -->
-                    </p>
-                    <p>{{ truncateText(restaurant.description) }}</p>
+                                <span v-if="restaurant.rating"><i class="fa-solid fa-star"></i> {{
+                                    restaurant.rating
+                                }}/5</span>
+                                <!-- <span v-if="!restaurant.rating">Nessun voto</span> -->
+                            </p>
+                            <p>{{ truncateText(restaurant.description) }}</p>
 
                 </div>
 
@@ -107,6 +75,7 @@ export default {
             rating: 0
         }
     },
+    props: ['restaurant', 'categories'],
 
     methods: {
         getRestaurants() {
@@ -117,6 +86,10 @@ export default {
         },
 
         truncateText(text) {
+            if (!text) {
+                return "";
+            }
+
             if (text.length > this.maxLength) {
                 return text.substr(0, this.maxLength) + "...";
             }
@@ -141,9 +114,6 @@ export default {
 
 
 .restaurantImg {
-
-    overflow: hidden;
-
 
     img {
         width: 100%;
