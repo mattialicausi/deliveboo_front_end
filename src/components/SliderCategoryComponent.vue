@@ -2,21 +2,21 @@
 
      <h2 class="text-center">La nostra selezione per te</h2>
 
-    <div class="row">
-        <CardCategoryComponent/>
+    <div>
+        <CarouselComponent/>
     </div>
 
 
 </template>
 
 <script>
-import CardCategoryComponent from './slider_category_partials/CardCategoryComponent.vue';
+import CarouselComponent from './slider_category_partials/CarouselComponent.vue';
 
 
 
     export default {
     name: "SliderCategoryComponent",
-    components: { CardCategoryComponent }
+    components: { CarouselComponent }
 }
 </script>
 
