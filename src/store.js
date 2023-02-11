@@ -15,6 +15,11 @@ export const store = reactive({
   types: [],
   restaurants: [],
 
+  // carrello
+  openCart: false,
+  shoppingCart: [],
+  cartData: [],
+
 
   getCategories: function () {
     axios.get(`${this.apiBaseUrl}/categories`).then((res) => {
