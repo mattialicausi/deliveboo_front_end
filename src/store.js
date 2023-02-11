@@ -10,6 +10,11 @@ export const store = reactive({
   types: [],
   restaurants: [],
 
+  // carrello
+  openCart: false,
+  shoppingCart: [],
+  cartData: [],
+
   
   getCategories: function(){
     axios.get(`${this.apiBaseUrl}/categories`).then((res)=>{
@@ -24,6 +29,19 @@ export const store = reactive({
       console.log(res.data.types)
   })
   },
+
+     // FUNZIONE PER ANIMARE GLI ELEMENTI IN ENTRATA NELLA PAGINA
+     showitems() {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("showing");
+          } 
+        });
+      });
+      const hiddenElements = document.querySelectorAll(".hidden");
+      hiddenElements.forEach((element) => observer.observe(element));
+    }
 
 
 });
