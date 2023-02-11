@@ -7,12 +7,14 @@
         <div class="container mb-5">
 
             <div class="row align-items-center">
-
-                <div class="col-4 card restaurant-img">
-                    <img v-if="!restaurant.image.startsWith('http')" :src="`${store.imgBasePath}${restaurant.image}`"
-                        :alt="restaurant.restaurant_name">
-                    <img v-else :src="restaurant.image" :alt="restaurant.restaurant_name">
-                </div>
+                
+                    <div class="col-4 card restaurant-img">
+                        <router-link :to="{ name: 'single-restaurant', params: {slug:restaurant.slug}}">
+                        <img v-if="!restaurant.image.startsWith('http')" :src="`${store.imgBasePath}${restaurant.image}`"
+                            :alt="restaurant.restaurant_name">
+                        <img v-else :src="restaurant.image" :alt="restaurant.restaurant_name">
+                        </router-link>
+                    </div>
 
                 <div class="col-8">
 
@@ -33,7 +35,7 @@
                         <div class="text-start">
                             
                             <p>
-                                <span v-if="restaurant.min_price_order">Ordine minino per l'ordine di: {{ restaurant.min_price_order }} &euro;</span>
+                                <span v-if="restaurant.min_price_order">Prezzo minino per l'ordine di: {{ restaurant.min_price_order }} &euro;</span>
                                 <span v-if="!restaurant.min_price_order">Nessun prezzo minimo per l'ordine</span>
                             </p>
                             <p>
