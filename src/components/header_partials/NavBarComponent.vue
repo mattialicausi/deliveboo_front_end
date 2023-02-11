@@ -23,10 +23,11 @@
                     </router-link>
                 </div>
                 <div class=" col-4 d-flex align-items-center justify-content-end">
-                    <ul class="navbar-nav mb-2 mb-lg-0">
-                        <li class="nav-item">
+                    <ul class="navbar-nav mb-2 mb-lg-0 d-flex  align-items-center justify-content-between">
+                        <li class="nav-item me-5">
                             <a :class="{ 'myactive': isLoginRoute }" class="nav-link" :href="loginRoute">Contattaci</a>
                         </li>
+
                     </ul>
                 </div>
             </div>
@@ -74,12 +75,22 @@
 </template>
 
 <script>
+import { store } from "../../store";
+
 export default {
     name: 'NavBarComponent',
+
+    data() {
+        return {
+            store,
+        }
+    }
 }
 </script>
 
 <style lang="scss" scoped>
 @import '../../assets/styles/general.scss';
 @import '../../assets/styles/partials/variables';
+
+
 </style>
