@@ -111,7 +111,7 @@
     position: fixed;
     top: 5rem;
     bottom: 10rem;
-    // height: 80%;
+    transition: 300ms ease-in-out;
     right: 1rem;
     width: 500px;
     // min-height: 100vh;

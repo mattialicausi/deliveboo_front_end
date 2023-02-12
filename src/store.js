@@ -24,14 +24,14 @@ export const store = reactive({
   getCategories: function () {
     axios.get(`${this.apiBaseUrl}/categories`).then((res) => {
       this.categories = res.data.categories;
-      console.log(res.data.categories)
+      // console.log(res.data.categories)
     })
   },
 
   getTypes: function () {
     axios.get(`${this.apiBaseUrl}/types`).then((res) => {
       this.types = res.data.types;
-      console.log(res.data.types)
+      // console.log(res.data.types)
     })
   },
 

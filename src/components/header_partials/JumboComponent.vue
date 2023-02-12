@@ -6,11 +6,14 @@
                     <img src="image/panino.png" alt="panino" class="img-fluid img-panino">
                 </div>
                 <div class="col-sm-12 col-md-6 col-lg-6 position-relative z-index-2">
-                    <h1 class="text-dark"><strong>Il tuo cibo preferito a portata di click!</strong> </h1>
-                    <p class="text-dark"> <strong>Scegli il tuo piatto preferito e ordina direttamente da casa
+                    <h1 class="text-white"><strong>Il tuo cibo preferito a portata di click!</strong> </h1>
+                    <p class="text-white"> <strong>Scegli il tuo piatto preferito e ordina direttamente da casa
                             tua!</strong></p>
-                    <div class="btn-jumbo">
-                        <a href="#" class="btn mybtn">Scopri i ristoranti</a>
+
+                </div>
+                <div class="row">
+                    <div class="btn-jumbo text-center">
+                        <router-link :to="{ name: 'restaurants' }"  class="btn mybtn">Scopri i ristoranti</router-link>
                     </div>
                 </div>
             </div>
@@ -34,6 +37,13 @@ export default {
 @import '../../assets/styles/general.scss';
 @import '../../assets/styles/partials/variables';
 
+h1 {
+    font-size: 3rem;
+}
+
+.btn-jumbo {
+    margin-top: -130px;
+}
 
 .container {
     height: 400px;

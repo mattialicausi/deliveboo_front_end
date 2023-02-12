@@ -16,7 +16,7 @@
                         <div class="txt">
                             Diventa un rider e guadagna consegnando cibo a domicilio.
                         </div>
-                        <a href="#" class="btn mybtn-orange">Diventa un rider</a>
+                        <router-link :to="{ name: 'contactus' }" class="btn mybtn-orange">Diventa un rider</router-link>
                     </div>
                 </div>
             </div>
@@ -34,7 +34,7 @@
                         <div class="txt">
                             Espandi la tua attività e raggiungi nuovi clienti con Deliveroo.
                         </div>
-                        <a href="#" class="btn mybtn-orange">Apri un ristorante</a>
+                        <a href="http://127.0.0.1:8000/register" class="btn mybtn-orange">Apri un ristorante</a>
                     </div>
                 </div>
             </div>
@@ -52,7 +52,7 @@
                         <div class="txt">
                             Unisciti al team di Deliveroo e aiuta a portare il cibo a domicilio in tutto il mondo.
                         </div>
-                        <a href="#" class="btn mybtn-orange">Unisciti a noi</a>
+                        <a href="http://127.0.0.1:8000/register" class="btn mybtn-orange">Unisciti a noi</a>
                     </div>
                 </div>
             </div>

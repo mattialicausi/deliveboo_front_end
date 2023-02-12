@@ -7,17 +7,17 @@
             <div class="col-sm-12 col-md-6 col-lg-6 text-center">
                 <h2 class="text-center">Provalo anche su smartphone</h2>
                 <p class="text-center">Non ne potrai più fare a meno!</p>
-                <ul class="list-unstyled mb-0 d-flex justify-content-center">
-                    <li>
+                <ul class="list-unstyled row">
+                    <li class="col-sm-12 col-md-6 col-sm-6">
                         <a href="https://www.apple.com/it/app-store/"><img
                                 src="https://thumbs.dreamstime.com/b/editorial-apple-app-store-download-banner-descriptionapple-inc-american-multinational-technology-company-headquartered-136704089.jpg"
-                                alt="Apple store" class="img-fluid m-1"></a>
+                                alt="Apple store" class=" m-1 w-75"></a>
                     </li>
-                    <li>
+                    <li class="col-sm-12 col-md-6 col-sm-6">
                         <a href="https://play.google.com/store/apps?gl=IT&utm_source=emea_Med&utm_medium=hasem&utm_content=Oct2020&utm_campaign=Evergreen&pcampaignid=MKT-EDR-emea-it-1001280-Med-hasem-ap-Evergreen-Oct2020-Text_Search_SKWS%7CONSEM_kwid_43700007423260291&gclid=Cj0KCQiA54KfBhCKARIsAJzSrdpZVMgMWUnXTCF7pG5mmnpc0cxlcAaPgeFTXolIPv5VRokOHPIR8ysaAnjvEALw_wcB&gclsrc=aw.ds&pli=1"
                             class="text-white"><img
                                 src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5zOmjz3-B1-Yy99GaWjS61hDdkRjcgOs43w&usqp=CAU"
-                                alt="Google store" class="img-fluid m-1"></a>
+                                alt="Google store" class=" m-1 w-75"></a>
                     </li>
                 </ul>
             </div>
