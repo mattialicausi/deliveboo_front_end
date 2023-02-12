@@ -5,11 +5,11 @@
                 <ul class="navbar-nav mb-2 mb-lg-0 col-4 d-flex align-items-center">
                     <div class="d-flex">
                         <li class="nav-item">
-                            <a href="#" class="btn mybtn mx-2"><i class="fa-solid fa-user text-black"></i> Accedi</a>
+                            <a href="http://127.0.0.1:8000/login" class="btn mybtn mx-2"><i class="fa-solid fa-user text-black"></i> Accedi</a>
                         </li>
                         <div>
                             <li class="nav-item">
-                                <a href="#" class="btn mybtn-orange">Registrati</a>
+                                <a href="http://127.0.0.1:8000/register" class="btn mybtn-orange">Registrati</a>
                             </li>
                         </div>
                     </div>
@@ -25,7 +25,7 @@
                 <div class=" col-4 d-flex align-items-center justify-content-end">
                     <ul class="navbar-nav mb-2 mb-lg-0 d-flex  align-items-center justify-content-between">
                         <li class="nav-item me-5">
-                            <a :class="{ 'myactive': isLoginRoute }" class="nav-link" :href="loginRoute">Contattaci</a>
+                            <router-link :to="{ name: 'contactus' }" :class="{ 'myactive': isLoginRoute }" class="nav-link">Contattaci</router-link>
                         </li>
 
                     </ul>
