@@ -83,7 +83,7 @@
                     <p class="d-flex justify-content-center align-items-center">
                         <span class="me-3">Entra nel nostro Team! Registrati gratuitamente!</span>
                         <button type="button" class="btn btn-outline-light btn-rounded">
-                            <a class="nav-link" href="#">Registrati</a>
+                            <a class="nav-link" href="http://127.0.0.1:8000/register">Registrati</a>
                         </button>
                     </p>
                 </section>
