@@ -1,9 +1,9 @@
 <template>
     <div class="container">
         <h2 class="text-center">I Nostri Ristoranti</h2>
-        <section id="slider-category" class="m-5">
+        <!-- <section id="slider-category" class="m-5">
             <SliderCategoryComponent />
-        </section>
+        </section> -->
 
 <!-- 
         <ul class="ks-cboxtags">
