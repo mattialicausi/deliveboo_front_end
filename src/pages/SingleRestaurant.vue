@@ -76,7 +76,7 @@
         </div>
     </div>
     <!--  -->
-    <ModalProductComponent v-if="selectedProduct" :product="selectedProduct" />
+    <ModalProductComponent v-if="selectedProduct" :product="selectedProduct" :restaurant="restaurant"/>
 
     <!-- Altre categorie -->
     <div class="container my-5">
@@ -136,7 +136,7 @@ export default {
                 } else {
                     this.$router.push({ name: "not-found" });
                 }
-                console.log(this.restaurant);
+                // console.log(this.restaurant);
             });
         },
         getProducts() {
@@ -147,7 +147,6 @@ export default {
                 } else {
                     this.$router.push({ name: "not-found" });
                 }
-                console.log(this.products);
             });
         },
         showProductModal(productId) {

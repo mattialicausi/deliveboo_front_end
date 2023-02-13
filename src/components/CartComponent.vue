@@ -12,21 +12,34 @@
         </div>
         
         <div class="product_list mt-5">
-          <div class="cart_item d-flex py-3 justify-content-between align-items-center" v-for="(cartItem, index) in store.cartData" :key="index">
+          <div class="cart_item d-flex py-3 justify-content-between align-items-center" v-for="(cartItem, index) in store.cart" :key="index">
             <div>
-              <p>nome</p>
-              <p>prezzo</p>
-              <input type="number" class="w-25 me-2" v-model="cartItem.quantity" min="1"/>
-              <label for="quantity">Quantità</label>
+              <p>{{ cartItem.name }}</p>
+              <p>{{ cartItem.price }}</p>
+              
+              <div>
+              
+                    <button class="btn mybtn-orange" @click="removeQuantity(cartItem, index)"> - </button>
+                    <span class="px-4 fs-4">{{ cartItem.quantity }}</span>
+                    <button class="btn mybtn-orange" @click="addQuantity(cartItem, index)"> + </button>
+               
+                </div>
+
             </div>
             <span @click="removeFromCart()"><i class="fa-solid fa-trash"></i></span>
           </div>
+          <div></div>
         </div>
 
         <div class="cart-total d-flex justify-content-between me-3">
             <span class="fs-4">Totale:</span>
             <span class="fs-4">{{ this.cartTotal.toFixed(2) }}</span>
+            <div>
+              <button class="btn mybtn-orange" @click="clearCart()">Svuota</button>
+            </div>
         </div>
+
+       
     </div>
 
 
@@ -44,13 +57,37 @@
     },
     methods: {
       removeFromCart(index) {
-        store.cartData.splice(index, 1);
-        localStorage.setItem(`cart`, JSON.stringify(store.cartData));
+        store.cart.splice(index, 1);
+        localStorage.setItem(`cart`, JSON.stringify(store.cart));
       },
+
+      clearCart(){
+            localStorage.clear()
+            store.cart = [];
+      },
+
+      addQuantity(product, i){
+            store.cart[i].quantity++
+            const item = JSON.parse(localStorage.getItem(product.slug))
+            item.quantity++
+            localStorage.setItem(product.slug, JSON.stringify(item))
+      },
+        removeQuantity(product,i){
+            const item = JSON.parse(localStorage.getItem(product.slug))
+            item.quantity--
+            if(item.quantity){
+                localStorage.setItem(product.slug, JSON.stringify(item))
+                store.cart[i].quantity--
+            }else{
+                localStorage.removeItem(product.slug)
+                store.cart.splice(i,1)
+            }
+        },
+      
     },
     computed: {
       cartTotal() {
-        return store.cartData.reduce((a, b) => a + b.price * b.quantity, 0);
+        return store.cart.reduce((a, b) => a + b.price * b.quantity, 0);
       },
     },
     mounted() {
@@ -65,7 +102,8 @@
   .product_list {
     overflow-y: auto;
     position: relative;
-    // height: 70vh;
+    overflow-y: auto;
+    height: 46vh;
   }
   .cart_item {
     border-bottom: 1px solid black;
