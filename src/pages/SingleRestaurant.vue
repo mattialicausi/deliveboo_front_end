@@ -70,14 +70,16 @@
         <div class="container py-4">
             <h2 class="text-center text-white ">Il nostro menu</h2>
             <div class="row">
-                <CardProductComponent v-for="product in products" :key="product.id" :product="product"
-                    @selectProduct="setSelectedProduct" />
+                <CardProductComponent v-for="product in products" :key="product.id" :product="product" :types="types"
+                    @show-product-modal="showProductModal" />
             </div>
         </div>
     </div>
+    <!--  -->
+    <ModalProductComponent v-if="selectedProduct" :product="selectedProduct" />
 
-      <!-- Altre categorie -->
-      <div class="container my-5">
+    <!-- Altre categorie -->
+    <div class="container my-5">
         <h3>Sei ancora indeciso? Consulta altre categorie!</h3>
         <div class="row py-3">
             <div class="col-lg-2 col-md-4 col-sm-6 g-3" v-for="(category, i) in store.categories" :key="i">
@@ -93,7 +95,7 @@
         </div>
     </div>
 
-    <ModalProductComponent :selectedProduct="selectedProduct" />
+
 
 
 </template>
@@ -116,8 +118,13 @@ export default {
             store,
             restaurant: null,
             products: [],
-            selectedProduct: null
-
+            selectedProduct: null,
+            types: [],
+        }
+    },
+    computed: {
+        filteredProduct() {
+            return this.products.find(product => product.id === this.selectedProductId);
         }
     },
 
@@ -143,17 +150,16 @@ export default {
                 console.log(this.products);
             });
         },
-        setSelectedProduct(product) {
-            this.selectedProduct = product;
+        showProductModal(productId) {
+            // Recupera il prodotto corrispondente all'id
+            this.selectedProduct = this.products.find(p => p.id === productId);
         }
-
-
-
     },
 
     mounted() {
         this.getRestaurant();
         this.getProducts();
+        this.store.getTypes();
     },
 }
 </script>
@@ -196,7 +202,7 @@ h4 i {
     img {
         width: 100px;
         height: 100px;
-       
+
 
     }
 }
