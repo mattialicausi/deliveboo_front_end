@@ -1,7 +1,7 @@
 <template>
 
   <div class="container">
-    <Carousel :itemsToShow="3" :wrapAround="true" :transition="800" :autoplay="2000" :itemsToScroll="3">
+    <Carousel :itemsToShow="3" :wrapAround="true" :transition="800" :autoplay="2000" :itemsToScroll="1">
       <Slide v-for="(category, i) in store.categories" :key="i">
     
         <div class="carousel__item">

@@ -76,17 +76,17 @@
         </div>
     </div>
 
-    <!-- Altre categorie -->
-    <div class="container my-5">
+      <!-- Altre categorie -->
+      <div class="container my-5">
         <h3>Sei ancora indeciso? Consulta altre categorie!</h3>
         <div class="row py-3">
-            <div class="col-lg-2 col-md-4 col-sm-6 g-3">
+            <div class="col-lg-2 col-md-4 col-sm-6 g-3" v-for="(category, i) in store.categories" :key="i">
                 <div class="card-category">
                     <div class="category-img">
-                        <img src="/image/img-category/americano-category.webp" alt="img category">
+                        <img :src="category.image" :alt="category.name">
                     </div>
                     <div class="border">
-                        <p class="text-center mb-0 p-2">Nome categoria</p>
+                        <p class="text-center mb-0 p-2">{{ category.name }}</p>
                     </div>
                 </div>
             </div>
@@ -184,6 +184,7 @@ h4 i {
 .card-category {
     display: flex;
     flex-direction: column;
+    height: 100%;
     align-items: center;
     border: 1px solid $orange;
     border-radius: 10px;
@@ -194,6 +195,8 @@ h4 i {
 
     img {
         width: 100px;
+        height: 100px;
+       
 
     }
 }
