@@ -5,7 +5,6 @@ import HomePage from "./pages/HomePage.vue";
 import AllRestaurant from "./pages/AllRestaurant.vue";
 import SingleRestaurant from "./pages/SingleRestaurant.vue";
 import ContactPage from "./pages/ContactPage.vue";
-// import AllProducts from "./pages/AllProducts.vue";
 import NotFound from './pages/NotFound.vue';
 
 const router = createRouter({
@@ -26,11 +25,6 @@ const router = createRouter({
       name: "single-restaurant",
       component: SingleRestaurant,
     },
-    // {
-    //   path: "/products",
-    //   name: "products",
-    //   component: AllProducts,
-    // },
     {
       path: "/contacts",
       name: "contactus",

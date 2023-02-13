@@ -4,10 +4,13 @@
     <Carousel :itemsToShow="3" :wrapAround="true" :transition="800" :autoplay="2000" :itemsToScroll="1">
       <Slide v-for="(category, i) in store.categories" :key="i">
     
-        <div class="carousel__item">
-          <img class="img-fluid" :src="category.image" :alt="category.name">
-          <p>{{ category.name }}</p>
-        </div>
+        <router-link :to="{name: 'restaurants'}">
+            <div class="carousel__item">
+            <img class="img-fluid" :src="category.image" :alt="category.name">
+            <p>{{ category.name }}</p>
+          </div>
+        </router-link>
+
       </Slide>
 
       <template #addons>
@@ -56,6 +59,18 @@ export default defineComponent({
 @import '../../assets/styles/general.scss';
 @import '../../assets/styles/partials/variables';
 
+a {
+  text-decoration: none;
+  color: black;
+  transition: 300ms ease-in-out;
+
+  &:hover {
+    color: $orange !important;
+  transition: 300ms ease-in-out;
+
+  }
+}
+
 .carousel__item img {
   width: 75%;
 }
@@ -97,7 +112,6 @@ export default defineComponent({
 .carousel__slide--active {
   opacity: 1;
   transform: rotateY(0) scale(1.1);
-  color: $orange;
   font-size: 1.5rem;
   font-weight: bold;
 }
