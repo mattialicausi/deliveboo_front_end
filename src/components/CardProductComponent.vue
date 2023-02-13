@@ -130,9 +130,6 @@ export default {
 @import '../assets/styles/general.scss';
 @import '../assets/styles/partials/variables';
 
-
-.card {}
-
 .img-show {
 
     height: 350px;
