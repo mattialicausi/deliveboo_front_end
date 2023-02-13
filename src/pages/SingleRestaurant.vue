@@ -70,7 +70,7 @@
         <div class="container py-4">
             <h2 class="text-center text-white ">Il nostro menu</h2>
             <div class="row">
-                <CardProductComponent v-for="product in products" :key="product.id" :product="product"
+                <CardProductComponent v-for="product in products" :key="product.id" :product="product" :types="types"
                     @show-product-modal="showProductModal" />
             </div>
         </div>
