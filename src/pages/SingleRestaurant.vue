@@ -1,6 +1,7 @@
 <template>
 
-    <div v-if="restaurant">
+    <div v-if="!restaurant || !store.categories">
+        <div>
         <!-- <img :src="restaurant.image" :alt="restaurant.image"> -->
         <div class="mycontainer" v-if="!restaurant.image.startsWith('http')" :style="{
             backgroundImage: `url(${store.imgBasePath}${restaurant.image})`
@@ -51,10 +52,6 @@
 
     </div>
 
-
-    <div v-else>Loader</div>
-
-
     <!-- FILTRO -->
     <div class="container">
         <div class="my-4">
@@ -64,7 +61,6 @@
             </select>
         </div>
     </div>
-
     <!-- MENU -->
     <div class="container-fluid bg-orange">
         <div class="container py-4">
@@ -77,7 +73,6 @@
     </div>
     <!--  -->
     <ModalProductComponent v-if="selectedProduct" :product="selectedProduct" :restaurant="restaurant"/>
-
     <!-- Altre categorie -->
     <div class="container my-5">
         <h3>Sei ancora indeciso? Consulta altre categorie!</h3>
@@ -94,6 +89,9 @@
             </div>
         </div>
     </div>
+    </div>
+
+    <LoaderComponent v-else />
 
 
 
@@ -105,13 +103,15 @@ import axios from 'axios';
 import { store } from '../store';
 import CardProductComponent from "../components/CardProductComponent.vue";
 import ModalProductComponent from "../components/ModalProductComponent.vue";
+import LoaderComponent from '../components/LoaderComponent.vue';
 
 export default {
     name: 'SingleRestaurantPage',
     components: {
-        CardProductComponent,
-        ModalProductComponent
-    },
+    CardProductComponent,
+    ModalProductComponent,
+    LoaderComponent
+},
 
     data() {
         return {
