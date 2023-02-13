@@ -8,9 +8,9 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <img src="/image/chef.jpg" alt="" class="img-fluid">
-                    <p class="pt-2">Ingredienti</p>
-                    <p>Prezzo</p>
+                    <img v-for="product in products" :key="product.id" :src="product.image" alt="" class="img-fluid">
+                    <p class="pt-2" v-for="product in products" :key="product.id">{{ product.ingredients }}</p>
+                    <p v-for="product in products" :key="product.id">{{ product.price }}</p>
                     <div class="text-center">
                         <i class="fa-solid fa-minus fa-2xl"></i><span class="fs-3">Quantità</span> <i
                             class="fa-solid fa-plus fa-2xl"></i>
@@ -26,8 +26,33 @@
 </template>
 
 <script>
+import { store } from '../store';
+import axios from 'axios';
 export default {
-    name: "ModalProductComponent"
+    name: "ModalProductComponent",
+    data() {
+        return {
+            store,
+            products: [],
+        }
+    },
+
+    methods: {
+        getProducts() {
+            axios.get(`${this.store.apiBaseUrl}/restaurants/${this.$route.params.slug}`).then((response) => {
+                if (response.data.success) {
+                    this.restaurant = response.data.results;
+                    this.products = this.restaurant.products;
+                } else {
+                    this.$router.push({ name: "not-found" });
+                }
+                console.log(this.products);
+            });
+        },
+    },
+    mounted() {
+        this.getProducts();
+    }
 }
 </script>
 

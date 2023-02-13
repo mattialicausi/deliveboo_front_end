@@ -14,6 +14,7 @@ export const store = reactive({
   categories: [],
   types: [],
   restaurants: [],
+  products: [],
 
   // carrello
   openCart: false,

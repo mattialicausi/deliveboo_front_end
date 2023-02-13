@@ -1,8 +1,14 @@
 <template>
 
-    <div  v-if="restaurant">
-        <div class="mycontainer">
-            <!-- <img :src="restaurant.image" :alt="restaurant.image"> -->
+    <div v-if="restaurant">
+        <!-- <img :src="restaurant.image" :alt="restaurant.image"> -->
+        <div class="mycontainer" v-if="!restaurant.image.startsWith('http')" :style="{
+            backgroundImage: `url(${store.imgBasePath}${restaurant.image})`
+        }" :alt="restaurant.restaurant_name">
+        </div>
+        <div class="mycontainer" v-else :style="{
+            backgroundImage: `url(${restaurant.image})`
+        }" :alt="restaurant.restaurant_name">
         </div>
         <div class="container myrestaurant">
             <h2 class="text-center my-4">{{ restaurant.restaurant_name }}</h2>
@@ -15,9 +21,9 @@
             </div>
 
             <!-- BOTTONE INFORMAZIONI RISTORANTE -->
-            <div class=" my-4">
-                <button class="btn mybtn-orange" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample"
-                    aria-expanded="false" aria-controls="collapseExample">
+            <div class="my-4">
+                <button class="btn mybtn-orange my-3" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
                     Informazioni ristorante
                 </button>
                 <div class="collapse" id="collapseExample">
@@ -25,7 +31,7 @@
                         <div class="row align-items-center">
                             <div class="col-lg-6 col-md-6 col-sm-12">
                                 <iframe
-                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6285.996954935512!2d14.43666167803194!3d38.02381496885957!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1316dc93d9d37111%3A0x103973a06ffb42cc!2s98072%20Caronia%2C%20Metropolitan%20City%20of%20Messina%2C%20Italy!5e0!3m2!1sen!2sin!4v1675960668655!5m2!1sen!2sin"
+                                    :src="'https://maps.google.com/maps?q=' + encodeURIComponent(restaurant.address) + '&t=&z=13&ie=UTF8&iwloc=&output=embed'"
                                     width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"
                                     referrerpolicy="no-referrer-when-downgrade"></iframe>
                             </div>
@@ -42,7 +48,7 @@
                 </div>
             </div>
         </div>
-    
+
     </div>
 
 
@@ -64,7 +70,8 @@
         <div class="container py-4">
             <h2 class="text-center text-white ">Il nostro menu</h2>
             <div class="row">
-                <CardProductComponent :restaurant="restaurant" />
+                <CardProductComponent v-for="product in products" :key="product.id" :product="product"
+                    @selectProduct="setSelectedProduct" />
             </div>
         </div>
     </div>
@@ -86,7 +93,7 @@
         </div>
     </div>
 
-    <ModalProductComponent />
+    <ModalProductComponent :selectedProduct="selectedProduct" />
 
 
 </template>
@@ -108,6 +115,9 @@ export default {
         return {
             store,
             restaurant: null,
+            products: [],
+            selectedProduct: null
+
         }
     },
 
@@ -122,12 +132,28 @@ export default {
                 console.log(this.restaurant);
             });
         },
+        getProducts() {
+            axios.get(`${this.store.apiBaseUrl}/restaurants/${this.$route.params.slug}`).then((response) => {
+                if (response.data.success) {
+                    this.restaurant = response.data.results;
+                    this.products = this.restaurant.products;
+                } else {
+                    this.$router.push({ name: "not-found" });
+                }
+                console.log(this.products);
+            });
+        },
+        setSelectedProduct(product) {
+            this.selectedProduct = product;
+        }
 
-        
+
+
     },
-    
+
     mounted() {
         this.getRestaurant();
+        this.getProducts();
     },
 }
 </script>
@@ -137,8 +163,8 @@ export default {
 @import '../assets/styles/partials/variables';
 
 .mycontainer {
-    height: 300px;
-    background-image: url(/image/chef.jpg);
+    height: 400px;
+    // background-image: url(/image/chef.jpg);
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -149,7 +175,7 @@ h4 i {
 }
 
 .myrestaurant {
-    margin-top: -50px;
+    margin-top: -90px;
     border: 1px solid $orange;
     border-radius: 20px;
     background-color: $white;
