@@ -49,7 +49,7 @@ export default defineComponent({
   },
 
   mounted() {
-    this.store.getCategories();
+    store.getCategories();
   },
 
 })

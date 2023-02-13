@@ -1,25 +1,26 @@
 <template>
-    <div class="container">
-        <h2 class="text-center">I Nostri Ristoranti</h2>
-        <!-- <section id="slider-category" class="m-5">
-            <SliderCategoryComponent />
-        </section> -->
+    <div class="container" v-if="store.categories && this.restaurants">
+        <h2 class="text-center mt-5">I Nostri Ristoranti</h2>
 
-<!-- 
-        <ul class="ks-cboxtags">
-            <li><input type="checkbox" id="checkboxOne" value="Rainbow Dash"><label for="checkboxOne">Rainbow Dash</label></li>
-        </ul> -->
+        <div class="d-flex justify-content-between my-5">
+            <div class="position-relative" v-for="(category, i) in bestCategory" :key="i">
+                <input class="input-best-category" type="checkbox" :id="checkboxOne + `${category.id}`" :value="category.id" v-model="selectedCategories" @change="filterByCategory" />
+                <div class="text-center best-restaurant-description">
+                    <img class="img-fluid" :src="category.image" :alt="category.name">
+                    <h4>{{ category.name }}</h4>
+                </div>
+            </div>
+        </div>
         
         <div class="row">
             
-            
-
             <div class="col-3">
                 
                 <div>
-                    <h2>Lista delle categorie</h2>
+                    <h3>Lista delle categorie</h3>
                     <div class="ks-cboxtags category-list d-flex flex-column">
-                        <li v-for="(category, index) in store.categories" :key="index"><input type="checkbox" :id="checkboxOne + `${category.id}`" :value="category.id" v-model="selectedCategories" @change="filterByCategory" />
+                        <li v-for="(category, index) in store.categories" :key="index">
+                            <input type="checkbox" :id="checkboxOne + `${category.id}`" :value="category.id" v-model="selectedCategories" @change="filterByCategory" />
                             <label :for="checkboxOne + `${category.id}`">{{ category.name }}</label>
                         </li>
                     </div>
@@ -52,25 +53,31 @@
         </div>
         
     </div>
+
+    <LoaderComponent v-else/>
+
 </template>
 <script>
 import axios from 'axios';
 import { store } from '../store';
 import CardRestaurantComponent from '../components/CardRestaurantComponent.vue';
 import SliderCategoryComponent from '../components/SliderCategoryComponent.vue';
+import LoaderComponent from '../components/LoaderComponent.vue';
 
 export default {
     name: 'AllRestaurant',
     components: {
-        CardRestaurantComponent,
-        SliderCategoryComponent
-    },
+    CardRestaurantComponent,
+    SliderCategoryComponent,
+    LoaderComponent
+},
     data() {
         return {
             store,
             restaurants: [],
             categories: [],
             selectedCategories: [],
+            bestCategory: [],
             
         }
     },
@@ -97,11 +104,21 @@ export default {
                 console.log(response.data.categories);
             });
         },
+
+        getBestCategory() {
+
+
+            for(let i =0; i < 6; i++) {
+                this.bestCategory.push(store.categories[i]);
+
+            }
+        }
     },
     mounted() {
         this.getRestaurants();
         this.getRestaurantsCategories();
         this.store.getCategories();
+        this.getBestCategory();
     },
 }
 </script>
@@ -109,25 +126,59 @@ export default {
 <style lang="scss" scoped>
 @import '../assets/styles/general.scss';
 @import '../assets/styles/partials/variables';
-
-
-// .sidebar {
-//     height: 100%;
-//     width: 250px;
-//     position: fixed;
-//     z-index: 1;
-//     top: 0;
-//     left: 0;
-//     background-color: #111;
-//     color: white;
-//     overflow-x: hidden;
-//     padding-top: 6rem;
-//     padding-left: 1rem;
-// }
-
-// search bar effect
-
 @import url("https://fonts.googleapis.com/css?family=Raleway:400,400i,700");
+
+.input-best-category {
+    height: 180px;
+    width: 180px;
+    border: none;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    outline: none;
+    box-shadow: none;
+
+   
+
+    h4 {
+        margin-top: -2rem !important;
+    }
+
+    img {
+        margin-top: -1rem !important;
+    }
+
+}
+
+
+
+
+
+.best-restaurant-description {
+    position: absolute;
+    top: -2rem;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border: 1px solid $orange;
+    border-radius: 20px;
+    z-index: -1;
+    transition: 300ms ease-in-out;
+
+}
+
+.best-restaurant-description input[type="checkbox"]:checked {
+ 
+    color: $orange;
+    transition: 300ms ease-in-out;
+    
+}
+
+h2 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: $orange;
+}
 
 .search-box {
   border: solid 2px #D55924;

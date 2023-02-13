@@ -106,7 +106,7 @@ export default {
 
     },
     mounted() {
-        this.store.getTypes();
+
         store.cart = this.getAllCart;
         this.getStorageKeys();
         console.log(store.cart);

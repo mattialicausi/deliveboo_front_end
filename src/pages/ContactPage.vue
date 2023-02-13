@@ -74,6 +74,13 @@ import {store} from '../store';
             }
         },
         methods: {
+
+            resetDeliveryMsg() {
+                setTimeout(() => {
+                        this.success = true;
+                     }, 2500);
+                },
+
             sendForm(){
                 this.loading = true;
                 const data = {
@@ -84,17 +91,24 @@ import {store} from '../store';
                 axios.post(`${this.store.apiBaseUrl}/contacts`, data).then((response)=>{
                     console.log(response.data);
                     this.success = response.data.success;
-                    if(!this.success){
+                    if(this.success){
                         this.errors = response.data.errors;
                         console.log(this.errors);
+
                     } else {
                         this.name = '';
                         this.email = '';
                         this.message = '';
                     }
+                    
                     this.loading = false;
+                 
+                   
                 });
-            }
+            },
+
+            
+            
         }
 
     }

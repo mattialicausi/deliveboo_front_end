@@ -1,6 +1,7 @@
 <template>
 
-    <!-- sezione Jumbo -->
+    <div v-if="store.restaurants && store.categories">
+            <!-- sezione Jumbo -->
     <section id="jumbo">
         <JumboComponent />
     </section>
@@ -26,6 +27,10 @@
     <section id="mobile-app">
         <MobileAppComponent />
     </section>
+    </div>
+
+    <LoaderComponent v-else/>
+
 
 </template>
 
@@ -38,6 +43,7 @@ import SliderCategoryComponent from '../components/SliderCategoryComponent.vue';
 import WorkWithUsComponent from '../components/WorkWithUsComponent.vue';
 import MobileAppComponent from '../components/footer_partials/MobileAppComponent.vue';
 import { store } from '../store';
+import LoaderComponent from '../components/LoaderComponent.vue';
 
 
 export default {
@@ -47,7 +53,7 @@ export default {
             store,
         };
     },
-    components: { SliderCategoryComponent, BestRestaurantsComponent, WorkWithUsComponent, JumboComponent, MobileAppComponent }
+    components: { SliderCategoryComponent, BestRestaurantsComponent, WorkWithUsComponent, JumboComponent, MobileAppComponent, LoaderComponent }
 }
 </script>
 
