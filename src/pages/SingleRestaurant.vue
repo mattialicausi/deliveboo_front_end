@@ -56,17 +56,17 @@
 
 
     <!-- FILTRO -->
-    <div class="container">
+    <!-- <div class="container">
         <div class="my-4">
             <select name="type" id="type" class="mybtn-orange btn-filter">
                 <option value="">Tipi</option>
                 <option>Tipi</option>
             </select>
         </div>
-    </div>
+    </div> -->
 
     <!-- MENU -->
-    <div class="container-fluid bg-orange">
+    <div class="container-fluid bg-orange mt-5">
         <div class="container py-4">
             <h2 class="text-center text-white ">Il nostro menu</h2>
             <div class="row">
@@ -76,7 +76,7 @@
         </div>
     </div>
     <!--  -->
-    <ModalProductComponent v-if="selectedProduct" :product="selectedProduct" :restaurant="restaurant"/>
+    <ModalProductComponent v-if="selectedProduct" :product="selectedProduct" :restaurant="restaurant" />
 
     <!-- Altre categorie -->
     <div class="container my-5">

@@ -33,7 +33,8 @@
                                     <a class="nav-link" href="#">Entra nel team</a>
                                 </li>
                                 <li>
-                                    <a href="#!" class="text-white">Categorie</a>
+                                    <router-link :to="{ name: 'contactus' }" :class="{ 'myactive': isLoginRoute }"
+                                        class="nav-link">Contattaci</router-link>
                                 </li>
                             </ul>
                         </div>

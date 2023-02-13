@@ -30,6 +30,24 @@ body {
     font-family: 'Mulish', sans-serif;
 }
 
+::-webkit-scrollbar{
+    width: 1.2em;
+}
+::-webkit-scrollbar-track{
+    background: $white;
+}
+::-webkit-scrollbar-thumb{
+//    background: $mk_txt_light_gray;
+    background: linear-gradient( #df642c, #b93c02);
+
+}
+::-webkit-scrollbar-thumb:hover{
+    background: $white;
+    border: 1px solid $orange;
+}
+
+
+
 // FOCUS NEI FORM
 .form-control:focus{
     border-color: transparent;
