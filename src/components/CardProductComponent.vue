@@ -1,11 +1,14 @@
 <template>
     <div class="col-sm-12 col-md-6 col-lg-4 g-4">
         <div class="card">
-            <img v-if="!product.image.startsWith('http')" :src="`${store.imgBasePath}${product.image}`"
-                :alt="product.name" class="img-fluid" />
-            <img v-else :src="product.image" :alt="product.name" class="img-fluid" />
-            <div class="p-3">
-                <h4>{{ product.name }}</h4>
+            <div class="card-image">
+                <img v-if="!product.image.startsWith('http')" :src="`${store.imgBasePath}${product.image}`"
+                    :alt="product.name" class="img-fluid" />
+                <img v-else :src="product.image" :alt="product.name" class="img-fluid" />
+            </div>
+
+            <div class="p-3 mt-4">
+                <h4 class="card-title">{{ product.name }}</h4>
                 <p>{{ product.ingredients }}</p>
                 <p>{{ product.price }}€</p>
                 <p>{{ product.type }}</p>
@@ -18,10 +21,11 @@
                         v-on:click="showProductModal(product.id)">
                         Mostra prodotto
                     </button>
-                <button type="button" class="btn mybtn-orange" :disabled="vueLocalStorage.includes(product.slug)" @click="tryAddToCart(product)">Aggiungi al carrello</button>
-                
+                    <button type="button" class="btn mybtn-orange" :disabled="vueLocalStorage.includes(product.slug)"
+                        @click="tryAddToCart(product)">Aggiungi al carrello</button>
+
                 </div>
-                
+
 
             </div>
         </div>
@@ -45,10 +49,10 @@ export default {
 
     watch: {
         'store.cart': {
-        handler() {
-            this.getStorageKeys()
-        },
-        deep: true
+            handler() {
+                this.getStorageKeys()
+            },
+            deep: true
         }
     },
 
@@ -60,7 +64,7 @@ export default {
         },
 
         tryAddToCart(product) {
-    
+
             if (localStorage.length) {
                 const keys = Object.keys(localStorage)
                 const restaurantId = JSON.parse(localStorage.getItem(keys[0])).restaurant_id
@@ -68,9 +72,9 @@ export default {
                     console.log('Non puoi ordinare da due ristoranti diversi');
 
                     this.sendError();
-                
 
-                return
+
+                    return
                 } else {
                     this.addToCart(product)
                     return
@@ -95,10 +99,10 @@ export default {
                 icon: 'error',
                 title: 'Oops...',
                 text: 'Non puoi ordinare da due ristoranti diversi!',
-                });
+            });
         }
 
-        
+
 
     },
     mounted() {
@@ -127,18 +131,46 @@ export default {
 @import '../assets/styles/partials/variables';
 
 
+.card {}
+
+.img-show {
+
+    height: 350px;
+    object-fit: cover;
+}
+
 .card {
     overflow: hidden;
-    border: 1px solid $white;
+    border: 1px solid $orange;
+    padding: 0;
+}
+
+.card-image {
+    height: 316px;
+
+    img {
+        width: 100%;
+        height: 350px;
+        object-fit: cover;
+
+    }
+}
+
+h4.card-title {
+    height: 86px
+}
+
+p.card-text {
+    height: 50px;
 }
 
 .color-red {
     color: $red !important;
     visibility: visible !important;
     opacity: 1 !important;
-  }
+}
 
-.swal2-styled{
+.swal2-styled {
     background-color: $orange !important;
     color: $white !important;
     transition: 300ms ease-in-out !important;
