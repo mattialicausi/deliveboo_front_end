@@ -13,6 +13,7 @@ export const store = reactive({
   },
   categories: [],
   types: [],
+  restaurant: [],
   restaurants: [],
   products: [],
 
@@ -20,6 +21,7 @@ export const store = reactive({
   openCart: false,
   shoppingCart: [],
   cartData: [],
+  cart: [],
 
 
   getCategories: function () {
