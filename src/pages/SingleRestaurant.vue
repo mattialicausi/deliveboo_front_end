@@ -1,6 +1,6 @@
 <template>
 
-    <div v-if="!restaurant || !store.categories">
+    <div v-if="restaurant && store.categories">
         <div>
         <!-- <img :src="restaurant.image" :alt="restaurant.image"> -->
         <div class="mycontainer" v-if="!restaurant.image.startsWith('http')" :style="{
