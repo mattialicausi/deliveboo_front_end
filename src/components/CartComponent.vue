@@ -154,7 +154,7 @@ export default {
   transition: 300ms ease-in-out;
   right: 1rem;
   width: 500px;
-  height: 72s0px;
+  height: 720px;
   background-color: $white;
   box-shadow: -1px 1px 10px 0px $orange;
   z-index: 20;
