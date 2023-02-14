@@ -86,6 +86,7 @@ export default {
         addToCart(product) {
             product.quantity = 1
             store.cart.push(product)
+            store.popupCounter ++;
             localStorage.setItem(product.slug, JSON.stringify(product))
 
         },
