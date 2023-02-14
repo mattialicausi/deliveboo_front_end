@@ -5,7 +5,8 @@
                 <ul class="navbar-nav mb-2 mb-lg-0 col-4 d-flex align-items-center">
                     <div class="d-flex">
                         <li class="nav-item">
-                            <a href="http://127.0.0.1:8000/login" class="btn mybtn mx-2"><i class="fa-solid fa-user text-black"></i> Accedi</a>
+                            <a href="http://127.0.0.1:8000/login" class="btn mybtn mx-2"><i
+                                    class="fa-solid fa-user text-black"></i> Accedi</a>
                         </li>
                         <div>
                             <li class="nav-item">
@@ -25,7 +26,8 @@
                 <div class=" col-4 d-flex align-items-center justify-content-end">
                     <ul class="navbar-nav mb-2 mb-lg-0 d-flex  align-items-center justify-content-between">
                         <li class="nav-item me-5">
-                            <router-link :to="{ name: 'contactus' }" :class="{ 'myactive': isLoginRoute }" class="nav-link">Contattaci</router-link>
+                            <router-link :to="{ name: 'contactus' }" :class="{ 'myactive': isLoginRoute }"
+                                class="nav-link">Contattaci</router-link>
                         </li>
 
                     </ul>
@@ -38,10 +40,9 @@
 
     <nav class="navbar fixed-top d-lg-none p-0" id="nav-mobile">
         <div class="container-fluid d-lg-none">
-            <a class="navbar-brand" href="#">
-                <img src="https://cdn.discordapp.com/attachments/1043196087617470534/1072087578813153320/logo-deliveboo-removebg-preview.png"
-                    alt="Deliveboo">
-            </a>
+            <router-link :to="{ name: 'home' }">
+                <img src="/image/logo.png" alt="logo" class="" />
+            </router-link>
             <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
                 aria-controls="offcanvasNavbar">
                 <i class="fa-solid fa-bars"></i>
@@ -58,13 +59,14 @@
                 <div class="offcanvas-body">
                     <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                         <li class="nav-item">
-                            <a href="#" class="nav-link">Accedi</a>
+                            <a href="http://127.0.0.1:8000/login" class="nav-link">Accedi</a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">Registrati</a>
+                            <a href="http://127.0.0.1:8000/register" class="nav-link">Registrati</a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">Contattaci</a>
+                            <router-link :to="{ name: 'contactus' }" :class="{ 'myactive': isLoginRoute }"
+                                class="nav-link">Contattaci</router-link>
                         </li>
                     </ul>
                 </div>
@@ -91,6 +93,4 @@ export default {
 <style lang="scss" scoped>
 @import '../../assets/styles/general.scss';
 @import '../../assets/styles/partials/variables';
-
-
 </style>

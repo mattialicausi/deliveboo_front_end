@@ -1,9 +1,8 @@
 <template>
     <div class="container" v-if="store.categories && this.restaurants">
         <h2 class="text-center mt-5">I Nostri Ristoranti</h2>
-
-        <div class="d-flex justify-content-between my-5">
-            <div class="position-relative" v-for="(category, i) in bestCategory" :key="i">
+        <div class="d-flex justify-content-between my-5 container-category">
+            <div class=" position-relative" v-for="(category, i) in bestCategory" :key="i">
                 <input class="input-best-category" type="checkbox" :id="checkboxOne + `${category.id}`"
                     :value="category.id" v-model="selectedCategories" @change="filterByCategory" />
                 <div class="text-center best-restaurant-description">
@@ -14,11 +13,12 @@
         </div>
 
         <div class="row">
-            <div class="col-3">
+            <div class="col-lg-3 col-md-12 col-sm-12">
                 <div>
                     <h3>Lista delle categorie</h3>
                     <div class="ks-cboxtags category-list d-flex flex-column">
-                        <li v-for="(category, index) in store.categories" :key="index">
+                        <li v-for="(category, index) in store.categories.sort((a, b) => a.name.localeCompare(b.name))"
+                            :key="index">
                             <input type="checkbox" :id="checkboxOne + `${category.id}`" :value="category.id"
                                 v-model="selectedCategories" @change="filterByCategory" />
                             <label :for="checkboxOne + `${category.id}`">{{ category.name }}</label>
@@ -28,8 +28,7 @@
             </div>
 
 
-
-            <div class="col-9">
+            <div class="col-lg-9 col-md-12 col-sm-12" style="padding-top: 45px;">
 
 
                 <!-- search bar  -->
@@ -123,6 +122,8 @@ export default {
 @import '../assets/styles/partials/variables';
 @import url("https://fonts.googleapis.com/css?family=Raleway:400,400i,700");
 
+
+
 .input-best-category {
     height: 180px;
     width: 180px;
@@ -132,8 +133,6 @@ export default {
     -moz-appearance: none;
     outline: none;
     box-shadow: none;
-
-
 
     h4 {
         margin-top: -2rem !important;
@@ -145,11 +144,10 @@ export default {
 
 }
 
-
-
-
-
 .best-restaurant-description {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     position: absolute;
     top: -2rem;
     bottom: 0;
@@ -321,5 +319,22 @@ h2 {
 
 .category-list.ks-cboxtags li input[type="checkbox"]:focus+label {
     border: 2px solid #D55924;
+}
+
+
+@media only screen and (max-width: 992px) {
+    .container-category {
+        display: none !important;
+    }
+
+    h3 {
+        text-align: center;
+    }
+
+    .category-list.ks-cboxtags {
+        display: flex !important;
+        flex-flow: row wrap !important;
+        justify-content: center;
+    }
 }
 </style>
