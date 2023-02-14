@@ -4,57 +4,52 @@
 
         <div class="d-flex justify-content-between my-5">
             <div class="position-relative" v-for="(category, i) in bestCategory" :key="i">
-                <input class="input-best-category" type="checkbox" :id="checkboxOne + `${category.id}`" :value="category.id" v-model="selectedCategories" @change="filterByCategory" />
+                <input class="input-best-category" type="checkbox" :id="checkboxOne + `${category.id}`"
+                    :value="category.id" v-model="selectedCategories" @change="filterByCategory" />
                 <div class="text-center best-restaurant-description">
                     <img class="img-fluid" :src="category.image" :alt="category.name">
                     <h4>{{ category.name }}</h4>
                 </div>
             </div>
         </div>
-        
+
         <div class="row">
-            
             <div class="col-3">
-                
                 <div>
                     <h3>Lista delle categorie</h3>
                     <div class="ks-cboxtags category-list d-flex flex-column">
                         <li v-for="(category, index) in store.categories" :key="index">
-                            <input type="checkbox" :id="checkboxOne + `${category.id}`" :value="category.id" v-model="selectedCategories" @change="filterByCategory" />
+                            <input type="checkbox" :id="checkboxOne + `${category.id}`" :value="category.id"
+                                v-model="selectedCategories" @change="filterByCategory" />
                             <label :for="checkboxOne + `${category.id}`">{{ category.name }}</label>
                         </li>
                     </div>
                 </div>
-
             </div>
 
-            
+
 
             <div class="col-9">
 
 
                 <!-- search bar  -->
-                <div class="search-box mb-5">
+                <!-- <div class="search-box mb-5">
                     <input type="text" placeholder=" Cerca il tuo ristorante "/><span></span>
-                </div>
+                </div> -->
 
 
                 <div class="row" v-if="filteredRestaurants.length">
                     <CardRestaurantComponent v-for="(restaurant, i) in filteredRestaurants" :restaurant="restaurant"
-                    :categories="categories" />
+                        :categories="categories" />
                 </div>
-
                 <div class="row" v-else>
                     <p>Nessun ristorante trovato</p>
                 </div>
-
             </div>
-
         </div>
-        
     </div>
 
-    <LoaderComponent v-else/>
+    <LoaderComponent v-else />
 
 </template>
 <script>
@@ -67,10 +62,10 @@ import LoaderComponent from '../components/LoaderComponent.vue';
 export default {
     name: 'AllRestaurant',
     components: {
-    CardRestaurantComponent,
-    SliderCategoryComponent,
-    LoaderComponent
-},
+        CardRestaurantComponent,
+        SliderCategoryComponent,
+        LoaderComponent
+    },
     data() {
         return {
             store,
@@ -78,7 +73,7 @@ export default {
             categories: [],
             selectedCategories: [],
             bestCategory: [],
-            
+
         }
     },
     computed: {
@@ -108,7 +103,7 @@ export default {
         getBestCategory() {
 
 
-            for(let i =0; i < 6; i++) {
+            for (let i = 0; i < 6; i++) {
                 this.bestCategory.push(store.categories[i]);
 
             }
@@ -138,7 +133,7 @@ export default {
     outline: none;
     box-shadow: none;
 
-   
+
 
     h4 {
         margin-top: -2rem !important;
@@ -168,10 +163,10 @@ export default {
 }
 
 .best-restaurant-description input[type="checkbox"]:checked {
- 
+
     color: $orange;
     transition: 300ms ease-in-out;
-    
+
 }
 
 h2 {
@@ -181,65 +176,77 @@ h2 {
 }
 
 .search-box {
-  border: solid 2px #D55924;
-  display: inline-block;
-  position: relative;
-  border-radius: 50px;
+    border: solid 2px #D55924;
+    display: inline-block;
+    position: relative;
+    border-radius: 50px;
 }
+
 .search-box input[type="text"] {
-  font-family: Raleway, sans-serif;
-  font-size: 20px;
-  font-weight: bold;
-  width: 50px;
-  height: 50px;
-  padding: 5px 40px 5px 10px;
-  border: none;
-  box-sizing: border-box;
-  border-radius: 50px;
-  transition: width 800ms cubic-bezier(0.5, -0.5, 0.5, 0.5) 600ms;
+    font-family: Raleway, sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+    width: 50px;
+    height: 50px;
+    padding: 5px 40px 5px 10px;
+    border: none;
+    box-sizing: border-box;
+    border-radius: 50px;
+    transition: width 800ms cubic-bezier(0.5, -0.5, 0.5, 0.5) 600ms;
 }
+
 .search-box input[type="text"]:focus {
-  outline: none;
+    outline: none;
 }
-.search-box input[type="text"]:focus, .search-box input[type="text"]:not(:placeholder-shown) {
-  width: 600px;
-  transition: width 800ms cubic-bezier(0.5, -0.5, 0.5, 1.5);
+
+.search-box input[type="text"]:focus,
+.search-box input[type="text"]:not(:placeholder-shown) {
+    width: 600px;
+    transition: width 800ms cubic-bezier(0.5, -0.5, 0.5, 1.5);
 }
-.search-box input[type="text"]:focus + span, .search-box input[type="text"]:not(:placeholder-shown) + span {
-  bottom: 13px;
-  right: 10px;
-  transition: bottom 300ms ease-out 800ms, right 300ms ease-out 800ms;
+
+.search-box input[type="text"]:focus+span,
+.search-box input[type="text"]:not(:placeholder-shown)+span {
+    bottom: 13px;
+    right: 10px;
+    transition: bottom 300ms ease-out 800ms, right 300ms ease-out 800ms;
 }
-.search-box input[type="text"]:focus + span:after, .search-box input[type="text"]:not(:placeholder-shown) + span:after {
-  top: 0;
-  right: 10px;
-  opacity: 1;
-  transition: top 300ms ease-out 1100ms, right 300ms ease-out 1100ms, opacity 300ms ease 1100ms;
+
+.search-box input[type="text"]:focus+span:after,
+.search-box input[type="text"]:not(:placeholder-shown)+span:after {
+    top: 0;
+    right: 10px;
+    opacity: 1;
+    transition: top 300ms ease-out 1100ms, right 300ms ease-out 1100ms, opacity 300ms ease 1100ms;
 }
+
 .search-box span {
-  width: 25px;
-  height: 25px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  bottom: -13px;
-  right: -15px;
-  transition: bottom 300ms ease-out 300ms, right 300ms ease-out 300ms;
+    width: 25px;
+    height: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    bottom: -13px;
+    right: -15px;
+    transition: bottom 300ms ease-out 300ms, right 300ms ease-out 300ms;
 }
-.search-box span:before, .search-box span:after {
-  content: '';
-  height: 25px;
-  border-left: solid 3px #D55924;
-  position: absolute;
-  transform: rotate(-45deg);
-}
+
+.search-box span:before,
 .search-box span:after {
-  transform: rotate(45deg);
-  opacity: 0;
-  top: -20px;
-  right: -10px;
-  transition: top 300ms ease-out, right 300ms ease-out, opacity 300ms ease-out;
+    content: '';
+    height: 25px;
+    border-left: solid 3px #D55924;
+    position: absolute;
+    transform: rotate(-45deg);
+}
+
+.search-box span:after {
+    transform: rotate(45deg);
+    opacity: 0;
+    top: -20px;
+    right: -10px;
+    transition: top 300ms ease-out, right 300ms ease-out, opacity 300ms ease-out;
 }
 
 
@@ -248,10 +255,12 @@ h2 {
 .category-list.ks-cboxtags {
     list-style: none;
 }
-.category-list.ks-cboxtags li{
-  display: inline;
+
+.category-list.ks-cboxtags li {
+    display: inline;
 }
-.category-list.ks-cboxtags li label{
+
+.category-list.ks-cboxtags li label {
     width: 150px;
     display: inline-block;
     background-color: rgba(255, 255, 255, .9);
@@ -288,13 +297,13 @@ h2 {
     transition: transform .3s ease-in-out;
 }
 
-.category-list.ks-cboxtags li input[type="checkbox"]:checked + label::before {
+.category-list.ks-cboxtags li input[type="checkbox"]:checked+label::before {
     content: "\✔️";
     transform: rotate(-360deg);
     transition: transform .3s ease-in-out;
 }
 
-.category-list.ks-cboxtags li input[type="checkbox"]:checked + label {
+.category-list.ks-cboxtags li input[type="checkbox"]:checked+label {
     border: 2px solid #fff;
     background-color: #D55924;
     color: #fff;
@@ -302,13 +311,15 @@ h2 {
 }
 
 .category-list.ks-cboxtags li input[type="checkbox"] {
-  display: absolute;
+    display: absolute;
 }
+
 .category-list.ks-cboxtags li input[type="checkbox"] {
-  position: absolute;
-  opacity: 0;
+    position: absolute;
+    opacity: 0;
 }
-.category-list.ks-cboxtags li input[type="checkbox"]:focus + label {
-  border: 2px solid #D55924;
+
+.category-list.ks-cboxtags li input[type="checkbox"]:focus+label {
+    border: 2px solid #D55924;
 }
 </style>
