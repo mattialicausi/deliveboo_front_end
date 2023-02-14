@@ -140,12 +140,8 @@ export default {
 }
 
 .cart-total {
-  // position: absolute;
-  // bottom: 2rem;
-  // left: 1rem;
-  // right: 1rem;
-  // border-top: 1px solid $orange;
-  margin-top: 15px;
+
+  margin-top: 10px;
   color: $orange;
   font-weight: bold;
 
@@ -158,7 +154,7 @@ export default {
   transition: 300ms ease-in-out;
   right: 1rem;
   width: 500px;
-  height: 700px;
+  height: 72s0px;
   background-color: $white;
   box-shadow: -1px 1px 10px 0px $orange;
   z-index: 20;

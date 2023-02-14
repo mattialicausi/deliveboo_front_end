@@ -76,7 +76,7 @@ export default {
 
                     return
                 } else {
-                    this.addToCart(product)
+                    this.addToCart(product);
                     return
                 }
             }
