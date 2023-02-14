@@ -22,6 +22,7 @@ export const store = reactive({
   shoppingCart: [],
   cartData: [],
   cart: [],
+  popupCounter: 0,
 
 
   getCategories: function () {

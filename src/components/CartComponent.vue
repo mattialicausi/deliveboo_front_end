@@ -1,7 +1,14 @@
 <template>
 
+
   <div class="cart-icon btn mybtn" v-if="!store.openCart" @click="store.openCart = !store.openCart"><i
-      class="fa-solid fa-cart-shopping"></i></div>
+      class="fa-solid fa-cart-shopping"></i>
+    
+      <div class="popup">{{ store.popupCounter }}</div>
+  </div>
+
+
+
   <div class="shopping_cart rounded-3" v-if="store.openCart">
     <div class="container">
       <div class="py-2 fs-3 text-end" @click="store.openCart = !store.openCart">
@@ -60,11 +67,13 @@ export default {
   methods: {
     removeFromCart(index) {
       store.cart.splice(index, 1);
+      store.popupCounter --;
       localStorage.setItem(`cart`, JSON.stringify(store.cart));
     },
 
     clearCart() {
       localStorage.clear()
+      store.popupCounter = 0;
       store.cart = [];
     },
 
@@ -83,6 +92,7 @@ export default {
       } else {
         localStorage.removeItem(product.slug)
         store.cart.splice(i, 1)
+        store.popupCounter --;
       }
     },
 
@@ -110,6 +120,20 @@ export default {
 
 .cart_item {
   border-bottom: 1px solid black;
+}
+
+.popup {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background-color: $orange;
+  color: $white;
 }
 
 .cart-icon {
@@ -140,12 +164,8 @@ export default {
 }
 
 .cart-total {
-  // position: absolute;
-  // bottom: 2rem;
-  // left: 1rem;
-  // right: 1rem;
-  // border-top: 1px solid $orange;
-  margin-top: 15px;
+
+  margin-top: 10px;
   color: $orange;
   font-weight: bold;
 
@@ -158,7 +178,7 @@ export default {
   transition: 300ms ease-in-out;
   right: 1rem;
   width: 500px;
-  height: 700px;
+  height: 720px;
   background-color: $white;
   box-shadow: -1px 1px 10px 0px $orange;
   z-index: 20;

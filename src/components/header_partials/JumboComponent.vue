@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-orange container-fluid">
+    <div class="bg-orange container-fluid my-container-space">
         <div class="container d-flex">
             <div class="row align-items-center">
                 <div class="col-sm-12 col-md-6 col-lg-6">
@@ -12,10 +12,13 @@
 
                 </div>
                 <div class="row">
-                    <div class="btn-jumbo text-center">
-                        <router-link :to="{ name: 'restaurants' }"  class="btn mybtn">Scopri i ristoranti</router-link>
+                    <div class="col-6 d-sm-none d-md-block">
+                    </div>
+                    <div class="btn-jumbo col-6">
+                            <router-link :to="{ name: 'restaurants' }"  class="btn mybtn">Scopri i ristoranti</router-link>
                     </div>
                 </div>
+          
             </div>
         </div>
     </div>
@@ -40,6 +43,7 @@ export default {
 h1 {
     font-size: 3rem;
 }
+
 
 .btn-jumbo {
     margin-top: -130px;
@@ -66,4 +70,17 @@ h1 {
     transform: scaleY(-1);
 
 }
+
+@media only screen and (max-width: 992px) {
+    .bg-orange {
+        padding-bottom: 6rem !important;
+    }
+
+    .btn-jumbo {
+        margin-top: 1.3rem !important;
+    }
+}
+
+
+
 </style>
