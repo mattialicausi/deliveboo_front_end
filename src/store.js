@@ -9,8 +9,49 @@ export const store = reactive({
   data: {
     params: {
       categoryFilter: '',
+
     }
   },
+
+  categorySlider: [
+    {
+      name: 'pizza',
+      img: '/image/img-category/pizza-category.webp',
+      id: 2,
+    },
+    {
+      name: 'americano',
+      img: '/image/img-category/hamburger-category.webp',
+      id: 5,
+    },
+    {
+      name: 'cinese',
+      img: '/image/img-category/cinese-category.webp',
+      id: 1,
+    },
+    {
+      name: 'italiano',
+      img: '/image/img-category/italiano-category.webp',
+      id: 3,
+    },
+    {
+      name: 'kebab',
+      img: '/image/img-category/kebab-category.webp',
+      id: 4,
+    },
+    {
+      name: 'fritti',
+      img: '/image/img-category/americano-category.webp',
+      id: 14,
+    },
+    {
+      name: 'poké',
+      img: '/image/img-category/poke-category.webp',
+      id: 7,
+    },
+  ],
+
+
   categories: [],
   types: [],
   restaurant: [],

@@ -1,14 +1,29 @@
 <template>
     <div class="container" v-if="store.categories && this.restaurants">
         <h2 class="text-center mt-5">I Nostri Ristoranti</h2>
+
+       
+                
+         
+
         <div class="d-flex justify-content-between my-5 container-category">
-            <div class=" position-relative" v-for="(category, i) in bestCategory" :key="i">
+            <div class=" position-relative" v-for="(category, i) in store.categorySlider" :key="i">
                 <input class="input-best-category" type="checkbox" :id="checkboxOne + `${category.id}`"
                     :value="category.id" v-model="selectedCategories" @change="filterByCategory" />
-                <div class="text-center best-restaurant-description">
-                    <img class="img-fluid" :src="category.image" :alt="category.name">
-                    <h4>{{ category.name }}</h4>
-                </div>
+
+
+                    <div class="a-box best-restaurant-description my-card">
+                        <div class="img-container">
+                            <div class="img-inner">
+                                <div class="inner-skew">
+                                    <img :src="category.img" :alt="category.name">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-container">
+                            <h4 class="text-center">{{ category.name }}</h4>
+                        </div>
+                    </div>
             </div>
         </div>
 
@@ -102,7 +117,7 @@ export default {
         getBestCategory() {
 
 
-            for (let i = 0; i < 6; i++) {
+            for (let i = 0; i < 4; i++) {
                 this.bestCategory.push(store.categories[i]);
 
             }
@@ -121,6 +136,40 @@ export default {
 @import '../assets/styles/general.scss';
 @import '../assets/styles/partials/variables';
 @import url("https://fonts.googleapis.com/css?family=Raleway:400,400i,700");
+
+
+.a-box {
+    display: inline-block;
+    width: 300px;
+    text-align: center;
+}
+
+.img-container {
+    height: 230px;
+    width: 200px;
+    overflow: hidden;
+    border-radius: 0px 0px 20px 20px;
+    display: inline-block;
+}
+
+.img-container img {
+    transform: skew(0deg, -13deg);
+    height: 250px;
+    margin: -35px 0px 0px -70px;
+}
+
+.inner-skew {
+    display: inline-block;
+    border-radius: 20px;
+    overflow: hidden;
+    padding: 0px;
+    transform: skew(0deg, 13deg);
+    font-size: 0px;
+    margin: 30px 0px 0px 0px;
+    background: #c8c2c2;
+    height: 250px;
+    width: 200px;
+}
 
 
 
@@ -142,6 +191,15 @@ export default {
         margin-top: -1rem !important;
     }
 
+    &:hover {
+        .my-card {
+
+            transform: translateY(20px);
+            cursor: pointer;
+
+        }
+    }
+
 }
 
 .best-restaurant-description {
@@ -153,7 +211,7 @@ export default {
     bottom: 0;
     left: 0;
     right: 0;
-    border: 1px solid $orange;
+    // border: 1px solid $orange;
     border-radius: 20px;
     z-index: -1;
     transition: 300ms ease-in-out;

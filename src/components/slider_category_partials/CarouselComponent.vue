@@ -1,17 +1,29 @@
 <template>
 
-  <div class="container">
-    <Carousel :itemsToShow="3" :wrapAround="true" :transition="800" :autoplay="2000" :itemsToScroll="1">
-      <Slide v-for="(category, i) in store.categories" :key="i">
-    
+  <div class=" pb-4">
+    <Carousel :itemsToShow="6" :wrapAround="true" :transition="800" :autoplay="2000" :itemsToScroll="1">
+      <Slide v-for="(item, i) in store.categorySlider" :key="i">
         <router-link :to="{name: 'restaurants'}">
             <div class="carousel__item">
-            <img class="img-fluid" :src="category.image" :alt="category.name">
-            <p>{{ category.name }}</p>
+            <img class="img-fluid" :src="item.img" :alt="item.name">
+            <p class="text-uppercase">{{ item.name }}</p>
           </div>
         </router-link>
 
       </Slide>
+
+
+
+      <Slide class=" position-relative" v-for="(category, i) in store.categorySlider" :key="i">
+            <input class="input-best-category" type="checkbox" :id="checkboxOne + `${category.id}`"
+                :value="category.id" v-model="selectedCategories" @change="filterByCategory" />
+            <div class="text-center best-restaurant-description">
+                <img class="img-fluid" :src="category.img" :alt="category.name">
+                <h4>{{ category.name }}</h4>
+            </div>
+        </Slide>
+
+
 
       <template #addons>
         <navigation />
