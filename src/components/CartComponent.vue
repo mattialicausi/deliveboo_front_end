@@ -3,8 +3,8 @@
 
   <div class="cart-icon btn mybtn" v-if="!store.openCart" @click="store.openCart = !store.openCart"><i
       class="fa-solid fa-cart-shopping"></i>
-    
-      <div class="popup">{{ store.cart.length }}</div>
+
+    <div class="popup">{{ store.popupCounter }}</div>
   </div>
 
 
@@ -44,17 +44,9 @@
         <span class="fs-4">Totale:</span>
         <span class="fs-4">{{ this.cartTotal.toFixed(2) }}</span>
         <div>
-
           <button class="btn mybtn-orange" @click="clearCart()">Svuota</button>
+          <router-link :to="{ name: 'payment' }"><button class="btn mybtn-orange">Compra</button></router-link>
 
-          <router-link :to="{name:'payment'}">
-            <button class="btn mybtn-orange">Paga</button>
-          </router-link>
-
-
-         
-
-     
         </div>
       </div>
 
@@ -77,12 +69,13 @@ export default {
   methods: {
     removeFromCart(index) {
       store.cart.splice(index, 1);
+      store.popupCounter--;
       localStorage.setItem(`cart`, JSON.stringify(store.cart));
     },
 
     clearCart() {
       localStorage.clear()
-
+      store.popupCounter = 0;
       store.cart = [];
     },
 
@@ -101,9 +94,16 @@ export default {
       } else {
         localStorage.removeItem(product.slug)
         store.cart.splice(i, 1)
-     
+        store.popupCounter--;
       }
     },
+    getTotal() {
+      let total = 0
+      for (let i = 0; i < store.cart.length; i++) {
+        total += store.cart[i].price * store.cart[i].quantity
+      }
+      store.final_price = total
+    }
 
   },
   computed: {
@@ -111,8 +111,16 @@ export default {
       return store.cart.reduce((a, b) => a + b.price * b.quantity, 0);
     },
   },
+  watch: {
+    'store.cart': {
+      handler() {
+        this.getTotal()
+      },
+      deep: true
+    }
+  },
   mounted() {
-
+    this.getTotal()
   }
 };
 </script>

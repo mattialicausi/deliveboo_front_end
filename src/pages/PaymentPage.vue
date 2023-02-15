@@ -1,6 +1,6 @@
 <template>
 
-    <form id="form1" class="p-4" @submit.prevent="submitForm()">
+    <form id="form1" class="p-4">
 
         <h1 class="fs-1 my-4">Inserisci le tue credenziali</h1>
         <div class="mb-4 row">
@@ -48,28 +48,32 @@
 
         <p class="form-message">* Campi obbligatori</p>
 
-        <button type="submit">Invia</button>
+
+        <a class="btn mybtn-orange credit-card mb-4" @click.prevent="purchase()">
+            <i class="fa-solid fa-credit-card"></i> Carta di Credito</a>
     </form>
 
-
-    <div id="dropin-container">
-
-
+    <div>
+        <PaymentComponent />
     </div>
-    <button id="submit-button" class="button button--small button--green">Purchase</button>
+    <!-- <div id="dropin-container">
+    </div>
+    <button id="submit-button" class="button button--small button--green">Purchase</button> -->
 </template>
 
 <script>
 import axios from 'axios';
 import { store } from '../store';
+import PaymentComponent from "../components/PaymentComponent.vue";
 
 
 export default {
     name: 'PaymentPage',
-
+    components: { PaymentComponent },
     data() {
         return {
             store,
+            menu: [],
             customer_name: '',
             customer_lastname: '',
             contact_phone: '',
@@ -83,6 +87,18 @@ export default {
     },
 
     methods: {
+        getProducts() {
+            axios
+                .get(`${this.store.apiBaseUrl}/restaurants/${this.$route.params.slug}`)
+                .then((response) => {
+                    // console.log(response.data.results);
+                    if (response.data.success) {
+                        this.menu = response.data.results;
+                    } else {
+                        this.$router.push({ name: "notfound" });
+                    }
+                });
+        },
         regexify(pattern) {
             let regex = '';
             for (let i = 0; i < pattern.length; i++) {
@@ -111,7 +127,7 @@ export default {
             return `${year}-${month}-${day} ${hour}:${minute}:${second}`;
         },
 
-        submitForm() {
+        purchase() {
             // Costruisci l'oggetto dei dati da inviare al server
             const data = {
                 customer_name: this.customer_name,
@@ -120,14 +136,16 @@ export default {
                 email: this.email,
                 address: this.address,
                 order_time: this.getCurrentDateTime(),
-                final_price: this.cartTotal,
+                final_price: store.final_price,
+                cart: store.cart,
                 order_code: this.regexify('A0A-00A0A0-AAA'),
-                paid_status: false
-            };
-
+                paid_status: store.paid_status ? 1 : 0
+            }
             // Esegui la chiamata HTTP POST con Axios
-            axios.post('http://127.0.0.1:8000/api/orders', data)
+            axios.post(`${store.apiBaseUrl}/purchase`, data, { headers: { "Content-Type": "multipart/form-data" } })
                 .then(response => {
+                    console.log(response.data.results)
+                    console.log(response.data.order)
                     console.log('Ordine inviato con successo!', response.data);
                     // Effettua altre azioni in base alla risposta del server
                     this.customer_name = '';
@@ -138,6 +156,8 @@ export default {
                     this.final_price = '';
                     this.order_time = '';
                     this.order_code = '';
+                    this.paid_status = '';
+
                 })
                 .catch(error => {
                     console.error('Errore durante l\'invio dell\'ordine:', error);
@@ -145,16 +165,31 @@ export default {
                 });
         },
     },
-
-
-    // },
-
     computed: {
         cartTotal() {
             console.log(store.cart.reduce((a, b) => a + b.price * b.quantity, 0));
             return store.cart.reduce((a, b) => a + b.price * b.quantity, 0);
         },
+        getAllCart() {
+            let storage = []
+            let keys = Object.keys(localStorage)
+            for (let i = 0; i < keys.length; i++) {
+                storage.push(JSON.parse(localStorage.getItem(keys[i])))
+            }
+            return storage;
+        },
     },
+    mounted() {
+        this.getProducts();
+        store.cart = this.getAllCart
+    },
+    watch: {
+        'store.saveOrder': {
+            handler() {
+                this.purchase()
+            }
+        }
+    }
 
 }
 </script>

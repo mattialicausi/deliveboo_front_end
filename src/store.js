@@ -22,6 +22,13 @@ export const store = reactive({
   shoppingCart: [],
   cartData: [],
   cart: [],
+  final_price: '',
+
+  paid_status: null,
+
+  saveOrder: false,
+
+  cartShow: false,
 
 
 
