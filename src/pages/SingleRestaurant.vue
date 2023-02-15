@@ -52,15 +52,6 @@
 
         </div>
 
-        <!-- FILTRO -->
-        <!-- <div class="container">
-        <div class="my-4">
-            <select name="type" id="type" class="mybtn-orange btn-filter">
-                <option value="">Tipi</option>
-                <option>Tipi</option>
-            </select>
-        </div>
-    </div> -->
 
         <!-- MENU -->
         <div class="container-fluid bg-orange mt-5">
@@ -78,7 +69,7 @@
         <!-- Altre categorie -->
         <div class="container my-5">
             <h3>Sei ancora indeciso? Consulta altre categorie!</h3>
-            <div class="row py-3">
+            <!-- <div class="row py-3">
                 <div class="col-lg-2 col-md-4 col-sm-6 g-3" v-for="(category, i) in store.categories" :key="i">
                     <div class="card-category">
                         <div class="category-img">
@@ -89,8 +80,9 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
+        <SliderCategoryComponent/>
     </div>
 
     <LoaderComponent v-else />
@@ -106,14 +98,16 @@ import { store } from '../store';
 import CardProductComponent from "../components/CardProductComponent.vue";
 import ModalProductComponent from "../components/ModalProductComponent.vue";
 import LoaderComponent from '../components/LoaderComponent.vue';
+import SliderCategoryComponent from '../components/SliderCategoryComponent.vue';
 
 export default {
     name: 'SingleRestaurantPage',
     components: {
-        CardProductComponent,
-        ModalProductComponent,
-        LoaderComponent
-    },
+    CardProductComponent,
+    ModalProductComponent,
+    LoaderComponent,
+    SliderCategoryComponent
+},
 
     data() {
         return {
