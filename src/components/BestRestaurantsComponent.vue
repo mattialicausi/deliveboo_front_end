@@ -3,11 +3,11 @@
     <!-- <div class="container-wave-top"></div> -->
 
 
-    <div class="container">
+    <div>
         <h2 class="text-center pt-5">Locali che potrebbero piacerti</h2>
 
         
-        <div class="container-card">
+        <div class="container-card container">
             <div class="row">
 
                 <div class="col-sm-12 col-md-6 col-lg-4" v-for="(restaurant, index) in restaurants" :key="index">
@@ -109,6 +109,8 @@ export default {
 h2 {
     color: $white;
     font-size: 2.5rem;
+    margin-top: -3rem;
+    margin-bottom: 3.5rem;
 }
 
 // .container-wave-top {
@@ -119,9 +121,9 @@ h2 {
 //     height: 10rem;
 
 // }
-.container-card {
-    margin: 50px;
-}
+// .container-card {
+//     margin: 50px;
+// }
 
 .container-btn {
     display: flex;

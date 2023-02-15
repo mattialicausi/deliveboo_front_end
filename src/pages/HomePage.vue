@@ -15,7 +15,15 @@
 
     <!-- sezione per i ristoranti consigliati -->
     <section id="best-restaurants">
-        <BestRestaurantsComponent />
+            <div class="container-wave-top">
+                <!-- img background wave -->
+            </div>
+   
+        <BestRestaurantsComponent style="background-color: rgb(213, 89, 36)" />
+
+            <div class="container-wave-bottom">
+                <!-- img background wave -->
+            </div>
     </section>
 
     <!-- sezione per card lavora con deliveboo -->
@@ -61,10 +69,34 @@ export default {
 @import '../assets/styles/general.scss';
 @import '../assets/styles/partials/variables';
 
-#best-restaurants {
-    background-color: $orange;
+#category-slider {
+    margin-top: -2rem;
+    margin-bottom: -2rem;
 }
 
+.container-wave-bottom {
+    width: 100%;
+    background-image: url(image/wave-orange.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    margin-top: -1;
+    z-index: -1;
+    height: 18rem;
+    transform: scaleY(-1);
+
+}
+
+
+.container-wave-top {
+    width: 100%;
+    background-image: url(image/wave-top-orange.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 18rem;
+    margin-top: 5vh;
+
+}
 
 
 </style>
