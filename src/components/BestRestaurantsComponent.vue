@@ -3,14 +3,14 @@
     <!-- <div class="container-wave-top"></div> -->
 
 
-    <div class="container">
+    <div>
         <h2 class="text-center pt-5">Locali che potrebbero piacerti</h2>
 
         
-        <div class="container-card">
+        <div class="container-card container">
             <div class="row">
 
-                <div class="col-sm-12 col-md-6 col-lg-4" v-for="(restaurant, index) in restaurants" :key="index">
+                <div class="col-sm-12 col-md-6 col-lg-4" v-for="(restaurant, index) in filteredByRating" :key="index">
 
                 
                     <div class="my-card rounded-2 mb-4">
@@ -53,7 +53,7 @@
                 </div>
 
                 <div class="container-btn">
-                    <router-link :to="{ name: 'restaurants' }"><div class="my-btn btn">scopri i ristoranti</div></router-link>
+                    <router-link :to="{ name: 'restaurants' }"><div class="my-btn btn">Vedi altro...</div></router-link>
                     
                 </div>
 
@@ -75,6 +75,7 @@ export default {
         return {
             store,
             restaurants: [],
+            filteredByRating: [],
         }
     },
     methods: {
@@ -86,8 +87,21 @@ export default {
                 }
                 console.log(this.restaurants);
 
+                this.filterTopRatedItems(this.restaurants);              
+
             });
-        }
+        },
+
+        filterTopRatedItems(items) {
+            // Ordina l'array in modo decrescente in base al rating
+            const sortedItems = items.sort((a, b) => b.rating - a.rating);
+            // Filtra i primi sei elementi dell'array ordinato
+            const topRatedItems = sortedItems.filter((item, index) => index < 6);
+            console.log(topRatedItems);
+            this.filteredByRating = topRatedItems;
+
+            return topRatedItems;
+            }
     },
 
     mounted() {
@@ -109,18 +123,8 @@ export default {
 h2 {
     color: $white;
     font-size: 2.5rem;
-}
-
-// .container-wave-top {
-//     width: 100%;
-//     background-image: url('../../public/image/wave-orange.svg');
-//     background-repeat: no-repeat;
-//     background-size: cover;
-//     height: 10rem;
-
-// }
-.container-card {
-    margin: 50px;
+    margin-top: -3rem;
+    margin-bottom: 3.5rem;
 }
 
 .container-btn {

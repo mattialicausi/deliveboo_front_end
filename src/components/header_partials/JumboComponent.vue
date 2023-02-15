@@ -47,6 +47,11 @@ h1 {
 
 .btn-jumbo {
     margin-top: -130px;
+    //   margin-top: 1.3rem !important;
+
+    a {
+        font-size: 1.5rem;
+    }
 }
 
 .container {
@@ -76,9 +81,7 @@ h1 {
         padding-bottom: 6rem !important;
     }
 
-    .btn-jumbo {
-        margin-top: 1.3rem !important;
-    }
+
 }
 
 
