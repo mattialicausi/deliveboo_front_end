@@ -4,7 +4,7 @@
   <div class="cart-icon btn mybtn" v-if="!store.openCart" @click="store.openCart = !store.openCart"><i
       class="fa-solid fa-cart-shopping"></i>
     
-      <div class="popup">{{ store.popupCounter }}</div>
+      <div class="popup">{{ store.cart.length }}</div>
   </div>
 
 
@@ -44,7 +44,17 @@
         <span class="fs-4">Totale:</span>
         <span class="fs-4">{{ this.cartTotal.toFixed(2) }}</span>
         <div>
+
           <button class="btn mybtn-orange" @click="clearCart()">Svuota</button>
+
+          <router-link :to="{name:'payment'}">
+            <button class="btn mybtn-orange">Paga</button>
+          </router-link>
+
+
+         
+
+     
         </div>
       </div>
 
@@ -67,13 +77,12 @@ export default {
   methods: {
     removeFromCart(index) {
       store.cart.splice(index, 1);
-      store.popupCounter --;
       localStorage.setItem(`cart`, JSON.stringify(store.cart));
     },
 
     clearCart() {
       localStorage.clear()
-      store.popupCounter = 0;
+
       store.cart = [];
     },
 
@@ -92,7 +101,7 @@ export default {
       } else {
         localStorage.removeItem(product.slug)
         store.cart.splice(i, 1)
-        store.popupCounter --;
+     
       }
     },
 

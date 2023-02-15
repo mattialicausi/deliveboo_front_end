@@ -22,7 +22,8 @@ export const store = reactive({
   shoppingCart: [],
   cartData: [],
   cart: [],
-  popupCounter: 0,
+
+
 
 
   getCategories: function () {
@@ -37,6 +38,12 @@ export const store = reactive({
       this.types = res.data.types;
       // console.log(res.data.types)
     })
+  },
+
+
+  // funzione per il totale del carrello
+  cartTotal() {
+    return this.cart.reduce((a, b) => a + b.price * b.quantity, 0);
   },
 
   // FUNZIONE PER ANIMARE GLI ELEMENTI IN ENTRATA NELLA PAGINA

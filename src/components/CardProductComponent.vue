@@ -111,6 +111,7 @@ export default {
         store.cart = this.getAllCart;
         this.getStorageKeys();
         console.log(store.cart);
+        console.log(this.getStorageKeys());
     },
 
     computed: {
