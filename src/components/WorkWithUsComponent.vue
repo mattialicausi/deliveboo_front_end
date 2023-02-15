@@ -72,21 +72,17 @@ export default {
 @import '../assets/styles/general.scss';
 @import '../assets/styles/partials/variables';
 
+h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+}
+
 
 
 h3 {
     height: 45px;
 }
 
-// .a-box a {
-//     display: inline-block;
-//     margin-top: 20px;
-//     padding: 10px 20px;
-//     background-color: $orange;
-//     color: #ffffff;
-//     border-radius: 25px;
-//     text-decoration: none;
-// }
 
 .a-box {
     display: inline-block;

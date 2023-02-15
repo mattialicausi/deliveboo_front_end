@@ -7,7 +7,7 @@
   
 
 
-        <h2 class="text-center mt-5">I Nostri Ristoranti</h2>
+        <h2 class="text-center">I Nostri Ristoranti</h2>
 
        
                 
@@ -157,7 +157,7 @@ export default {
 }
 
 .container {
-    margin-top: -18vh;
+    margin-top: -25vh;
 }
 
 
@@ -165,8 +165,6 @@ export default {
     display: inline-block;
     width: 300px;
     text-align: center;
-   
-
 
 }
 
@@ -272,7 +270,7 @@ export default {
 h2 {
     font-size: 2.5rem;
     font-weight: bold;
-    color: $orange;
+    color: $white;
 }
 
 .search-box {
@@ -439,5 +437,16 @@ h2 {
         flex-flow: row wrap !important;
         justify-content: center;
     }
+
+    @media only screen and (max-width: 600px) {
+        .container {
+            margin-top: -50vh;
+        }
+
+        h4 {
+            color: $white;
+            text-align: center;
+        }
+}
 }
 </style>
