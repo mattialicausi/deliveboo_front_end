@@ -1,11 +1,12 @@
 <template>
 
-    <form id="payment-form" :action="`${store.apiBaseUrl}/order/payment`" method="post">
-
-        <div id="dropin-container"></div>
-        <input type="submit" />
-        <input type="hidden" id="nonce" name="payment_method_nonce" />
-    </form>
+    <div class="m-5">
+        <form id="payment-form" :action="`${store.apiBaseUrl}/order/payment`" method="post">
+            <div id="dropin-container"></div>
+            <input type="submit" class="btn mybtn-orange" />
+            <input type="hidden" id="nonce" name="payment_method_nonce" />
+        </form>
+    </div>
 </template>
 
 <script>

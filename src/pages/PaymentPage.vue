@@ -1,6 +1,6 @@
 <template>
 
-    <form id="form1" class="p-4">
+    <form id="form1" class="p-4 m-5">
 
         <h1 class="fs-1 my-4">Inserisci le tue credenziali</h1>
         <div class="mb-4 row">
@@ -49,8 +49,8 @@
         <p class="form-message">* Campi obbligatori</p>
 
 
-        <a class="btn mybtn-orange credit-card mb-4" @click.prevent="purchase()">
-            <i class="fa-solid fa-credit-card"></i> Carta di Credito</a>
+        <!-- <a class="btn mybtn-orange credit-card mb-4" @click.prevent="purchase()">
+            <i class="fa-solid fa-credit-card"></i> Carta di Credito</a> -->
     </form>
 
     <div>
@@ -126,6 +126,11 @@ export default {
 
             return `${year}-${month}-${day} ${hour}:${minute}:${second}`;
         },
+        clearCart() {
+            localStorage.clear()
+            store.popupCounter = 0;
+            store.cart = [];
+        },
 
         purchase() {
             // Costruisci l'oggetto dei dati da inviare al server
@@ -157,6 +162,8 @@ export default {
                     this.order_time = '';
                     this.order_code = '';
                     this.paid_status = '';
+                    this.clearCart();
+
 
                 })
                 .catch(error => {
