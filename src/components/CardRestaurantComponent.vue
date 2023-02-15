@@ -29,10 +29,10 @@
                         </div>
                         <div class="text-start">
                             <p>
-                                <span v-if="restaurant.min_price_order">Prezzo minino per l'ordine di: {{
+                                <h5 v-if="restaurant.min_price_order">Prezzo minino per l'ordine di: {{
                                     restaurant.min_price_order
-                                }} &euro;</span>
-                                <span v-if="!restaurant.min_price_order">Nessun prezzo minimo per l'ordine</span>
+                                }} &euro;</h5>
+                                <h5 v-if="!restaurant.min_price_order">Nessun prezzo minimo per l'ordine</h5>
                             </p>
                             <p>
                                 <span v-if="restaurant.delivery_price">Costo consegna {{ restaurant.delivery_price }}
@@ -105,6 +105,10 @@ export default {
 <style lang="scss" scoped>
 @import '../assets/styles/general.scss';
 @import '../assets/styles/partials/variables';
+
+span i {
+    color: $orange;
+}
 
 
 .mycard-restaurant {

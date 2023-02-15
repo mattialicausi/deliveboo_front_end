@@ -1,5 +1,12 @@
 <template>
+      <div class="container-wave">
+            <!-- img background wave -->
+        </div>
     <div class="container" v-if="store.categories && this.restaurants">
+
+  
+
+
         <h2 class="text-center mt-5">I Nostri Ristoranti</h2>
 
        
@@ -21,7 +28,7 @@
                             </div>
                         </div>
                         <div class="text-container">
-                            <h4 class="text-center">{{ category.name }}</h4>
+                            <h5 class="text-center text-uppercase">{{ category.name }}</h5>
                         </div>
                     </div>
             </div>
@@ -30,7 +37,7 @@
         <div class="row">
             <div class="col-lg-3 col-md-12 col-sm-12">
                 <div>
-                    <h3>Lista delle categorie</h3>
+                    <h4>Tutte le categorie (A - Z)</h4>
                     <div class="ks-cboxtags category-list d-flex flex-column">
                         <li v-for="(category, index) in store.categories.sort((a, b) => a.name.localeCompare(b.name))"
                             :key="index">
@@ -137,11 +144,30 @@ export default {
 @import '../assets/styles/partials/variables';
 @import url("https://fonts.googleapis.com/css?family=Raleway:400,400i,700");
 
+.container-wave {
+    width: 100%;
+    background-image: url(image/wave-orange.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    z-index: -10;
+    height: 20rem;
+    transform: scaleY(-1);
+
+}
+
+.container {
+    margin-top: -18vh;
+}
+
 
 .a-box {
     display: inline-block;
     width: 300px;
     text-align: center;
+   
+
+
 }
 
 .img-container {
@@ -151,6 +177,8 @@ export default {
     border-radius: 0px 0px 20px 20px;
     display: inline-block;
 }
+
+
 
 .img-container img {
     transform: skew(0deg, -13deg);
@@ -182,6 +210,8 @@ export default {
     -moz-appearance: none;
     outline: none;
     box-shadow: none;
+    transition: 400ms ease-in-out;
+
 
     h4 {
         margin-top: -2rem !important;
@@ -192,15 +222,29 @@ export default {
     }
 
     &:hover {
-        .my-card {
-
-            transform: translateY(20px);
-            cursor: pointer;
-
-        }
+        cursor:pointer;
     }
 
+
+        
+        &:hover + .a-box {
+            cursor: pointer;
+            transform: translateY(-3rem);
+            color: $orange;
+            transition: 400ms ease-in-out;
+
+        }
+
+         &:checked + .a-box {
+            transform: translateY(-3rem);
+            color: $orange;
+
+        }
+
+
 }
+
+
 
 .best-restaurant-description {
     display: flex;
@@ -332,6 +376,7 @@ h2 {
     user-select: none;
     -webkit-tap-highlight-color: transparent;
     transition: all .2s;
+    text-align: center;
 }
 
 .category-list.ks-cboxtags li label {
@@ -349,12 +394,12 @@ h2 {
     font-weight: 900;
     font-size: 12px;
     padding: 2px 6px 2px 2px;
-    content: "\️✖️";
+    // content: "\️✖️";
     transition: transform .3s ease-in-out;
 }
 
 .category-list.ks-cboxtags li input[type="checkbox"]:checked+label::before {
-    content: "\✔️";
+    // content: "\✔️";
     transform: rotate(-360deg);
     transition: transform .3s ease-in-out;
 }
