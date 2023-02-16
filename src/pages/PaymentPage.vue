@@ -3,13 +3,20 @@
         <!-- img background wave -->
     </div>
 
-    <form id="form1" class="container rounded-2">
+    <div v-if="success" class="alert alert-success text-start" role="alert">
+        Acquisto confermato!
+    </div>  
+
+    <form id="form1" class="container rounded-2" @submit.prevent="purchase()">
 
         <h1 class="fs-1 my-4" style="color: rgb(213, 89, 36);">Inserisci le tue credenziali</h1>
         <div class="mb-4 row">
             <div class="col-6 container-input">
                 <input id="customer_name" type="text" class="form-control" name="customer_name" required min="3" max="100"
                     v-model="customer_name" autocomplete="customer_name" autofocus placeholder="Nome *">
+
+                    <p v-for="(error, index) in errors.customer_name" :key="index" class="invalid-feedback">{{ error }}</p> 
+
             </div>
 
 
@@ -17,6 +24,9 @@
                 <input id="customer_lastname" type="text" class="form-control" name="customer_lastname" required min="3"
                     max="100" v-model="customer_lastname" autocomplete="customer_lastname" autofocus
                     placeholder="Cognome *">
+
+                    <p v-for="(error, index) in errors.customer_lastname" :key="index" class="invalid-feedback">{{ error }}</p> 
+
             </div>
         </div>
 
@@ -25,12 +35,17 @@
             <div class="col-sm-6 col-md-6 col-lg-6">
                 <input id="email" type="email" class="form-control" name="email" v-model="email" required max="70"
                     autocomplete="email" placeholder="Email *">
+                    <p v-for="(error, index) in errors.email" :key="index" class="invalid-feedback">{{ error }}</p> 
+
             </div>
 
 
             <div class="col-sm-6 col-md-6 col-lg-6">
                 <input id="contact_phone" type="text" class="form-control" name="contact_phone" required min="7" max="15"
                     v-model="contact_phone" autocomplete="contact_phone" autofocus placeholder="Numero telefonico *">
+
+                    <p v-for="(error, index) in errors.contact_phone" :key="index" class="invalid-feedback">{{ error }}</p> 
+                
             </div>
 
         </div>
@@ -39,6 +54,10 @@
             <div class="col-sm-12 col-md-6 col-lg-6">
                 <input id="address" type="text" class="form-control" name="address" v-model="address" required max="70"
                     autocomplete="address" placeholder="Address *">
+
+                 <p v-for="(error, index) in errors.address" :key="index" class="invalid-feedback">{{ error }}</p> 
+
+                    
             </div>
         </div>
 
@@ -47,8 +66,10 @@
         <p class="form-message">* Campi obbligatori</p>
 
 
-        <a class="btn mybtn-orange credit-card mb-4" @click.prevent="purchase()">
-            <i class="fa-solid fa-credit-card"></i> Carta di Credito</a>
+        <!-- <button type="submit" class="btn mybtn-orange credit-card mb-4">
+            <i class="fa-solid fa-credit-card"></i> Carta di Credito
+        </button> -->
+            
     </form>
 
     <div class="container mt-5 p-3 rounded cart">
@@ -132,6 +153,9 @@ export default {
             order_time: '',
             order_code: '',
             paid_status: false,
+            errors: {},
+            success: false,
+
         }
     },
 
@@ -221,27 +245,38 @@ export default {
             // Esegui la chiamata HTTP POST con Axios
             axios.post(`${store.apiBaseUrl}/purchase`, data, { headers: { "Content-Type": "multipart/form-data" } })
                 .then(response => {
-                    console.log(response.data.results)
-                    console.log(response.data.order)
-                    console.log('Ordine inviato con successo!', response.data);
-                    // Effettua altre azioni in base alla risposta del server
-                    this.customer_name = '';
-                    this.customer_lastname = '';
-                    this.contact_phone = '';
-                    this.email = '';
-                    this.address = '';
-                    this.final_price = '';
-                    this.order_time = '';
-                    this.order_code = '';
-                    this.paid_status = '';
-                    this.clearCart();
+                    console.log(response.data)
+                    this.success = response.data.success;
+                    if (this.success) {
+                       
+                        this.errors = response.data.errors;
+                        console.log(response.data.errors);
+                         
 
+                    } else {
+
+                        console.log('Ordine inviato con successo!', response.data);
+                        // Effettua altre azioni in base alla risposta del server
+                        this.customer_name = '';
+                        this.customer_lastname = '';
+                        this.contact_phone = '';
+                        this.email = '';
+                        this.address = '';
+                        this.final_price = '';
+                        this.order_time = '';
+                        this.order_code = '';
+                        this.paid_status = '';
+                        this.clearCart();
+                      
+                    }
 
                 })
-                .catch(error => {
-                    console.error('Errore durante l\'invio dell\'ordine:', error);
-                    // Effettua altre azioni in caso di errore
-                });
+
+             
+                 
+            
+              
+               
         },
     },
     computed: {
