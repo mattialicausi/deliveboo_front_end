@@ -1,4 +1,8 @@
 <template>
+    <section>
+        <CartComponent />
+    </section>
+
     <form id="form1" class="p-4 m-5">
 
         <h1 class="fs-1 my-4">Inserisci le tue credenziali</h1>
@@ -49,16 +53,12 @@
 
 
         <!-- <a class="btn mybtn-orange credit-card mb-4" @click.prevent="purchase()">
-                            <i class="fa-solid fa-credit-card"></i> Carta di Credito</a> -->
+                                <i class="fa-solid fa-credit-card"></i> Carta di Credito</a> -->
     </form>
 
     <div>
         <PaymentComponent />
-    </div>
-
-    <section>
-        <CartComponent />
-</section>
+</div>
 </template>
 
 <script>
