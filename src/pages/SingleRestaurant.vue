@@ -1,6 +1,8 @@
 <template>
-
     <div v-if="restaurant && store.categories">
+        <section>
+            <CartComponent />
+        </section>
         <div>
             <!-- <img :src="restaurant.image" :alt="restaurant.image"> -->
             <div class="mycontainer" v-if="!restaurant.image.startsWith('http')" :style="{
@@ -58,8 +60,8 @@
             <div class="container py-4">
                 <h2 class="text-center text-white ">Il nostro menu</h2>
                 <div class="row">
-                    <CardProductComponent v-for="product in products" :key="product.id" :product="product"
-                        :types="types" @show-product-modal="showProductModal" />
+                    <CardProductComponent v-for="product in products" :key="product.id" :product="product" :types="types"
+                        @show-product-modal="showProductModal" />
                 </div>
             </div>
         </div>
@@ -70,26 +72,22 @@
         <div class="container my-5">
             <h3>Sei ancora indeciso? Consulta altre categorie!</h3>
             <!-- <div class="row py-3">
-                <div class="col-lg-2 col-md-4 col-sm-6 g-3" v-for="(category, i) in store.categories" :key="i">
-                    <div class="card-category">
-                        <div class="category-img">
-                            <img :src="category.image" :alt="category.name">
-                        </div>
-                        <div class="border">
-                            <p class="text-center mb-0 p-2">{{ category.name }}</p>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
+                            <div class="col-lg-2 col-md-4 col-sm-6 g-3" v-for="(category, i) in store.categories" :key="i">
+                                <div class="card-category">
+                                    <div class="category-img">
+                                        <img :src="category.image" :alt="category.name">
+                                    </div>
+                                    <div class="border">
+                                        <p class="text-center mb-0 p-2">{{ category.name }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> -->
         </div>
-        <SliderCategoryComponent/>
+        <SliderCategoryComponent />
     </div>
 
-    <LoaderComponent v-else />
-
-
-
-
+<LoaderComponent v-else />
 </template>
 
 <script>
@@ -99,15 +97,18 @@ import CardProductComponent from "../components/CardProductComponent.vue";
 import ModalProductComponent from "../components/ModalProductComponent.vue";
 import LoaderComponent from '../components/LoaderComponent.vue';
 import SliderCategoryComponent from '../components/SliderCategoryComponent.vue';
+import CartComponent from '../components/CartComponent.vue';
+
 
 export default {
     name: 'SingleRestaurantPage',
     components: {
-    CardProductComponent,
-    ModalProductComponent,
-    LoaderComponent,
-    SliderCategoryComponent
-},
+        CardProductComponent,
+        ModalProductComponent,
+        LoaderComponent,
+        SliderCategoryComponent,
+        CartComponent
+    },
 
     data() {
         return {

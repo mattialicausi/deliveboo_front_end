@@ -1,12 +1,11 @@
 <template>
-
     <form id="form1" class="p-4 m-5">
 
         <h1 class="fs-1 my-4">Inserisci le tue credenziali</h1>
         <div class="mb-4 row">
             <div class="col-6 container-input">
-                <input id="customer_name" type="text" class="form-control" name="customer_name" required min="3"
-                    max="100" v-model="customer_name" autocomplete="customer_name" autofocus placeholder="Nome *">
+                <input id="customer_name" type="text" class="form-control" name="customer_name" required min="3" max="100"
+                    v-model="customer_name" autocomplete="customer_name" autofocus placeholder="Nome *">
 
             </div>
 
@@ -50,26 +49,28 @@
 
 
         <!-- <a class="btn mybtn-orange credit-card mb-4" @click.prevent="purchase()">
-            <i class="fa-solid fa-credit-card"></i> Carta di Credito</a> -->
+                        <i class="fa-solid fa-credit-card"></i> Carta di Credito</a> -->
     </form>
 
     <div>
         <PaymentComponent />
     </div>
-    <!-- <div id="dropin-container">
-    </div>
-    <button id="submit-button" class="button button--small button--green">Purchase</button> -->
+
+    <section>
+        <CartComponent />
+</section>
 </template>
 
 <script>
 import axios from 'axios';
 import { store } from '../store';
 import PaymentComponent from "../components/PaymentComponent.vue";
+import CartComponent from '../components/CartComponent.vue';
 
 
 export default {
     name: 'PaymentPage',
-    components: { PaymentComponent },
+    components: { PaymentComponent, CartComponent },
     data() {
         return {
             store,
