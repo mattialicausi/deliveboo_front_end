@@ -19,7 +19,7 @@ export const store = reactive({
     },
     {
       name: "americano",
-      img: "/image/img-category/hamburger.png",
+      img: "/image/img-category/fritti.png",
       id: 5,
     },
     {
@@ -39,7 +39,7 @@ export const store = reactive({
     },
     {
       name: "fritti",
-      img: "/image/img-category/americano.png",
+      img: "/image/img-category/fritti.png",
       id: 14,
     },
     {
