@@ -1,8 +1,8 @@
 <template>
     <div v-if="restaurant && store.categories">
-        <section>
-            <CartComponent />
-        </section>
+        <!-- <section>
+                                                                                                <CartComponent />
+                                                                                            </section> -->
         <div>
             <!-- <img :src="restaurant.image" :alt="restaurant.image"> -->
             <div class="mycontainer" v-if="!restaurant.image.startsWith('http')" :style="{
@@ -58,31 +58,39 @@
         <!-- MENU -->
         <div class="container-fluid bg-orange mt-5">
             <div class="container py-4">
-                <h2 class="text-center text-white ">Il nostro menu</h2>
-                <div class="row">
-                    <CardProductComponent v-for="product in products" :key="product.id" :product="product" :types="types"
-                        @show-product-modal="showProductModal" />
+                <h2 class="text-center text-white">Il nostro menu</h2>
+                <div class="row justify-content-between">
+                    <div class="col-lg-3 col-md-6 col-sm-12 g-4">
+                        <CardProductComponent v-for="product in products" :key="product.id" :product="product"
+                            :types="types" @show-product-modal="showProductModal" />
+                    </div>
+                    <div class="col-lg-5 col-md-6 col-sm-12 mt-5">
+                        <CartComponent />
+                    </div>
                 </div>
+
             </div>
         </div>
-        <!--  -->
-        <ModalProductComponent v-if="selectedProduct" :product="selectedProduct" :restaurant="restaurant" />
+
+        <!-- <ModalProductComponent v-if="selectedProduct" :product="selectedProduct" :restaurant="restaurant" /> -->
+
+
 
         <!-- Altre categorie -->
         <div class="container my-5">
             <h3>Sei ancora indeciso? Consulta altre categorie!</h3>
             <!-- <div class="row py-3">
-                            <div class="col-lg-2 col-md-4 col-sm-6 g-3" v-for="(category, i) in store.categories" :key="i">
-                                <div class="card-category">
-                                    <div class="category-img">
-                                        <img :src="category.image" :alt="category.name">
-                                    </div>
-                                    <div class="border">
-                                        <p class="text-center mb-0 p-2">{{ category.name }}</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> -->
+                                                                                                                                                                                            <div class="col-lg-2 col-md-4 col-sm-6 g-3" v-for="(category, i) in store.categories" :key="i">
+                                                                                                                                                                                                <div class="card-category">
+                                                                                                                                                                                                    <div class="category-img">
+                                                                                                                                                                                                        <img :src="category.image" :alt="category.name">
+                                                                                                                                                                                                    </div>
+                                                                                                                                                                                                    <div class="border">
+                                                                                                                                                                                                        <p class="text-center mb-0 p-2">{{ category.name }}</p>
+                                                                                                                                                                                                    </div>
+                                                                                                                                                                                                </div>
+                                                                                                                                                                                            </div>
+                                                                                                                                                                                        </div> -->
         </div>
         <SliderCategoryComponent />
     </div>
@@ -149,6 +157,38 @@ export default {
         showProductModal(productId) {
             // Recupera il prodotto corrispondente all'id
             this.selectedProduct = this.products.find(p => p.id === productId);
+        },
+        showProductModal(productId) {
+            console.log('showProductModal called with productId:', productId);
+
+            this.$emit('show-product-modal', productId);
+        },
+
+        tryAddToCart(product) {
+
+            if (localStorage.length) {
+                const keys = Object.keys(localStorage)
+                const restaurantId = JSON.parse(localStorage.getItem(keys[0])).restaurant_id
+                if (product.restaurant_id != restaurantId) {
+                    console.log('Non puoi ordinare da due ristoranti diversi');
+                    return
+                } else {
+                    this.addToCart(product)
+                    return
+                }
+            }
+            this.addToCart(product)
+        },
+
+        addToCart(product) {
+            product.quantity = 1
+            store.cart.push(product)
+            localStorage.setItem(product.slug, JSON.stringify(product))
+
+        },
+
+        getStorageKeys() {
+            this.vueLocalStorage = Object.keys(localStorage)
         }
     },
 

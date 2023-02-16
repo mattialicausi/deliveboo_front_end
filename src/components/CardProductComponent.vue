@@ -1,35 +1,29 @@
 <template>
-    <div class="col-sm-12 col-md-6 col-lg-4 g-4">
-        <div class="card">
-            <div class="card-image">
-                <img v-if="!product.image.startsWith('http')" :src="`${store.imgBasePath}${product.image}`"
-                    :alt="product.name" class="img-fluid" />
-                <img v-else :src="product.image" :alt="product.name" class="img-fluid" />
-            </div>
-
-            <div class="p-3 mt-4">
-                <h4 class="card-title">{{ product.name }}</h4>
-                <p>{{ product.ingredients }}</p>
-                <p>{{ product.price }}€</p>
-                <p>{{ product.type }}</p>
-                <p v-if="product.available == 1" class="text-success">Disponibile</p>
-                <p v-else class="text-danger">Non disponibile</p>
-                <p>{{ product.discount }}</p>
-                <!-- Button trigger modal -->
-                <div class="d-flex justify-content-between">
-                    <button type="button" class="btn mybtn-orange" data-bs-toggle="modal" data-bs-target="#exampleModal"
-                        v-on:click="showProductModal(product.id)">
-                        Mostra prodotto
-                    </button>
-                    <button type="button" class="btn mybtn-orange" :disabled="vueLocalStorage.includes(product.slug)"
-                        @click="tryAddToCart(product)">Aggiungi al carrello</button>
-
-                </div>
-
-
+    <div class="card">
+        <div class="card-image">
+            <img v-if="!product.image.startsWith('http')" :src="`${store.imgBasePath}${product.image}`" :alt="product.name"
+                class="img-fluid" />
+            <img v-else :src="product.image" :alt="product.name" class="img-fluid" />
+        </div>
+        <div class="p-3 mt-4">
+            <h4 class="card-title">{{ product.name }}</h4>
+            <p>{{ product.ingredients }}</p>
+            <p>{{ product.price }}€</p>
+            <p>{{ product.type }}</p>
+            <p v-if="product.available == 1" class="text-success">Disponibile</p>
+            <p v-else class="text-danger">Non disponibile</p>
+            <p>{{ product.discount }}</p>
+            <!-- Button trigger modal -->
+            <div class="d-flex justify-content-between">
+                <button type="button" class="btn mybtn-orange" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                    v-on:click="showProductModal(product.id)">
+                    Mostra prodotto
+                </button>
+                <button type="button" class="btn mybtn-orange" :disabled="vueLocalStorage.includes(product.slug)"
+                    @click="tryAddToCart(product)">Aggiungi al carrello</button>
             </div>
         </div>
-    </div>
+</div>
 </template>
 <script>
 import { store } from '../store';
@@ -86,7 +80,7 @@ export default {
         addToCart(product) {
             product.quantity = 1
             store.cart.push(product)
-            store.popupCounter ++;
+            store.popupCounter++;
             localStorage.setItem(product.slug, JSON.stringify(product))
 
         },
