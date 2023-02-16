@@ -95,16 +95,6 @@ export const store = reactive({
       img: "/image/img-category/kebab.png",
       id: 4,
     },
-    {
-      name: "africano",
-      img: "/image/img-category/africano.png",
-      id: 8,
-    },
-    {
-      name: "colazione",
-      img: "/image/img-category/colazione.png",
-      id: 16,
-    },
   ],
 
   categories: [],
