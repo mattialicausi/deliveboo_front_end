@@ -94,7 +94,7 @@ export default {
     background-repeat: no-repeat;
     background-size: cover;
     height: 18rem;
-    margin-top: 5vh;
+    // margin-top: 5vh;
 
 }
 
