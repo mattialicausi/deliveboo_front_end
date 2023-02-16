@@ -131,7 +131,6 @@ export default {
 }
 
 
-
 .container-title-cart {
   text-align: center;
   border-bottom: 1px solid $orange;
@@ -150,6 +149,8 @@ export default {
 }
 
 .shopping_cart {
+  position: sticky;
+  top: 0;
   // position: fixed;
   // top: 5rem; 
   // bottom: 10rem;
