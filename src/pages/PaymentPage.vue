@@ -49,7 +49,7 @@
 
 
         <!-- <a class="btn mybtn-orange credit-card mb-4" @click.prevent="purchase()">
-                        <i class="fa-solid fa-credit-card"></i> Carta di Credito</a> -->
+                                <i class="fa-solid fa-credit-card"></i> Carta di Credito</a> -->
     </form>
 
     <div class="container mt-5 p-3 rounded cart">
