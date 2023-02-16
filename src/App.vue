@@ -4,8 +4,8 @@
   </header>
 
   <!-- <section>
-      <CartComponent/>
-    </section> -->
+          <CartComponent/>
+        </section> -->
 
   <!-- rotte delle pagine -->
   <main>
@@ -30,43 +30,8 @@ export default {
   data() {
     return {
       store,
-      vueLocalStorage: '',
 
     }
-  },
-
-  methods: {
-    getStorageKeys() {
-      this.vueLocalStorage = Object.keys(localStorage);
-      console.log(this.vueLocalStorage);
-    },
-
-  },
-
-  watch: {
-    'store.cart': {
-      handler() {
-        this.getStorageKeys()
-      },
-      deep: true
-    }
-  },
-
-  mounted() {
-
-    this.getStorageKeys();
-    console.log(this.getStorageKeys());
-  },
-
-  computed: {
-    getAllCart() {
-      let storage = []
-      let keys = Object.keys(localStorage)
-      for (let i = 0; i < keys.length; i++) {
-        storage.push(JSON.parse(localStorage.getItem(keys[i])))
-      }
-      return storage;
-    },
   },
 
 }

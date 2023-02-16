@@ -91,10 +91,11 @@ export const store = reactive({
       id: 7,
     },
     {
-      name: "kebab",
-      img: "/image/img-category/kebab.png",
-      id: 4,
+      name: "fritti",
+      img: "/image/img-category/fritti.png",
+      id: 14,
     },
+ 
   ],
 
   categories: [],

@@ -1,5 +1,4 @@
 <template>
-
     <div class="container-wave-bottom">
         <!-- img background wave -->
     </div>
@@ -48,8 +47,8 @@
         <p class="form-message">* Campi obbligatori</p>
 
 
-        <!-- <a class="btn mybtn-orange credit-card mb-4" @click.prevent="purchase()">
-                                <i class="fa-solid fa-credit-card"></i> Carta di Credito</a> -->
+        <a class="btn mybtn-orange credit-card mb-4" @click.prevent="purchase()">
+            <i class="fa-solid fa-credit-card"></i> Carta di Credito</a>
     </form>
 
     <div class="container mt-5 p-3 rounded cart">
@@ -62,45 +61,52 @@
                             <span class="ms-1">Continua lo shopping</span>
                         </div>
                     </router-link>
-                    
+
                     <hr>
-                    
-                        <div class="d-flex align-items-center justify-content-between pe-1">
+
+                    <div class="d-flex align-items-center justify-content-between pe-1">
                         <h6 class="mb-0">Carrello</h6>
                         <h6 class="color-total"> Totale: {{ this.cartTotal.toFixed(2) }} €</h6>
-                        </div>
-                  
-                        <div class="d-flex justify-content-between"><span>Hai {{store.cart.length}} prodotti nel tuo carrello</span></div>
+                    </div>
+
+                    <div class="d-flex justify-content-between"><span>Hai {{ store.cart.length }} prodotti nel tuo
+                            carrello</span></div>
                     <div class="container-product rounded-2">
-                        <div class="d-flex justify-content-between align-items-center mt-3 p-2 items rounded" v-for="(cartItem, index) in store.cart" :key="index">
+                        <div class="d-flex justify-content-between align-items-center mt-3 p-2 items rounded"
+                            v-for="(cartItem, index) in store.cart" :key="index">
                             <div class="d-flex flex-row"><img class="rounded me-2" :src="cartItem.image" width="40">
-                                <div class="ml-2"><span class="font-weight-bold d-block">{{ cartItem.name }}</span><span class="spec"> Quantità: {{ cartItem.quantity }}</span></div>
+                                <div class="ml-2"><span class="font-weight-bold d-block">{{ cartItem.name }}</span><span
+                                        class="spec"> Quantità: {{ cartItem.quantity }}</span></div>
                             </div>
-                            <div class="d-flex flex-row align-items-center"><span class="d-block me-2 hover-products-n" @click="removeQuantity(cartItem, index)"> - </span><span class="d-block ml-5 font-weight-bold">€ {{ calculateItemTotal(cartItem).toFixed(2) }}</span><span class="d-block ms-2 hover-products-n " @click="addQuantity(cartItem, index)"> + </span></div>
+                            <div class="d-flex flex-row align-items-center"><span class="d-block me-2 hover-products-n"
+                                    @click="removeQuantity(cartItem, index)"> - </span><span
+                                    class="d-block ml-5 font-weight-bold">€ {{ calculateItemTotal(cartItem).toFixed(2)
+                                    }}</span><span class="d-block ms-2 hover-products-n "
+                                    @click="addQuantity(cartItem, index)"> + </span></div>
                         </div>
                     </div>
-                  
-       
+
+
                 </div>
             </div>
             <div class="col-md-4">
 
-                    <div>
-                        <PaymentComponent />
-                    </div>
+                <div>
+                    <PaymentComponent />
+                </div>
             </div>
         </div>
     </div>
 
-  
+
 
     <!-- <section>
-        <CartComponent />
-    </section> -->
+                        <CartComponent />
+                    </section> -->
 
     <div class="container-wave">
         <!-- img background wave -->
-    </div>
+</div>
 </template>
 
 <script>
@@ -146,7 +152,7 @@ export default {
         calculateItemTotal(cartItem) {
             return cartItem.price * cartItem.quantity;
         },
-        
+
         addQuantity(product, i) {
             store.cart[i].quantity++
             const item = JSON.parse(localStorage.getItem(product.slug))
@@ -240,7 +246,7 @@ export default {
     },
     computed: {
         cartTotal() {
-            console.log(store.cart.reduce((a, b) => a + b.price * b.quantity, 0));
+            // console.log(store.cart.reduce((a, b) => a + b.price * b.quantity, 0));
             return store.cart.reduce((a, b) => a + b.price * b.quantity, 0);
         },
         getAllCart() {
@@ -254,7 +260,7 @@ export default {
 
 
 
-      
+
     },
     mounted() {
         this.getProducts();
@@ -322,19 +328,18 @@ export default {
 }
 
 .hover-products-n {
-     &:hover {
+    &:hover {
 
         cursor: pointer
-
-     }
+    }
 }
 
-.btn{
+.btn {
     width: max-content;
 
     a {
         color: $orange;
-        
+
     }
 }
 
@@ -375,108 +380,108 @@ export default {
 }
 
 .payment-info {
-  background: blue;
-  padding: 10px;
-  border-radius: 6px;
-  color: #fff;
-  font-weight: bold;
+    background: blue;
+    padding: 10px;
+    border-radius: 6px;
+    color: #fff;
+    font-weight: bold;
 }
 
 .product-details {
-  padding: 10px;
+    padding: 10px;
 }
 
 body {
-  background: #eee;
+    background: #eee;
 }
 
 .cart {
-  background: #fff;
+    background: #fff;
 }
 
 .p-about {
-  font-size: 12px;
+    font-size: 12px;
 }
 
 .table-shadow {
-  -webkit-box-shadow: 5px 5px 15px -2px rgba(0,0,0,0.42);
-  box-shadow: 5px 5px 15px -2px rgba(0,0,0,0.42);
+    -webkit-box-shadow: 5px 5px 15px -2px rgba(0, 0, 0, 0.42);
+    box-shadow: 5px 5px 15px -2px rgba(0, 0, 0, 0.42);
 }
 
 .type {
-  font-weight: 400;
-  font-size: 10px;
+    font-weight: 400;
+    font-size: 10px;
 }
 
 label.radio {
-  cursor: pointer;
+    cursor: pointer;
 }
 
 label.radio input {
-  position: absolute;
-  top: 0;
-  left: 0;
-  visibility: hidden;
-  pointer-events: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    visibility: hidden;
+    pointer-events: none;
 }
 
 label.radio span {
-  padding: 1px 12px;
-  border: 2px solid #ada9a9;
-  display: inline-block;
-  color: #8f37aa;
-  border-radius: 3px;
-  text-transform: uppercase;
-  font-size: 11px;
-  font-weight: 300;
+    padding: 1px 12px;
+    border: 2px solid #ada9a9;
+    display: inline-block;
+    color: #8f37aa;
+    border-radius: 3px;
+    text-transform: uppercase;
+    font-size: 11px;
+    font-weight: 300;
 }
 
-label.radio input:checked + span {
-  border-color: #fff;
-  background-color: blue;
-  color: #fff;
+label.radio input:checked+span {
+    border-color: #fff;
+    background-color: blue;
+    color: #fff;
 }
 
 .credit-inputs {
-  background: rgb(102,102,221);
-  color: #fff !important;
-  border-color: rgb(102,102,221);
+    background: rgb(102, 102, 221);
+    color: #fff !important;
+    border-color: rgb(102, 102, 221);
 }
 
 .credit-inputs::placeholder {
-  color: #fff;
-  font-size: 13px;
+    color: #fff;
+    font-size: 13px;
 }
 
 .credit-card-label {
-  font-size: 9px;
-  font-weight: 300;
+    font-size: 9px;
+    font-weight: 300;
 }
 
 .form-control.credit-inputs:focus {
-  background: rgb(102,102,221);
-  border: rgb(102,102,221);
+    background: rgb(102, 102, 221);
+    border: rgb(102, 102, 221);
 }
 
 .line {
-  border-bottom: 1px solid rgb(102,102,221);
+    border-bottom: 1px solid rgb(102, 102, 221);
 }
 
 .information span {
-  font-size: 12px;
-  font-weight: 500;
+    font-size: 12px;
+    font-weight: 500;
 }
 
 .information {
-  margin-bottom: 5px;
+    margin-bottom: 5px;
 }
 
 .items {
-  -webkit-box-shadow: 5px 5px 4px -1px rgba(0,0,0,0.25);
-  box-shadow: 5px 5px 4px -1px rgba(0, 0, 0, 0.08);
+    -webkit-box-shadow: 5px 5px 4px -1px rgba(0, 0, 0, 0.25);
+    box-shadow: 5px 5px 4px -1px rgba(0, 0, 0, 0.08);
 }
 
 .spec {
-  font-size: 11px;
+    font-size: 11px;
 }
 </style>
