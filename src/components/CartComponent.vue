@@ -1,10 +1,8 @@
 <template>
-
-
   <div class="cart-icon btn mybtn" v-if="!store.openCart" @click="store.openCart = !store.openCart"><i
       class="fa-solid fa-cart-shopping"></i>
 
-    <div class="popup">{{ store.popupCounter }}</div>
+    <div class="popup">{{ store.cart.length }}</div>
   </div>
 
 
@@ -54,7 +52,7 @@
     </div>
 
 
-  </div>
+</div>
 </template>
   
 <script>
