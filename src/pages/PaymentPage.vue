@@ -18,7 +18,7 @@
             </div>
         </div>
 
-        <div class="col-6">
+        <div class="mb-4 col-6">
             <input id="contact_phone" type="text" class="form-control" name="contact_phone" required min="7" max="15"
                 v-model="contact_phone" autocomplete="contact_phone" autofocus placeholder="Numero telefonico *">
 
@@ -49,7 +49,7 @@
 
 
         <!-- <a class="btn mybtn-orange credit-card mb-4" @click.prevent="purchase()">
-                        <i class="fa-solid fa-credit-card"></i> Carta di Credito</a> -->
+                            <i class="fa-solid fa-credit-card"></i> Carta di Credito</a> -->
     </form>
 
     <div>
