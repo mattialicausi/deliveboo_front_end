@@ -1,36 +1,36 @@
 <template>
-      <div class="container-wave">
-            <!-- img background wave -->
-        </div>
+    <div class="container-wave">
+        <!-- img background wave -->
+    </div>
     <div class="container" v-if="store.categories && this.restaurants">
 
-  
+
 
 
         <h2 class="text-center">I Nostri Ristoranti</h2>
 
-       
-                
-         
+
+
+
 
         <div class="d-flex justify-content-between my-5 container-category">
             <div class=" position-relative" v-for="(category, i) in store.categoryAllRestaurant" :key="i">
-                <input class="input-best-category" type="checkbox" :id="checkboxOne + `${category.id}`"
-                    :value="category.id" v-model="selectedCategories" @change="filterByCategory" />
+                <input class="input-best-category" type="checkbox" :id="checkboxOne + `${category.id}`" :value="category.id"
+                    v-model="selectedCategories" @change="filterByCategory" />
 
 
-                    <div class="a-box best-restaurant-description my-card">
-                        <div class="img-container">
-                            <div class="img-inner">
-                                <div class="inner-skew">
-                                    <img :src="category.img" :alt="category.name">
-                                </div>
+                <div class="a-box best-restaurant-description my-card">
+                    <div class="img-container">
+                        <div class="img-inner">
+                            <div class="inner-skew">
+                                <img :src="category.img" :alt="category.name">
                             </div>
                         </div>
-                        <div class="text-container">
-                            <h5 class="text-center text-uppercase">{{ category.name }}</h5>
-                        </div>
                     </div>
+                    <div class="text-container">
+                        <h5 class="text-center text-uppercase">{{ category.name }}</h5>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -55,8 +55,8 @@
 
                 <!-- search bar  -->
                 <!-- <div class="search-box mb-5">
-                    <input type="text" placeholder=" Cerca il tuo ristorante "/><span></span>
-                </div> -->
+                        <input type="text" placeholder=" Cerca il tuo ristorante "/><span></span>
+                    </div> -->
 
 
                 <div class="row" v-if="filteredRestaurants.length">
@@ -70,8 +70,7 @@
         </div>
     </div>
 
-    <LoaderComponent v-else />
-
+<LoaderComponent v-else />
 </template>
 <script>
 import axios from 'axios';
@@ -94,7 +93,7 @@ export default {
             categories: [],
             selectedCategories: [],
             bestCategory: [],
-
+            checkboxOne: 'uniqueIdPrefix'
         }
     },
     computed: {
@@ -220,24 +219,24 @@ export default {
     }
 
     &:hover {
-        cursor:pointer;
+        cursor: pointer;
     }
 
 
-        
-        &:hover + .a-box {
-            cursor: pointer;
-            transform: translateY(-3rem);
-            color: $orange;
-            transition: 400ms ease-in-out;
 
-        }
+    &:hover+.a-box {
+        cursor: pointer;
+        transform: translateY(-3rem);
+        color: $orange;
+        transition: 400ms ease-in-out;
 
-         &:checked + .a-box {
-            transform: translateY(-3rem);
-            color: $orange;
+    }
 
-        }
+    &:checked+.a-box {
+        transform: translateY(-3rem);
+        color: $orange;
+
+    }
 
 
 }
@@ -447,6 +446,6 @@ h2 {
             color: $white;
             text-align: center;
         }
-}
+    }
 }
 </style>

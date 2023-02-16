@@ -1,7 +1,4 @@
 <template>
-
-
-
     <section class="footer">
         <footer class="text-center text-lg-start text-white position-relative" style="background-color: #292d2d;">
 
@@ -33,8 +30,7 @@
                                     <a class="nav-link" href="#">Entra nel team</a>
                                 </li>
                                 <li>
-                                    <router-link :to="{ name: 'contactus' }" :class="{ 'myactive': isLoginRoute }"
-                                        class="nav-link">Contattaci</router-link>
+                                    <router-link :to="{ name: 'contactus' }" class="nav-link">Contattaci</router-link>
                                 </li>
                             </ul>
                         </div>
@@ -50,8 +46,7 @@
                                         class="text-white">Informazioni sulla privacy</a>
                                 </li>
                                 <li>
-                                    <a href="https://ricette.giallozafferano.it/Cookies.html"
-                                        class="text-white">Cookies</a>
+                                    <a href="https://ricette.giallozafferano.it/Cookies.html" class="text-white">Cookies</a>
                                 </li>
                                 <li>
                                     <a href="https://www.informazione-aziende.it/Azienda_BOOLEAN-SRL"
@@ -95,8 +90,8 @@
                     <a class="btn btn-outline-light btn-floating m-1" href="https://www.facebook.com/" role="button"><i
                             class="fab fa-facebook-f"></i></a>
 
-                    <a class="btn btn-outline-light btn-floating m-1" href="https://twitter.com/?lang=it"
-                        role="button"><i class="fab fa-twitter"></i></a>
+                    <a class="btn btn-outline-light btn-floating m-1" href="https://twitter.com/?lang=it" role="button"><i
+                            class="fab fa-twitter"></i></a>
 
                     <a class="btn btn-outline-light btn-floating m-1" href="https://www.google.com/" role="button"><i
                             class="fab fa-google"></i></a>
@@ -117,8 +112,7 @@
             </div>
         </footer>
 
-    </section>
-
+</section>
 </template>
 
 <script>
