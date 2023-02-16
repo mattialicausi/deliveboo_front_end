@@ -1,17 +1,10 @@
-<template>
-  <div class="cart-icon btn mybtn" v-if="!store.openCart" @click="store.openCart = !store.openCart"><i
+<template><!-- <div class="cart-icon btn mybtn" v-if="!store.openCart" @click="store.openCart = !store.openCart"><i
       class="fa-solid fa-cart-shopping"></i>
 
     <div class="popup">{{ store.cart.length }}</div>
-  </div>
-
-
-
-  <div class="shopping_cart rounded-3" v-if="store.openCart">
+</div> -->
+  <div class="shopping_cart rounded-3">
     <div class="container">
-      <div class="py-2 fs-3 text-end" @click="store.openCart = !store.openCart">
-        <i class="fa-solid fa-circle-xmark"></i>
-      </div>
       <div class="container-title-cart">
         <h3>Carrello</h3>
         <p>Pronto per ordinare?</p>
@@ -38,8 +31,8 @@
         <div></div>
       </div>
 
-      <div class="cart-total d-flex justify-content-between me-3">
-        <span class="fs-4">Totale:</span>
+      <div class="cart-total d-flex justify-content-between py-3">
+        <span class="fs-4 ">Totale:</span>
         <span class="fs-4">{{ this.cartTotal.toFixed(2) }}</span>
         <div>
           <button class="btn mybtn-orange" @click="clearCart()">Svuota</button>
@@ -137,37 +130,7 @@ export default {
   border-bottom: 1px solid black;
 }
 
-.popup {
-  position: absolute;
-  top: -10px;
-  right: -10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 25px;
-  height: 25px;
-  border-radius: 50%;
-  background-color: $orange;
-  color: $white;
-}
 
-.cart-icon {
-
-  width: 80px;
-  position: fixed;
-  top: 6rem;
-  right: 1rem;
-  z-index: 10;
-
-  i {
-    font-size: 1.2rem;
-
-    &:hover {
-      cursor: pointer;
-
-    }
-  }
-}
 
 .container-title-cart {
   text-align: center;
@@ -187,13 +150,13 @@ export default {
 }
 
 .shopping_cart {
-  position: fixed;
-  // top: 5rem;
+  // position: fixed;
+  // top: 5rem; 
   // bottom: 10rem;
-  transition: 300ms ease-in-out;
-  right: 1rem;
-  width: 500px;
-  height: 720px;
+  // transition: 300ms ease-in-out;
+  // right: 1rem;
+  // width: 500px;
+  // height: 720px;
   background-color: $white;
   box-shadow: -1px 1px 10px 0px $orange;
   z-index: 20;
@@ -205,15 +168,15 @@ export default {
   }
 }
 
-@media screen and (max-width: 600px) {
+// @media screen and (max-width: 600px) {
 
-  .shopping_cart {
-    position: fixed;
-    top: 4.5rem;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    width: 100%;
-  }
-}
+//   .shopping_cart {
+//     position: fixed;
+//     top: 4.5rem;
+//     bottom: 0;
+//     left: 0;
+//     right: 0;
+//     width: 100%;
+//   }
+// }
 </style>
