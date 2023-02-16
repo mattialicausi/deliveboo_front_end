@@ -5,7 +5,7 @@
                 <img class="phone" src="image/phone-img.png" alt="phone image">
             </div>
             <div class="col-sm-12 col-md-6 col-lg-6 text-center">
-                <h2 class="text-center">Provalo anche su smartphone</h2>
+                <h2 class="text-center">In arrivo anche su smartphone</h2>
                 <p class="text-center">Non ne potrai più fare a meno!</p>
                 <ul class="list-unstyled row">
                     <li class="col-sm-12 col-md-6 col-sm-6">
