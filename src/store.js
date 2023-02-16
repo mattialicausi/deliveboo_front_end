@@ -49,6 +49,56 @@ export const store = reactive({
       img: '/image/img-category/poke-category.webp',
       id: 7,
     },
+    {
+      name: 'africano',
+      img: '/image/img-category/africano-category.png',
+      id: 8,
+    },
+    {
+      name: 'colazione',
+      img: '/image/img-category/colazione-category.png',
+      id: 16,
+    },
+  ],
+
+  categoryAllRestaurant: [
+    {
+      name: 'pizza',
+      img: '/image/img-category/pizza-category.webp',
+      id: 2,
+    },
+    {
+      name: 'americano',
+      img: '/image/img-category/hamburger-category.webp',
+      id: 5,
+    },
+    {
+      name: 'cinese',
+      img: '/image/img-category/cinese-category.webp',
+      id: 1,
+    },
+    {
+      name: 'italiano',
+      img: '/image/img-category/italiano-category.webp',
+      id: 3,
+    },
+    {
+      name: 'kebab',
+      img: '/image/img-category/kebab-category.webp',
+      id: 4,
+    },
+    {
+      name: 'poké',
+      img: '/image/img-category/poke-category.webp',
+      id: 7,
+    },
+    {
+      name: 'kebab',
+      img: '/image/img-category/kebab-category.webp',
+      id: 4,
+    },
+
+
   ],
 
 

@@ -14,7 +14,7 @@
          
 
         <div class="d-flex justify-content-between my-5 container-category">
-            <div class=" position-relative" v-for="(category, i) in store.categorySlider" :key="i">
+            <div class=" position-relative" v-for="(category, i) in store.categoryAllRestaurant" :key="i">
                 <input class="input-best-category" type="checkbox" :id="checkboxOne + `${category.id}`"
                     :value="category.id" v-model="selectedCategories" @change="filterByCategory" />
 
