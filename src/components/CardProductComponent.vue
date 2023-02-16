@@ -29,7 +29,7 @@
 
             </div>
         </div>
-    </div>
+</div>
 </template>
 <script>
 import { store } from '../store';
@@ -86,7 +86,7 @@ export default {
         addToCart(product) {
             product.quantity = 1
             store.cart.push(product)
-            store.popupCounter ++;
+            store.popupCounter++;
             localStorage.setItem(product.slug, JSON.stringify(product))
 
         },
@@ -110,8 +110,8 @@ export default {
 
         store.cart = this.getAllCart;
         this.getStorageKeys();
-        console.log(store.cart);
-        console.log(this.getStorageKeys());
+        // console.log(store.cart);
+        // console.log(this.getStorageKeys());
     },
 
     computed: {
