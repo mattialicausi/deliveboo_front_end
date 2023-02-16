@@ -1,12 +1,16 @@
 <template>
-    <form id="form1" class="p-4 m-5">
 
-        <h1 class="fs-1 my-4">Inserisci le tue credenziali</h1>
+    <div class="container-wave-bottom">
+        <!-- img background wave -->
+    </div>
+
+    <form id="form1" class="container rounded-2">
+
+        <h1 class="fs-1 my-4" style="color: rgb(213, 89, 36);">Inserisci le tue credenziali</h1>
         <div class="mb-4 row">
             <div class="col-6 container-input">
                 <input id="customer_name" type="text" class="form-control" name="customer_name" required min="3" max="100"
                     v-model="customer_name" autocomplete="customer_name" autofocus placeholder="Nome *">
-
             </div>
 
 
@@ -14,35 +18,31 @@
                 <input id="customer_lastname" type="text" class="form-control" name="customer_lastname" required min="3"
                     max="100" v-model="customer_lastname" autocomplete="customer_lastname" autofocus
                     placeholder="Cognome *">
-
             </div>
-        </div>
-
-        <div class="col-6">
-            <input id="contact_phone" type="text" class="form-control" name="contact_phone" required min="7" max="15"
-                v-model="contact_phone" autocomplete="contact_phone" autofocus placeholder="Numero telefonico *">
-
         </div>
 
 
         <div class="mb-4 row">
-            <div class="col-md-12">
+            <div class="col-sm-6 col-md-6 col-lg-6">
                 <input id="email" type="email" class="form-control" name="email" v-model="email" required max="70"
                     autocomplete="email" placeholder="Email *">
-
             </div>
+
+
+            <div class="col-sm-6 col-md-6 col-lg-6">
+                <input id="contact_phone" type="text" class="form-control" name="contact_phone" required min="7" max="15"
+                    v-model="contact_phone" autocomplete="contact_phone" autofocus placeholder="Numero telefonico *">
+            </div>
+
         </div>
 
         <div class="mb-4 row">
-            <div class="col-md-12">
+            <div class="col-sm-12 col-md-6 col-lg-6">
                 <input id="address" type="text" class="form-control" name="address" v-model="address" required max="70"
                     autocomplete="address" placeholder="Address *">
             </div>
         </div>
 
-
-
-        <span class="fs-4">{{ this.cartTotal.toFixed(2) }}</span>
 
 
         <p class="form-message">* Campi obbligatori</p>
@@ -52,13 +52,55 @@
                         <i class="fa-solid fa-credit-card"></i> Carta di Credito</a> -->
     </form>
 
-    <div>
-        <PaymentComponent />
+    <div class="container mt-5 p-3 rounded cart">
+        <div class="row no-gutters">
+            <div class="col-md-8">
+                <div class="product-details mr-2">
+
+                    <router-link class="ml-2 ms-2 text-decoration-none" :to="{ name: 'restaurants' }">
+                        <div class="d-flex flex-row align-items-center btn mybtn"><i class="fa fa-long-arrow-left"></i>
+                            <span class="ms-1">Continua lo shopping</span>
+                        </div>
+                    </router-link>
+                    
+                    <hr>
+                    
+                        <div class="d-flex align-items-center justify-content-between pe-1">
+                        <h6 class="mb-0">Carrello</h6>
+                        <h6 class="color-total"> Totale: {{ this.cartTotal.toFixed(2) }} €</h6>
+                        </div>
+                  
+                        <div class="d-flex justify-content-between"><span>Hai {{store.cart.length}} prodotti nel tuo carrello</span></div>
+                    <div class="container-product rounded-2">
+                        <div class="d-flex justify-content-between align-items-center mt-3 p-2 items rounded" v-for="(cartItem, index) in store.cart" :key="index">
+                            <div class="d-flex flex-row"><img class="rounded me-2" :src="cartItem.image" width="40">
+                                <div class="ml-2"><span class="font-weight-bold d-block">{{ cartItem.name }}</span><span class="spec"> Quantità: {{ cartItem.quantity }}</span></div>
+                            </div>
+                            <div class="d-flex flex-row align-items-center"><span class="d-block me-2 hover-products-n" @click="removeQuantity(cartItem, index)"> - </span><span class="d-block ml-5 font-weight-bold">€ {{ calculateItemTotal(cartItem).toFixed(2) }}</span><span class="d-block ms-2 hover-products-n " @click="addQuantity(cartItem, index)"> + </span></div>
+                        </div>
+                    </div>
+                  
+       
+                </div>
+            </div>
+            <div class="col-md-4">
+
+                    <div>
+                        <PaymentComponent />
+                    </div>
+            </div>
+        </div>
     </div>
 
-    <section>
+  
+
+    <!-- <section>
         <CartComponent />
-</section>
+    </section> -->
+
+    <div class="container-wave">
+        <!-- img background wave -->
+    </div>
 </template>
 
 <script>
@@ -99,6 +141,29 @@ export default {
                         this.$router.push({ name: "notfound" });
                     }
                 });
+        },
+
+        calculateItemTotal(cartItem) {
+            return cartItem.price * cartItem.quantity;
+        },
+        
+        addQuantity(product, i) {
+            store.cart[i].quantity++
+            const item = JSON.parse(localStorage.getItem(product.slug))
+            item.quantity++
+            localStorage.setItem(product.slug, JSON.stringify(item))
+        },
+        removeQuantity(product, i) {
+            const item = JSON.parse(localStorage.getItem(product.slug))
+            item.quantity--
+            if (item.quantity) {
+                localStorage.setItem(product.slug, JSON.stringify(item))
+                store.cart[i].quantity--
+            } else {
+                localStorage.removeItem(product.slug)
+                store.cart.splice(i, 1)
+                store.popupCounter--;
+            }
         },
         regexify(pattern) {
             let regex = '';
@@ -186,6 +251,10 @@ export default {
             }
             return storage;
         },
+
+
+
+      
     },
     mounted() {
         this.getProducts();
@@ -205,6 +274,71 @@ export default {
 <style lang="scss" scoped>
 @import '../assets/styles/general.scss';
 @import '../assets/styles/partials/variables';
+
+.color-total {
+    color: $orange;
+    font-size: 1.3rem;
+}
+
+.container-product {
+    max-height: 22vh;
+    overflow-y: auto;
+    background-color: $white;
+    z-index: 100 !important;
+}
+
+.container-wave {
+    width: 100%;
+    background-image: url(/image/wave.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 15rem;
+
+}
+
+.cart {
+    margin-bottom: -15rem;
+    background-color: $white;
+}
+
+.container-wave-bottom {
+    width: 100%;
+    background-image: url(/image/wave-orange.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    margin-top: -1;
+    z-index: -1 !important;
+    height: 18rem;
+    transform: scaleY(-1);
+
+}
+
+#form1 {
+    border: 1px solid $orange;
+    background-color: $white;
+    margin-top: -8rem;
+    z-index: 1000 !important;
+}
+
+.hover-products-n {
+     &:hover {
+
+        cursor: pointer
+
+     }
+}
+
+.btn{
+    width: max-content;
+
+    a {
+        color: $orange;
+        
+    }
+}
+
+
 
 .button {
     cursor: pointer;
@@ -238,5 +372,111 @@ export default {
 .button--green:hover {
     background-color: #8bdda8;
     color: white;
+}
+
+.payment-info {
+  background: blue;
+  padding: 10px;
+  border-radius: 6px;
+  color: #fff;
+  font-weight: bold;
+}
+
+.product-details {
+  padding: 10px;
+}
+
+body {
+  background: #eee;
+}
+
+.cart {
+  background: #fff;
+}
+
+.p-about {
+  font-size: 12px;
+}
+
+.table-shadow {
+  -webkit-box-shadow: 5px 5px 15px -2px rgba(0,0,0,0.42);
+  box-shadow: 5px 5px 15px -2px rgba(0,0,0,0.42);
+}
+
+.type {
+  font-weight: 400;
+  font-size: 10px;
+}
+
+label.radio {
+  cursor: pointer;
+}
+
+label.radio input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+label.radio span {
+  padding: 1px 12px;
+  border: 2px solid #ada9a9;
+  display: inline-block;
+  color: #8f37aa;
+  border-radius: 3px;
+  text-transform: uppercase;
+  font-size: 11px;
+  font-weight: 300;
+}
+
+label.radio input:checked + span {
+  border-color: #fff;
+  background-color: blue;
+  color: #fff;
+}
+
+.credit-inputs {
+  background: rgb(102,102,221);
+  color: #fff !important;
+  border-color: rgb(102,102,221);
+}
+
+.credit-inputs::placeholder {
+  color: #fff;
+  font-size: 13px;
+}
+
+.credit-card-label {
+  font-size: 9px;
+  font-weight: 300;
+}
+
+.form-control.credit-inputs:focus {
+  background: rgb(102,102,221);
+  border: rgb(102,102,221);
+}
+
+.line {
+  border-bottom: 1px solid rgb(102,102,221);
+}
+
+.information span {
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.information {
+  margin-bottom: 5px;
+}
+
+.items {
+  -webkit-box-shadow: 5px 5px 4px -1px rgba(0,0,0,0.25);
+  box-shadow: 5px 5px 4px -1px rgba(0, 0, 0, 0.08);
+}
+
+.spec {
+  font-size: 11px;
 }
 </style>
