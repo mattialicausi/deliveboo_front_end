@@ -81,16 +81,14 @@ export default {
     methods: {
         getApi() {
             axios.get(`${this.store.apiBaseUrl}/restaurants`).then((res) => {
-
-                for (let i = 0; i < 6; i++) {
-                    this.restaurants.push(res.data.results[i])
-                }
+                this.restaurants = res.data.results;
+                this.filterTopRatedItems(this.restaurants); // chiamata per filtrare i ristoranti con il rating più alto
+                this.restaurants.sort((a, b) => b.rating - a.rating); // ordinamento dei ristoranti per rating, in modo decrescente
+                this.restaurants = this.restaurants.slice(0, 6); // selezione dei primi 6 ristoranti con il rating più alto
                 console.log(this.restaurants);
-
-                this.filterTopRatedItems(this.restaurants);              
-
             });
         },
+
 
         filterTopRatedItems(items) {
             // Ordina l'array in modo decrescente in base al rating
