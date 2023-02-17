@@ -10,7 +10,7 @@
         <p>Pronto per ordinare?</p>
       </div>
 
-      <div class="product_list mt-5">
+      <div class="product_list mt-1">
         <div class="cart_item d-flex py-3 justify-content-between align-items-center"
           v-for="(cartItem, index) in store.cart" :key="index">
           <div>
@@ -36,7 +36,7 @@
         <span class="fs-4">{{ this.cartTotal.toFixed(2) }}</span>
         <div>
           <button class="btn mybtn-orange" @click="clearCart()">Svuota</button>
-          <router-link :to="{ name: 'payment' }"><button class="btn mybtn-orange">Compra</button></router-link>
+          <router-link :to="{ name: 'payment' }"><button class="btn mybtn-orange mx-1">Compra</button></router-link>
 
         </div>
       </div>
@@ -123,7 +123,7 @@ export default {
 .product_list {
   overflow-y: auto;
   // position: relative;
-  height: 46vh;
+  height: 305px;
 }
 
 .cart_item {
@@ -151,6 +151,7 @@ export default {
 .shopping_cart {
   position: sticky;
   top: 0;
+  height: 465px;
   // position: fixed;
   // top: 5rem; 
   // bottom: 10rem;

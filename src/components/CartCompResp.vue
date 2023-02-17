@@ -42,7 +42,8 @@
                 <span class="fs-4">{{ this.cartTotal.toFixed(2) }}</span>
                 <div>
                     <button class="btn mybtn-orange" @click="clearCart()">Svuota</button>
-                    <router-link :to="{ name: 'payment' }"><button class="btn mybtn-orange">Compra</button></router-link>
+                    <router-link :to="{ name: 'payment' }"><button
+                            class="btn mybtn-orange mx-1">Compra</button></router-link>
 
                 </div>
             </div>

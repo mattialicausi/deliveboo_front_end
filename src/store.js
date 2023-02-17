@@ -1,4 +1,4 @@
-import axios, { Axios } from "axios";
+import axios from "axios";
 import { reactive } from "vue";
 
 export const store = reactive({
@@ -95,7 +95,6 @@ export const store = reactive({
       img: "/image/img-category/fritti.png",
       id: 14,
     },
- 
   ],
 
   categories: [],
@@ -125,9 +124,4 @@ export const store = reactive({
   cartTotal() {
     return this.cart.reduce((a, b) => a + b.price * b.quantity, 0);
   },
-
-
-
-
- 
 });

@@ -1,18 +1,23 @@
 <template>
     <div class="col-lg-5 col-md-6 col-sm-12 g-4">
         <div class="card flex-row">
-            <div class="card-image">
-                <img v-if="!product.image.startsWith('http')" :src="`${store.imgBasePath}${product.image}`"
-                    :alt="product.name" class="" />
-                <img v-else :src="product.image" :alt="product.name" class="" />
+            <div class="card-image position-relative">
+                <div class="bigger">
+                    <img v-if="!product.image.startsWith('http')" :src="`${store.imgBasePath}${product.image}`"
+                        :alt="product.name" class="" />
+                    <img v-else :src="product.image" :alt="product.name" class="" />
+                </div>
+
             </div>
-            <div class="p-2 w-100">
-                <h4 class="card-title">{{ product.name.substring(0, 25) + ".." }}</h4>
-                <p>{{ product.price }}€</p>
+            <div class="p-2 myflex">
+                <h4 class="card-title" v-if="product.name.length > 15">{{ product.name.substring(0, 15) }}...</h4>
+                <h4 class="card-title" v-else>{{ product.name }}</h4>
+
+                <h6 class="fs-5 myh6">{{ product.price }}€</h6>
 
                 <!-- buttons -->
                 <div
-                    class="d-flex flex-lg-column align-items-start px-1 flex-sm-row flex-md-row justify-content-md-between mt-md-5 mt-lg-0 btn-sm">
+                    class="d-flex flex-lg-column align-items-start flex-sm-row flex-md-row justify-content-md-between mt-md-5 mt-lg-0 btn-sm">
                     <button type="button" class="btn mybtn-orange mb-1 btn-web" data-bs-toggle="modal"
                         data-bs-target="#exampleModal" @click="showProductModal(product.id)">
                         Mostra prodotto
@@ -136,6 +141,22 @@ export default {
 @import '../assets/styles/general.scss';
 @import '../assets/styles/partials/variables';
 
+.myh6 {
+    position: absolute;
+    top: 9px;
+    left: 0;
+    background-color: #d55924;
+    color: white;
+    padding: 5px;
+    border-radius: 0 10px 10px 0;
+}
+
+.myflex {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
 .card {
     height: 200px;
     overflow: hidden;
@@ -143,10 +164,24 @@ export default {
     padding: 0;
 }
 
-.card-image img {
+.bigger {
+    transition: 1s;
+}
+
+.bigger:hover {
+    transform: scale(1.2);
+}
+
+.card-image {
+    overflow: hidden;
     width: 200px;
     height: 200px;
-    object-fit: cover;
+
+    img {
+        width: 200px;
+        height: 200px;
+        object-fit: cover;
+    }
 }
 
 
@@ -179,7 +214,7 @@ export default {
 @media only screen and (max-width: 770px) {
 
     .card-image img {
-        width: 125px;
+        width: 165px;
         height: 200px;
         object-fit: cover;
     }
