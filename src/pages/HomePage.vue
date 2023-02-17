@@ -83,7 +83,7 @@ export default {
     background-repeat: no-repeat;
     background-size: cover;
     position: relative;
-    margin-top: -1;
+    margin-top: -1rem;
     z-index: -1;
     height: 18rem;
     transform: scaleY(-1);
@@ -100,6 +100,10 @@ export default {
     // margin-top: 5vh;
 
 }
+
+
+
+
 
 
 </style>
