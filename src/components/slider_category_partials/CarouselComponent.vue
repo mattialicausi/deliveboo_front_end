@@ -1,6 +1,6 @@
 <template>
 
-  <div class=" pb-4">
+  <div class="container-carousel">
     <Carousel :itemsToShow="itemsToShow" :breakpoints="breakpoints" :wrapAround="true" :transition="800" :autoplay="2000" :itemsToScroll="1">
       <Slide v-for="(item, i) in store.categorySlider" :key="i">
         <router-link :to="{name: 'restaurants'}">
@@ -80,6 +80,10 @@ export default defineComponent({
 <style lang="scss" scoped>
 @import '../../assets/styles/general.scss';
 @import '../../assets/styles/partials/variables';
+
+.container-carousel {
+  height: 20vh;
+}
 
 a {
   text-decoration: none;
