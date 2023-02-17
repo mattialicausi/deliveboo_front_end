@@ -1,5 +1,4 @@
-<template>
-    <!-- Modal -->
+<template><!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -11,16 +10,17 @@
                     <img v-if="!product.image.startsWith('http')" :src="`${store.imgBasePath}${product.image}`"
                         :alt="product.name" class="img-fluid" />
                     <img v-else :src="product.image" :alt="product.name" class="img-fluid" />
-                    <p class="pt-2">{{ product.ingredients }}</p>
+                    <p class="pt-2">{{ product.description }}</p>
                     <p>€ {{ product.price }}</p>
                     <!-- <div class="text-center">
-                        <i class="fa-solid fa-minus fa-2xl"></i><span class="fs-3">Quantità</span> <i
-                            class="fa-solid fa-plus fa-2xl"></i>
-                    </div> -->
+                                <i class="fa-solid fa-minus fa-2xl"></i><span class="fs-3">Quantità</span> <i
+                                    class="fa-solid fa-plus fa-2xl"></i>
+                            </div> -->
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn mybtn" data-bs-dismiss="modal">Chiudi</button>
-                    <button type="button" class="btn mybtn-orange" :disabled="vueLocalStorage.includes(product.slug)" @click="tryAddToCart(product)">Aggiungi al carrello</button>
+                    <button type="button" class="btn mybtn-orange" :disabled="vueLocalStorage.includes(product.slug)"
+                        @click="tryAddToCart(product)">Aggiungi al carrello</button>
 
                 </div>
             </div>
@@ -43,13 +43,13 @@ export default {
         }
     },
 
-    
+
     watch: {
         'store.cart': {
-        handler() {
-            this.getStorageKeys()
-        },
-        deep: true
+            handler() {
+                this.getStorageKeys()
+            },
+            deep: true
         }
     },
 
@@ -61,13 +61,13 @@ export default {
         },
 
         tryAddToCart(product) {
-    
+
             if (localStorage.length) {
                 const keys = Object.keys(localStorage)
                 const restaurantId = JSON.parse(localStorage.getItem(keys[0])).restaurant_id
                 if (product.restaurant_id != restaurantId) {
                     console.log('Non puoi ordinare da due ristoranti diversi');
-                return
+                    return
                 } else {
                     this.addToCart(product)
                     return
@@ -110,6 +110,4 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>

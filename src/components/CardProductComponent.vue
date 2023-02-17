@@ -3,28 +3,38 @@
         <div class="card flex-row">
             <div class="card-image">
                 <img v-if="!product.image.startsWith('http')" :src="`${store.imgBasePath}${product.image}`"
-                    :alt="product.name" class="img-fluid" />
-                <img v-else :src="product.image" :alt="product.name" class="img-fluid" />
+                    :alt="product.name" class="" />
+                <img v-else :src="product.image" :alt="product.name" class="" />
             </div>
-            <div class="p-3">
+            <div class="p-2 w-100">
                 <h4 class="card-title">{{ product.name.substring(0, 25) + ".." }}</h4>
-                <!-- <p>{{ product.ingredients }}</p> -->
                 <p>{{ product.price }}€</p>
-                <!-- <p v-if="product.available == 1" class="text-success">Disponibile</p>
-                                        <p v-else class="text-danger">Non disponibile</p>
-                                        <p>{{ product.discount }}</p> -->
-                <!-- Button trigger modal -->
-                <div class="d-flex flex-column align-items-start">
-                    <button type="button" class="btn mybtn-orange mb-1" data-bs-toggle="modal"
+
+                <!-- buttons -->
+                <div
+                    class="d-flex flex-lg-column align-items-start px-1 flex-sm-row flex-md-row justify-content-md-between mt-md-5 mt-lg-0 btn-sm">
+                    <button type="button" class="btn mybtn-orange mb-1 btn-web" data-bs-toggle="modal"
                         data-bs-target="#exampleModal" @click="showProductModal(product.id)">
                         Mostra prodotto
                     </button>
-                    <button type="button" class="btn mybtn-orange" :disabled="vueLocalStorage.includes(product.slug)"
-                        @click="tryAddToCart(product)">Aggiungi al carrello</button>
+
+                    <button type="button" class="btn mybtn-orange btn-web"
+                        :disabled="vueLocalStorage.includes(product.slug)" @click="tryAddToCart(product)">Aggiungi al
+                        carrello</button>
+
+                    <!-- responsive -->
+                    <button type="button" class="btn mybtn-orange mb-1 btn-resp" data-bs-toggle="modal"
+                        data-bs-target="#exampleModal" @click="showProductModal(product.id)">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+
+                    <button type="button" class="btn mybtn-orange btn-resp"
+                        :disabled="vueLocalStorage.includes(product.slug)" @click="tryAddToCart(product)"><i
+                            class="fa-solid fa-cart-plus"></i></button>
                 </div>
             </div>
         </div>
-</div>
+    </div>
 </template>
 <script>
 import { store } from '../store';
@@ -163,6 +173,39 @@ export default {
         background-color: $white !important;
         color: $orange !important;
         transition: 300ms ease-in-out !important;
+    }
+}
+
+@media only screen and (max-width: 770px) {
+
+    .card-image img {
+        width: 125px;
+        height: 200px;
+        object-fit: cover;
+    }
+
+    .btn-web {
+        display: none;
+    }
+
+    .btn-resp {
+        display: block;
+    }
+
+    .btn-sm {
+        margin-top: 3rem;
+        justify-content: space-between;
+    }
+}
+
+@media only screen and (min-width: 770px) {
+
+    .btn-web {
+        display: block;
+    }
+
+    .btn-resp {
+        display: none;
     }
 }
 </style>
