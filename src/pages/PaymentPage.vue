@@ -4,8 +4,8 @@
     </div>
 
     <!-- <div v-if="success" class="alert alert-success text-start" role="alert">
-                                    Acquisto confermato!
-                                </div>   -->
+                                        Acquisto confermato!
+                                    </div>   -->
 
     <form id="form1" class="container rounded-2" @submit.prevent="purchase()">
 
@@ -67,8 +67,8 @@
 
 
         <!-- <button type="submit" class="btn mybtn-orange credit-card mb-4">
-                                        <i class="fa-solid fa-credit-card"></i> Carta di Credito
-                                    </button> -->
+                                            <i class="fa-solid fa-credit-card"></i> Carta di Credito
+                                        </button> -->
 
     </form>
 
@@ -122,8 +122,8 @@
 
 
     <!-- <section>
-                                                    <CartComponent />
-                                                </section> -->
+                                                        <CartComponent />
+                                                    </section> -->
 
     <div class="container-wave">
         <!-- img background wave -->
@@ -180,7 +180,7 @@ export default {
                 title: 'Acquisto avvenuto con successo!',
                 imageUrl: 'https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExZGVmODE3ZDFiOTJjZDcxZTlkODg3N2YzZDFlMjM3N2I0ZmUxMzdkYyZjdD1n/cmCHuk53AiTmOwBXlw/giphy.gif',
                 imageWidth: 400,
-                imageHeight: 200,
+                imageHeight: 400,
                 imageAlt: 'Custom image',
 
             });
