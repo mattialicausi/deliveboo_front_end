@@ -179,7 +179,6 @@ export default {
     mounted() {
         this.getRestaurant();
         this.getProducts();
-        store.getCategories();
     },
 }
 </script>
