@@ -172,7 +172,7 @@ export default {
 @media only screen and (max-width: 770px) {
 
   .shopping_cart {
-    display: none;
+    display: none !important;
   }
 }
 

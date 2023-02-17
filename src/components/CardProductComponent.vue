@@ -25,7 +25,7 @@
                     <!-- responsive -->
                     <button type="button" class="btn mybtn-orange mb-1 btn-resp" data-bs-toggle="modal"
                         data-bs-target="#exampleModal" @click="showProductModal(product.id)">
-                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <i class="fa-solid fa-eye"></i>
                     </button>
 
                     <button type="button" class="btn mybtn-orange btn-resp"
