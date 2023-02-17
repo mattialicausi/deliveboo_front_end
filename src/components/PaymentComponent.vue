@@ -2,7 +2,7 @@
     <div class="m-5">
         <form id="payment-form" class="form-action" :action="`${store.apiBaseUrl}/order/payment`" method="post">
             <div id="dropin-container" class="rounded-2"></div>
-            <input type="submit" class="btn mybtn" />
+            <input  type="submit" class="btn mybtn" />
             <input type="hidden" id="nonce" name="payment_method_nonce" />
         </form>
 </div>
