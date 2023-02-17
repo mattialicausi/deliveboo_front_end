@@ -99,7 +99,6 @@ export const store = reactive({
   ],
 
   categories: [],
-  types: [],
   restaurant: [],
   restaurants: [],
   products: [],
@@ -112,9 +111,7 @@ export const store = reactive({
   final_price: "",
 
   paid_status: null,
-
   saveOrder: false,
-
   cartShow: false,
 
   getCategories: function () {
@@ -124,28 +121,13 @@ export const store = reactive({
     });
   },
 
-  getTypes: function () {
-    axios.get(`${this.apiBaseUrl}/types`).then((res) => {
-      this.types = res.data.types;
-      // console.log(res.data.types)
-    });
-  },
-
   // funzione per il totale del carrello
   cartTotal() {
     return this.cart.reduce((a, b) => a + b.price * b.quantity, 0);
   },
 
-  // FUNZIONE PER ANIMARE GLI ELEMENTI IN ENTRATA NELLA PAGINA
-  showitems() {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("showing");
-        }
-      });
-    });
-    const hiddenElements = document.querySelectorAll(".hidden");
-    hiddenElements.forEach((element) => observer.observe(element));
-  },
+
+
+
+ 
 });
