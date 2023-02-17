@@ -4,8 +4,8 @@
     </div>
 
     <!-- <div v-if="success" class="alert alert-success text-start" role="alert">
-        Acquisto confermato!
-    </div>   -->
+                                        Acquisto confermato!
+                                    </div>   -->
 
     <form id="form1" class="container rounded-2" @submit.prevent="purchase()">
 
@@ -15,7 +15,7 @@
                 <input id="customer_name" type="text" class="form-control" name="customer_name" required min="3" max="100"
                     v-model="customer_name" autocomplete="customer_name" autofocus placeholder="Nome *">
 
-                    <p v-for="(error, index) in errors.customer_name" :key="index" class="invalid-feedback">{{ error }}</p> 
+                <p v-for="(error, index) in errors.customer_name" :key="index" class="invalid-feedback">{{ error }}</p>
 
             </div>
 
@@ -25,7 +25,7 @@
                     max="100" v-model="customer_lastname" autocomplete="customer_lastname" autofocus
                     placeholder="Cognome *">
 
-                    <p v-for="(error, index) in errors.customer_lastname" :key="index" class="invalid-feedback">{{ error }}</p> 
+                <p v-for="(error, index) in errors.customer_lastname" :key="index" class="invalid-feedback">{{ error }}</p>
 
             </div>
         </div>
@@ -35,7 +35,7 @@
             <div class="col-sm-6 col-md-6 col-lg-6">
                 <input id="email" type="email" class="form-control" name="email" v-model="email" required max="70"
                     autocomplete="email" placeholder="Email *">
-                    <p v-for="(error, index) in errors.email" :key="index" class="invalid-feedback">{{ error }}</p> 
+                <p v-for="(error, index) in errors.email" :key="index" class="invalid-feedback">{{ error }}</p>
 
             </div>
 
@@ -44,8 +44,8 @@
                 <input id="contact_phone" type="text" class="form-control" name="contact_phone" required min="7" max="15"
                     v-model="contact_phone" autocomplete="contact_phone" autofocus placeholder="Numero telefonico *">
 
-                    <p v-for="(error, index) in errors.contact_phone" :key="index" class="invalid-feedback">{{ error }}</p> 
-                
+                <p v-for="(error, index) in errors.contact_phone" :key="index" class="invalid-feedback">{{ error }}</p>
+
             </div>
 
         </div>
@@ -55,9 +55,9 @@
                 <input id="address" type="text" class="form-control" name="address" v-model="address" required max="70"
                     autocomplete="address" placeholder="Address *">
 
-                 <p v-for="(error, index) in errors.address" :key="index" class="invalid-feedback">{{ error }}</p> 
+                <p v-for="(error, index) in errors.address" :key="index" class="invalid-feedback">{{ error }}</p>
 
-                    
+
             </div>
         </div>
 
@@ -67,9 +67,9 @@
 
 
         <!-- <button type="submit" class="btn mybtn-orange credit-card mb-4">
-            <i class="fa-solid fa-credit-card"></i> Carta di Credito
-        </button> -->
-            
+                                            <i class="fa-solid fa-credit-card"></i> Carta di Credito
+                                        </button> -->
+
     </form>
 
     <div class="container mt-5 p-3 rounded cart">
@@ -122,8 +122,8 @@
 
 
     <!-- <section>
-                        <CartComponent />
-                    </section> -->
+                                                        <CartComponent />
+                                                    </section> -->
 
     <div class="container-wave">
         <!-- img background wave -->
@@ -176,9 +176,13 @@ export default {
 
         sendSuccess() {
             Swal.fire({
-                icon: 'success',
+                // icon: 'success',
                 title: 'Acquisto avvenuto con successo!',
-            
+                imageUrl: 'https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExZGVmODE3ZDFiOTJjZDcxZTlkODg3N2YzZDFlMjM3N2I0ZmUxMzdkYyZjdD1n/cmCHuk53AiTmOwBXlw/giphy.gif',
+                imageWidth: 400,
+                imageHeight: 400,
+                imageAlt: 'Custom image',
+
             });
         },
 
@@ -248,7 +252,7 @@ export default {
                 order_time: this.getCurrentDateTime(),
                 final_price: store.final_price,
                 cart: store.cart,
-                order_code: this.regexify('A0A-00A0A0-AAA'),
+                order_code: this.regexify('AAAAA00000'),
                 paid_status: store.paid_status ? 1 : 0
             }
             // Esegui la chiamata HTTP POST con Axios
@@ -257,10 +261,10 @@ export default {
                     console.log(response.data)
                     this.success = response.data.success;
                     if (this.success) {
-                       
+
                         this.errors = response.data.errors;
                         console.log(response.data.errors);
-                         
+
 
                     } else {
 
@@ -277,17 +281,18 @@ export default {
                         this.paid_status = '';
                         this.clearCart();
                         this.sendSuccess();
-                       
-                      
+                        this.$router.push('/');
+
+
                     }
 
                 })
 
-             
-                 
-            
-              
-               
+
+
+
+
+
         },
     },
     computed: {
