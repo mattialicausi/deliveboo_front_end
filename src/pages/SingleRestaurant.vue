@@ -63,7 +63,7 @@
                         </div>
 
                     </div>
-                    <div class="col-lg-4 mt-5">
+                    <div class="col-lg-4 mt-4">
                         <CartComponent />
                         <CartCompResp />
                     </div>
