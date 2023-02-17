@@ -1,6 +1,9 @@
 <template>
 
-    <div v-if="store.restaurants && store.categories">
+    <LoaderComponent v-if="!store.restaurants"/>
+
+    <!-- se trova i ristoranti dallo store fa vedere tutte le sezioni -->
+    <div v-else>
             <!-- sezione Jumbo -->
     <section id="jumbo">
         <JumboComponent />
@@ -37,7 +40,7 @@
     </section>
     </div>
 
-    <LoaderComponent v-else/>
+  
 
 
 </template>

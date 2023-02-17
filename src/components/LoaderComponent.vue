@@ -17,7 +17,7 @@
 
 div {
     background-color: rgb(251,251, 251) !important;
-    height: 100vh !important;
+    height: 80vh !important;
     width: 100%;
     display: flex;
     justify-content: center;

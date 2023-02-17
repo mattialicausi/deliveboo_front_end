@@ -25,7 +25,7 @@
                     <!-- responsive -->
                     <button type="button" class="btn mybtn-orange mb-1 btn-resp" data-bs-toggle="modal"
                         data-bs-target="#exampleModal" @click="showProductModal(product.id)">
-                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <i class="fa-solid fa-eye"></i>
                     </button>
 
                     <button type="button" class="btn mybtn-orange btn-resp"
@@ -154,9 +154,9 @@ export default {
     height: 50px
 }
 
-// p.card-text {
-//     height: 50px;
-// }
+.btn-web {
+    width: 171px;
+}
 
 .color-red {
     color: $red !important;

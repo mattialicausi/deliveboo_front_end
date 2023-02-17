@@ -53,8 +53,7 @@
                 </div>
 
                 <div class="container-btn">
-                    <router-link :to="{ name: 'restaurants' }"><div class="my-btn btn">Vedi altro...</div></router-link>
-                    
+                    <router-link :to="{ name: 'restaurants' }"><div class="my-btn btn">Vedi altro...</div></router-link> 
                 </div>
 
             </div>

@@ -2,22 +2,18 @@
     <div class="container-wave">
         <!-- img background wave -->
     </div>
-    <div class="container" v-if="store.categories && this.restaurants">
 
+    <!-- se non trova le categorie e i ristoranti dei data fa vedere il loader -->
+    <LoaderComponent v-if="!store.categories && !this.restaurants.length"/>
 
-
+    <div class="container" v-else>
 
         <h2 class="text-center">I Nostri Ristoranti</h2>
-
-
-
-
 
         <div class="d-flex justify-content-between my-5 container-category">
             <div class=" position-relative" v-for="(category, i) in store.categoryAllRestaurant" :key="i">
                 <input class="input-best-category" type="checkbox" :id="checkboxOne + `${category.id}`" :value="category.id"
                     v-model="selectedCategories" @change="filterByCategory" />
-
 
                 <div class="a-box best-restaurant-description my-card">
                     <div class="img-container">
@@ -31,6 +27,7 @@
                         <h5 class="text-center text-uppercase">{{ category.name }}</h5>
                     </div>
                 </div>
+
             </div>
         </div>
 
@@ -52,13 +49,6 @@
 
             <div class="col-lg-9 col-md-12 col-sm-12" style="padding-top: 45px;">
 
-
-                <!-- search bar  -->
-                <!-- <div class="search-box mb-5">
-                        <input type="text" placeholder=" Cerca il tuo ristorante "/><span></span>
-                    </div> -->
-
-
                 <div class="row" v-if="filteredRestaurants.length">
                     <CardRestaurantComponent v-for="(restaurant, i) in filteredRestaurants" :restaurant="restaurant"
                         :categories="categories" />
@@ -70,7 +60,7 @@
         </div>
     </div>
 
-<LoaderComponent v-else />
+
 </template>
 <script>
 import axios from 'axios';
@@ -121,7 +111,6 @@ export default {
         },
 
         getBestCategory() {
-
 
             for (let i = 0; i < 4; i++) {
                 this.bestCategory.push(store.categories[i]);
