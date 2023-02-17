@@ -1,7 +1,7 @@
 <template>
 
   <div class=" pb-4">
-    <Carousel :itemsToShow="6" :wrapAround="true" :transition="800" :autoplay="2000" :itemsToScroll="1">
+    <Carousel :itemsToShow="itemsToShow" :breakpoints="breakpoints" :wrapAround="true" :transition="800" :autoplay="2000" :itemsToScroll="1">
       <Slide v-for="(item, i) in store.categorySlider" :key="i">
         <router-link :to="{name: 'restaurants'}">
             <div class="carousel__item">
@@ -57,6 +57,16 @@ export default defineComponent({
     return {
       store,
       categories: [],
+
+      itemsToShow: 3, // Mostra 6 elementi per impostazione predefinita
+      breakpoints: {
+        575: {
+          itemsToShow: 3, // Mostra solo 3 elementi quando la larghezza della finestra è inferiore a 575px
+        },
+        992: {
+          itemsToShow: 6,
+        },
+      },
     }
   },
 
@@ -128,3 +138,6 @@ a {
   font-weight: bold;
 }
 </style>
+
+
+
