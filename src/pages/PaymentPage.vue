@@ -3,9 +3,9 @@
         <!-- img background wave -->
     </div>
 
-    <div v-if="success" class="alert alert-success text-start" role="alert">
+    <!-- <div v-if="success" class="alert alert-success text-start" role="alert">
         Acquisto confermato!
-    </div>  
+    </div>   -->
 
     <form id="form1" class="container rounded-2" @submit.prevent="purchase()">
 
@@ -135,6 +135,7 @@ import axios from 'axios';
 import { store } from '../store';
 import PaymentComponent from "../components/PaymentComponent.vue";
 import CartComponent from '../components/CartComponent.vue';
+import Swal from 'sweetalert2';
 
 
 export default {
@@ -171,6 +172,14 @@ export default {
                         this.$router.push({ name: "notfound" });
                     }
                 });
+        },
+
+        sendSuccess() {
+            Swal.fire({
+                icon: 'success',
+                title: 'Acquisto avvenuto con successo!',
+            
+            });
         },
 
         calculateItemTotal(cartItem) {
@@ -267,6 +276,8 @@ export default {
                         this.order_code = '';
                         this.paid_status = '';
                         this.clearCart();
+                        this.sendSuccess();
+                       
                       
                     }
 
