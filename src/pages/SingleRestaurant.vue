@@ -56,14 +56,16 @@
             <div class="py-4 m-4">
                 <h2 class="text-center text-white">Il nostro menu</h2>
                 <div class="row justify-content-between">
-                    <div class="col-lg-8 col-md-6 col-sm-12">
+                    <div class="col-lg-8 col-md-12 col-sm-12">
                         <div class="row justify-content-evenly">
                             <CardProductComponent v-for="product in products" :key="product.id" :product="product"
                                 :types="types" @show-product-modal="showProductModal" />
                         </div>
+
                     </div>
-                    <div class="col-lg-4 col-md-6 col-sm-12 mt-5">
+                    <div class="col-lg-4 mt-5">
                         <CartComponent />
+                        <CartCompResp />
                     </div>
                 </div>
             </div>
@@ -80,7 +82,7 @@
         <SliderCategoryComponent />
     </div>
 
-<LoaderComponent v-else />
+    <LoaderComponent v-else />
 </template>
 
 <script>
@@ -91,6 +93,7 @@ import ModalProductComponent from "../components/ModalProductComponent.vue";
 import LoaderComponent from '../components/LoaderComponent.vue';
 import SliderCategoryComponent from '../components/SliderCategoryComponent.vue';
 import CartComponent from '../components/CartComponent.vue';
+import CartCompResp from '../components/CartCompResp.vue';
 
 
 export default {
@@ -100,7 +103,8 @@ export default {
         ModalProductComponent,
         LoaderComponent,
         SliderCategoryComponent,
-        CartComponent
+        CartComponent,
+        CartCompResp,
     },
 
     data() {
@@ -227,5 +231,21 @@ h4 i {
     border-top: 1px solid $orange !important;
     width: -webkit-fill-available;
     // overflow: hidden;
+}
+
+@media only screen and (max-width: 770px) {
+
+    .cart-icon {
+        display: none;
+    }
+
+}
+
+@media only screen and (min-width: 770px) {
+
+    .cart-icon {
+        display: block;
+    }
+
 }
 </style>

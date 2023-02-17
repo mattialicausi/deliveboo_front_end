@@ -45,7 +45,7 @@
     </div>
 
 
-</div>
+  </div>
 </template>
   
 <script>
@@ -169,15 +169,18 @@ export default {
   }
 }
 
-// @media screen and (max-width: 600px) {
+@media only screen and (max-width: 770px) {
 
-//   .shopping_cart {
-//     position: fixed;
-//     top: 4.5rem;
-//     bottom: 0;
-//     left: 0;
-//     right: 0;
-//     width: 100%;
-//   }
-// }
+  .shopping_cart {
+    display: none;
+  }
+}
+
+@media only screen and (min-width: 770px) {
+
+  .shopping_cart {
+    display: block;
+  }
+
+}
 </style>
