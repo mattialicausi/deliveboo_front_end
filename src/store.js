@@ -1,5 +1,5 @@
-import axios, { Axios } from "axios";
 import { reactive } from "vue";
+import axios from "axios";
 
 export const store = reactive({
   apiBaseUrl: "http://127.0.0.1:8000/api",
@@ -124,12 +124,6 @@ export const store = reactive({
     });
   },
 
-  getTypes: function () {
-    axios.get(`${this.apiBaseUrl}/types`).then((res) => {
-      this.types = res.data.types;
-      // console.log(res.data.types)
-    });
-  },
 
   // funzione per il totale del carrello
   cartTotal() {

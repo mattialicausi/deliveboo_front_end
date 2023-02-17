@@ -61,7 +61,7 @@ export default defineComponent({
   },
 
   mounted() {
-    store.getCategories();
+
   },
 
 })

@@ -1,40 +1,54 @@
 <template>
-    <div class="container-wave">
-        <!-- img background wave -->
-    </div>
+      <div class="container-wave">
+            <!-- img background wave -->
+        </div>
     <div class="container" v-if="store.categories && this.restaurants">
 
-
+  
 
 
         <h2 class="text-center">I Nostri Ristoranti</h2>
 
-
-
-
+       
+                
+         
 
         <div class="d-flex justify-content-between my-5 container-category">
             <div class=" position-relative" v-for="(category, i) in store.categoryAllRestaurant" :key="i">
-                <input class="input-best-category" type="checkbox" :id="checkboxOne + `${category.id}`" :value="category.id"
-                    v-model="selectedCategories" @change="filterByCategory" />
+                <input class="input-best-category" type="checkbox" :id="checkboxOne + `${category.id}`"
+                    :value="category.id" v-model="selectedCategories" @change="filterByCategory" />
 
 
-                <div class="a-box best-restaurant-description my-card">
-                    <div class="img-container">
-                        <div class="img-inner">
-                            <div class="inner-skew">
-                                <img :src="category.img" :alt="category.name">
+                    <div class="a-box best-restaurant-description my-card">
+                        <div class="img-container">
+                            <div class="img-inner">
+                                <div class="inner-skew">
+                                    <img :src="category.img" :alt="category.name">
+                                </div>
                             </div>
                         </div>
+                        <div class="text-container">
+                            <h5 class="text-center text-uppercase">{{ category.name }}</h5>
+                        </div>
                     </div>
-                    <div class="text-container">
-                        <h5 class="text-center text-uppercase">{{ category.name }}</h5>
-                    </div>
-                </div>
             </div>
         </div>
 
         <div class="row">
+            <!-- <div class="col-lg-3 col-md-12 col-sm-12">
+                <div>
+                    <h4>Tutte le categorie (A - Z)</h4>
+                    <div class="ks-cboxtags category-list d-flex flex-column">
+                        <li v-for="(category, i) in categories"
+                            :class="{ 'active': $route.query.type && $route.query.type.split('+').includes(type.slug) }">
+                            <input type="checkbox" :id="checkboxOne + `${category.id}`" :value="category.id"
+                                v-model="selectedCategories" @click="getRestaurantbyTypes(type.slug)" />
+                            <label :for="checkboxOne + `${category.id}`">{{ category.name }}</label>
+                        </li>
+                    </div>
+                </div>
+            </div> -->
+
             <div class="col-lg-3 col-md-12 col-sm-12">
                 <div>
                     <h4>Tutte le categorie (A - Z)</h4>
@@ -50,27 +64,42 @@
             </div>
 
 
+            <!-- <div class="col-lg-9 col-md-12 col-sm-12" style="padding-top: 45px;">
+
+
+                search bar 
+                <div class="search-box mb-5">
+                    <input type="text" placeholder=" Cerca il tuo ristorante "/><span></span>
+                </div>
+
+
+                
+                    <div class="row" v-if="restaurants.length">
+                        <CardRestaurantComponent v-for="(restaurant, i) in restaurants" :restaurant="restaurant" :categories="categories"></CardRestaurantComponent>
+                    </div>
+
+                    <div class="row" v-else>
+                        <p>Nessun ristorante trovato</p>
+                    </div>
+
+                
+            </div> -->
+
             <div class="col-lg-9 col-md-12 col-sm-12" style="padding-top: 45px;">
 
-
-                <!-- search bar  -->
-                <!-- <div class="search-box mb-5">
-                        <input type="text" placeholder=" Cerca il tuo ristorante "/><span></span>
-                    </div> -->
-
-
-                <div class="row" v-if="filteredRestaurants.length">
-                    <CardRestaurantComponent v-for="(restaurant, i) in filteredRestaurants" :restaurant="restaurant"
-                        :categories="categories" />
-                </div>
-                <div class="row" v-else>
-                    <p>Nessun ristorante trovato</p>
-                </div>
-            </div>
+<div class="row" v-if="filteredRestaurants.length">
+    <CardRestaurantComponent v-for="(restaurant, i) in filteredRestaurants" :restaurant="restaurant"
+        :categories="categories" />
+</div>
+<div class="row" v-else>
+    <p>Nessun ristorante trovato</p>
+</div>
+</div>
         </div>
     </div>
 
-<LoaderComponent v-else />
+    <LoaderComponent v-else />
+
 </template>
 <script>
 import axios from 'axios';
@@ -127,13 +156,48 @@ export default {
                 this.bestCategory.push(store.categories[i]);
 
             }
-        }
+        },
+        // getRestaurantbyCategory(slug) {
+        //     if (this.$route.query.category) {
+        //         const slugArray = this.$route.query.category.split('+');
+        //         if (!slugArray.includes(slug)) {
+        //             const fullSlag = this.$route.query.category + '+' + slug;
+        //             this.$router.push({ path: this.$route.path, query: { category: fullSlag } });
+        //         } else {
+        //             slugArray.splice(slugArray.indexOf(slug), 1);
+        //             const fullSlag = slugArray.join('+');
+        //             this.$router.push({ path: this.$route.path, query: { category: fullSlag } });
+        //         }
+        //     } else {
+        //         this.$router.push({ path: this.$route.path, query: { category: slug } });
+        //     }
+        //     console.log(this.$route.query);
+        //     // if (!store.data.params.categoryFilter.includes(id)) {
+        //     //     store.data.params.categoryFilter.push(id);
+        //     // } else {
+        //     //     store.data.params.categoryFilter.splice(store.data.params.categoryFilter.indexOf(id), 1);
+        //     // }
+        // },
+        // resetCategory() {
+        //     this.$router.push({ path: this.$route.path });
+        // }
     },
+    // watch: {
+    //     "store.data": {
+    //         handler() {
+    //             this.getRestaurants();
+    //         },
+    //         deep: true,
+    //     },
+    //     '$route': function () {
+    //         this.getRestaurants();
+    //     }
+    // },
     mounted() {
         this.getRestaurants();
         this.getRestaurantsCategories();
-        this.store.getCategories();
         this.getBestCategory();
+        this.store.getCategories();
     },
 }
 </script>
@@ -219,24 +283,24 @@ export default {
     }
 
     &:hover {
-        cursor: pointer;
+        cursor:pointer;
     }
 
 
+        
+        &:hover + .a-box {
+            cursor: pointer;
+            transform: translateY(-3rem);
+            color: $orange;
+            transition: 400ms ease-in-out;
 
-    &:hover+.a-box {
-        cursor: pointer;
-        transform: translateY(-3rem);
-        color: $orange;
-        transition: 400ms ease-in-out;
+        }
 
-    }
+         &:checked + .a-box {
+            transform: translateY(-3rem);
+            color: $orange;
 
-    &:checked+.a-box {
-        transform: translateY(-3rem);
-        color: $orange;
-
-    }
+        }
 
 
 }
@@ -446,6 +510,6 @@ h2 {
             color: $white;
             text-align: center;
         }
-    }
+}
 }
 </style>

@@ -20,12 +20,12 @@
 <script>
 import { store } from './store';
 import { RouterView } from 'vue-router';
-import CartComponent from './components/CartComponent.vue';
+// import CartComponent from './components/CartComponent.vue';
 import FooterComponent from './components/FooterComponent.vue';
 import HeaderComponent from './components/HeaderComponent.vue';
 
 export default {
-  components: { HeaderComponent, FooterComponent, CartComponent },
+  components: { HeaderComponent, FooterComponent },
 
   data() {
     return {

@@ -72,12 +72,12 @@ export default {
     props: ['restaurant', 'categories'],
 
     methods: {
-        getRestaurants() {
-            axios.get(`${this.store.apiBaseUrl}/restaurants`).then((res) => {
-                this.restaurants = res.data.results;
+        // getRestaurants() {
+        //     axios.get(`${this.store.apiBaseUrl}/restaurants`).then((res) => {
+        //         this.restaurants = res.data.results;
 
-            });
-        },
+        //     });
+        // },
 
         truncateText(text) {
             if (!text) {
@@ -97,7 +97,7 @@ export default {
 
     },
     mounted() {
-        this.getRestaurants();
+        // this.getRestaurants();
     },
 }
 </script>
