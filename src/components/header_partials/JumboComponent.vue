@@ -91,6 +91,28 @@ h1 {
     }
 }
 
+@media only screen and ( min-width: 770px) and (max-width: 1024px) {
+    .container-wave {
+        height: 7rem;
+    }
+
+    .my-container-space {
+        padding-bottom: 0 !important;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    .z-index-2 {
+        padding: 0;
+    }
+
+    // .btn-jumbo {
+    //     margin-top: 2rem;
+    // }
+}
+
 
 
 

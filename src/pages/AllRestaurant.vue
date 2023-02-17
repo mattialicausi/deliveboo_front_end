@@ -34,7 +34,7 @@
         <div class="row">
             <div class="col-lg-3 col-md-12 col-sm-12">
                 <div>
-                    <h4>Tutte le categorie (A - Z)</h4>
+                    <h4 class="my-h4">Tutte le categorie (A - Z)</h4>
                     <div class="ks-cboxtags category-list d-flex flex-column">
                         <li v-for="(category, index) in store.categories.sort((a, b) => a.name.localeCompare(b.name))"
                             :key="index">
@@ -426,15 +426,34 @@ h2 {
         justify-content: center;
     }
 
-    @media only screen and (max-width: 600px) {
-        .container {
-            margin-top: -50vh;
-        }
-
-        h4 {
-            color: $white;
-            text-align: center;
-        }
-    }
 }
+
+
+@media only screen and (max-width: 600px) {
+
+    .category-list {
+        margin-top: 1rem;
+    }
+
+    .my-h4 {
+        color: $white;
+        padding-left: 1.5rem;
+    } 
+   
+}
+
+@media only screen and (min-width: 602px) and (max-width: 1024px) {
+
+.category-list {
+    margin-top: 1rem;
+}
+
+.my-h4 {
+    color: $white;
+    padding-left: 3rem;
+} 
+
+}
+
+
 </style>
