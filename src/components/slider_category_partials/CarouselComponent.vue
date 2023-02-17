@@ -82,7 +82,7 @@ export default defineComponent({
 @import '../../assets/styles/partials/variables';
 
 .container-carousel {
-  height: 20vh;
+  height: 25vh;
 }
 
 a {
