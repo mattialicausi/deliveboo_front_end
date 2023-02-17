@@ -154,9 +154,9 @@ export default {
     height: 50px
 }
 
-// p.card-text {
-//     height: 50px;
-// }
+.btn-web {
+    width: 171px;
+}
 
 .color-red {
     color: $red !important;
