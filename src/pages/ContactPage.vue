@@ -109,7 +109,11 @@ import {store} from '../store';
 
             
             
-        }
+        },
+
+        mounted() {
+            window.scrollTo(0, 0);
+        },
 
     }
 </script>

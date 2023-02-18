@@ -4,14 +4,7 @@
     </div>
     <div class="container" v-if="store.categories && this.restaurants">
 
-
-
-
         <h2 class="text-center">I Nostri Ristoranti</h2>
-
-
-
-
 
         <div class="d-flex justify-content-between my-5 container-category">
             <div class=" position-relative" v-for="(category, i) in store.categoryAllRestaurant" :key="i">
@@ -35,19 +28,6 @@
         </div>
 
         <div class="row">
-            <!-- <div class="col-lg-3 col-md-12 col-sm-12">
-                    <div>
-                        <h4>Tutte le categorie (A - Z)</h4>
-                        <div class="ks-cboxtags category-list d-flex flex-column">
-                            <li v-for="(category, i) in categories"
-                                :class="{ 'active': $route.query.type && $route.query.type.split('+').includes(type.slug) }">
-                                <input type="checkbox" :id="checkboxOne + `${category.id}`" :value="category.id"
-                                    v-model="selectedCategories" @click="getRestaurantbyTypes(type.slug)" />
-                                <label :for="checkboxOne + `${category.id}`">{{ category.name }}</label>
-                            </li>
-                        </div>
-                    </div>
-                </div> -->
 
             <div class="col-lg-3 col-md-12 col-sm-12">
                 <div>
@@ -62,28 +42,6 @@
                     </div>
                 </div>
             </div>
-
-
-            <!-- <div class="col-lg-9 col-md-12 col-sm-12" style="padding-top: 45px;">
-
-
-                    search bar 
-                    <div class="search-box mb-5">
-                        <input type="text" placeholder=" Cerca il tuo ristorante "/><span></span>
-                    </div>
-
-
-                    
-                        <div class="row" v-if="restaurants.length">
-                            <CardRestaurantComponent v-for="(restaurant, i) in restaurants" :restaurant="restaurant" :categories="categories"></CardRestaurantComponent>
-                        </div>
-
-                        <div class="row" v-else>
-                            <p>Nessun ristorante trovato</p>
-                        </div>
-
-                    
-                </div> -->
 
             <div class="col-lg-9 col-md-12 col-sm-12" style="padding-top: 45px;">
 
@@ -155,47 +113,14 @@ export default {
 
             }
         },
-        // getRestaurantbyCategory(slug) {
-        //     if (this.$route.query.category) {
-        //         const slugArray = this.$route.query.category.split('+');
-        //         if (!slugArray.includes(slug)) {
-        //             const fullSlag = this.$route.query.category + '+' + slug;
-        //             this.$router.push({ path: this.$route.path, query: { category: fullSlag } });
-        //         } else {
-        //             slugArray.splice(slugArray.indexOf(slug), 1);
-        //             const fullSlag = slugArray.join('+');
-        //             this.$router.push({ path: this.$route.path, query: { category: fullSlag } });
-        //         }
-        //     } else {
-        //         this.$router.push({ path: this.$route.path, query: { category: slug } });
-        //     }
-        //     console.log(this.$route.query);
-        //     // if (!store.data.params.categoryFilter.includes(id)) {
-        //     //     store.data.params.categoryFilter.push(id);
-        //     // } else {
-        //     //     store.data.params.categoryFilter.splice(store.data.params.categoryFilter.indexOf(id), 1);
-        //     // }
-        // },
-        // resetCategory() {
-        //     this.$router.push({ path: this.$route.path });
-        // }
     },
-    // watch: {
-    //     "store.data": {
-    //         handler() {
-    //             this.getRestaurants();
-    //         },
-    //         deep: true,
-    //     },
-    //     '$route': function () {
-    //         this.getRestaurants();
-    //     }
-    // },
+
     mounted() {
         this.getRestaurants();
         this.getRestaurantsCategories();
         this.getBestCategory();
         this.store.getCategories();
+        window.scrollTo(0, 0);
     },
 }
 </script>
@@ -314,7 +239,6 @@ export default {
     bottom: 0;
     left: 0;
     right: 0;
-    // border: 1px solid $orange;
     border-radius: 20px;
     z-index: -1;
     transition: 300ms ease-in-out;

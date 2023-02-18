@@ -64,7 +64,11 @@ export default {
             store,
         };
     },
-    components: { SliderCategoryComponent, BestRestaurantsComponent, WorkWithUsComponent, JumboComponent, MobileAppComponent, LoaderComponent }
+    components: { SliderCategoryComponent, BestRestaurantsComponent, WorkWithUsComponent, JumboComponent, MobileAppComponent, LoaderComponent },
+
+    mounted() {
+        window.scrollTo(0, 0);
+    },
 }
 </script>
 

@@ -315,7 +315,8 @@ export default {
     },
     mounted() {
         this.getProducts();
-        store.cart = this.getAllCart
+        store.cart = this.getAllCart;
+        window.scrollTo(0, 0);
     },
     watch: {
         'store.saveOrder': {

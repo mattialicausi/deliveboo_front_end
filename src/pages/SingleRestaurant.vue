@@ -179,6 +179,7 @@ export default {
     mounted() {
         this.getRestaurant();
         this.getProducts();
+        window.scrollTo(0, 0);
     },
 }
 </script>
