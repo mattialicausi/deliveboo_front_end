@@ -1,4 +1,4 @@
-<template><!-- Modal -->
+<template>
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -13,9 +13,9 @@
                     <p class="pt-2">{{ product.description }}</p>
                     <p>€ {{ product.price }}</p>
                     <!-- <div class="text-center">
-                                <i class="fa-solid fa-minus fa-2xl"></i><span class="fs-3">Quantità</span> <i
-                                    class="fa-solid fa-plus fa-2xl"></i>
-                            </div> -->
+                                                <i class="fa-solid fa-minus fa-2xl"></i><span class="fs-3">Quantità</span> <i
+                                                    class="fa-solid fa-plus fa-2xl"></i>
+                                            </div> -->
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn mybtn" data-bs-dismiss="modal">Chiudi</button>
@@ -89,7 +89,6 @@ export default {
 
     },
     mounted() {
-        this.store.getTypes();
         store.cart = this.getAllCart;
         this.getStorageKeys();
         console.log(store.cart);
