@@ -36,7 +36,7 @@
 
                             <div class="my-2">
                                 <div>
-                                    <p v-if="restaurant.min_price_order">{{ restaurant.min_price_order }}</p>
+                                    <p v-if="restaurant.min_price_order">Ordine minimo: {{ restaurant.min_price_order }} €</p>
                                     <p v-if="!restaurant.min_price_order">Nessun prezzo minimo per l'ordine</p>
                                 </div>
                             </div>
