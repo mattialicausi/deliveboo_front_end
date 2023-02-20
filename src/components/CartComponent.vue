@@ -26,7 +26,7 @@
             </div>
 
           </div>
-          <span @click="removeFromCart()"><i class="fa-solid fa-trash"></i></span>
+          <span @click="removeFromCart(cartItem, index)"><i class="fa-solid fa-trash"></i></span>
         </div>
         <div></div>
       </div>
@@ -58,10 +58,20 @@ export default {
     };
   },
   methods: {
-    removeFromCart(index) {
-      store.cart.splice(index, 1);
-      store.popupCounter--;
-      localStorage.setItem(`cart`, JSON.stringify(store.cart));
+    removeFromCart(product, i) {
+      // store.cart.splice(i, 1);
+      // store.popupCounter--;
+      // localStorage.setItem(`cart`, JSON.stringify(store.cart));
+      const item = JSON.parse(localStorage.getItem(product.slug))
+      item.quantity = 0
+      if (item.quantity) {
+        localStorage.setItem(product.slug, JSON.stringify(item))
+        store.cart[i].quantity--
+      } else {
+        localStorage.removeItem(product.slug)
+        store.cart.splice(i, 1)
+        store.popupCounter--;
+      }
     },
 
     clearCart() {

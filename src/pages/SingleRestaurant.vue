@@ -40,8 +40,8 @@
                                     <p>Puoi passare a trovarci anche in sede</p>
                                     <h4>{{ restaurant.address }}</h4>
                                     <h4><i class="fa-solid fa-phone"></i> {{ restaurant.contact_phone }}</h4>
-                                    <h4>Aperti dalle {{ restaurant.opening_time }}</h4>
-                                    <h4>Fino alle {{ restaurant.closing_time }}</h4>
+                                    <h4>Aperti dalle {{ removeLastThreeChars(restaurant.opening_time) }}</h4>
+                                    <h4>Fino alle {{ removeLastThreeChars(restaurant.closing_time) }}</h4>
                                 </div>
                             </div>
                         </div>
@@ -123,6 +123,9 @@ export default {
     },
 
     methods: {
+        removeLastThreeChars(str) {
+            return str.slice(0, -3);
+        },
         getRestaurant() {
             axios.get(`${this.store.apiBaseUrl}/restaurants/${this.$route.params.slug}`).then((response) => {
                 if (response.data.success) {
