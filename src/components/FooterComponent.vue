@@ -108,7 +108,7 @@
             </div>
 
             <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)"> © 2023 Copyright:
-                <a class="text-white" href="https://boolean.careers/">Team 5 - Classe 74</a>
+            <router-link class="text-white" :to="{name: 'our-team'}">Team 5 - Classe 74</router-link>
             </div>
         </footer>
 
