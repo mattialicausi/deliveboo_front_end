@@ -31,7 +31,7 @@
 
             <div class="col-lg-3 col-md-12 col-sm-12">
                 <div>
-                    <h4>Tutte le categorie (A - Z)</h4>
+                    <h4 class="allcategories">Tutte le categorie (A - Z)</h4>
                     <h5 class="restaurant-counter">Puoi scegliere tra: {{ filteredRestaurants.length }} ristoranti</h5>
                     <div class="ks-cboxtags category-list d-flex flex-column">
                         <li v-for="(category, index) in store.categories.sort((a, b) => a.name.localeCompare(b.name))"
@@ -439,8 +439,12 @@ h2 {
     }
 
     .restaurant-counter {
-        margin-left: 2rem;
-        color: $white;
+        text-align: center;
+        color: $black;
+    }
+
+    .allcategories {
+        color: $black;
     }
 }
 </style>
